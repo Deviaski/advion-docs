@@ -8,15 +8,13 @@ icon: stack
 
 Welcome to the official documentation for **Advion Plugins**.
 
-Select a plugin below to view its installation guide, commands, permissions, configuration, and other documentation.
+Select a plugin below to view its wiki.
 
-|||
-
-[!card title="UniversalStakes" text="A universal staking system for your server." icon=":moneybag:" layout="compact"](/universalstakes/)
-
-[!card title="Coming Soon" text="More Advion plugins are currently in development." icon=":hourglass_flowing_sand:" layout="compact"]()
-
-|||
+[!card layout="signal" title="UniversalMessages" text="Custom join, quit, kill, and death messages for your Minecraft server." icon="comment-discussion"](/universalmessages/)
+[!card layout="signal" title="UniversalOrders" text="A player order system for creating and completing server requests." icon="checklist"](/universalorders/)
+[!card layout="signal" title="IslandHologram" text="Custom island holograms for SuperiorSkyblock2 servers." icon="project-roadmap"](/islandhologram/)
+[!card layout="signal" title="OneblockCatalog" text="Multi-page menus displaying OneBlock blocks, mobs, and chest contents." icon="book"](/oneblockcatalog/)
+[!card layout="signal" title="UniversalStakes" text="A universal staking system for your server." icon="moneybag"](/universalstakes/)
 
 !!!tip Need help?
 Can't find the answer you're looking for? Contact us through the plugin's support page.
