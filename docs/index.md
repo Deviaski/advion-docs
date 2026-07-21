@@ -1,14 +1,12 @@
 \---
 
-
-
 title: Advion Plugins
 
 description: Documentation and setup guides for Advion plugins.
 
 icon: stack
 
-\-----------
+\---
 
 
 
@@ -28,31 +26,11 @@ Select a plugin below to view its installation guide, commands, permissions, con
 
 
 
-\[!card
-
-title="UniversalStakes"
-
-text="A universal staking system with flexible events, investments, rewards, and leaderboards."
-
-icon=":moneybag:"
-
-layout="compact"
-
-](/universalstakes/)
+\[!card title="UniversalStakes" text="A universal staking system for your server." icon=":moneybag:" layout="compact"](/universalstakes/)
 
 
 
-\[!card
-
-title="Coming Soon"
-
-text="More Advion plugins are currently in development."
-
-icon=":hourglass\_flowing\_sand:"
-
-layout="compact"
-
-]()
+\[!card title="Coming Soon" text="More Advion plugins are currently in development." icon=":hourglass\_flowing\_sand:" layout="compact"]()
 
 
 
@@ -65,6 +43,4 @@ layout="compact"
 Can't find the answer you're looking for? Contact us through the plugin's support page.
 
 !!!
-
-
 
