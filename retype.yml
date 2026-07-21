@@ -1,0 +1,7 @@
+input: ./docs
+url: https://deviaski.github.io/advion-docs
+branding:
+  title: Advion Plugins
+  label: Docs
+footer:
+  copyright: "&copy; Copyright {{ year }}. All rights reserved."

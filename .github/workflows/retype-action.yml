@@ -1,0 +1,20 @@
+name: Publish Retype powered website
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: retypeapp/action-build@latest
+      - uses: retypeapp/action-github-pages@latest
+        with:
+          branch: gh-pages
+          update-branch: true
