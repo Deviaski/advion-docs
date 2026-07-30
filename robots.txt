@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://deviaski.github.io/advion-docs/sitemap.xml
