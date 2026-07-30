@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Polished Minecraft server plugins by Advion.">
+    <title>Advion — Minecraft plugins</title>
+    <link rel="stylesheet" href="assets/landing.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="./" aria-label="Advion home">ADVION<span>•</span></a>
+      <nav aria-label="Main navigation">
+        <a href="#plugins">Plugins</a>
+        <a class="social-button" href="https://discord.com/invite/Qk3RYxEcTR" target="_blank" rel="noreferrer">Discord</a>
+        <a class="social-button" href="https://ko-fi.com/advion" target="_blank" rel="noreferrer">Ko-fi</a>
+        <a class="nav-button" href="docs/">Documentation <span aria-hidden="true">↗</span></a>
+      </nav>
+    </header>
+    <main>
+      <section class="hero" aria-labelledby="page-title">
+        <p class="eyebrow">MINECRAFT SERVER TOOLS</p>
+        <h1 id="page-title">Built for servers<br>people return to.</h1>
+        <p class="hero-copy">Purposeful, polished plugins that make your Minecraft server easier to run and more rewarding to play.</p>
+        <div class="hero-actions"><a class="button button-primary" href="#plugins">Explore plugins <span aria-hidden="true">↓</span></a><a class="button button-quiet" href="docs/">Read the docs</a></div>
+      </section>
+      <section class="catalogue" id="plugins" aria-labelledby="plugins-title">
+        <div class="section-heading"><div><p class="eyebrow">CATALOGUE</p><h2 id="plugins-title">Find your next feature.</h2></div><p>Choose a plugin, then jump straight to its guide or download page.</p></div>
+        <div class="plugin-grid">
+          <article class="plugin-card plugin-card-featured"><a class="plugin-image" href="docs/universalstakes/"><img src="assets/plugins/universalstakes.webp" alt="UniversalStakes interface preview"><span class="badge badge-premium">Premium</span></a><div class="plugin-content"><p class="card-type">Economy &amp; events</p><h3>UniversalStakes</h3><p>A universal staking system with investments, rewards, and leaderboards.</p><div class="card-footer"><span class="price">€9.99</span><div class="card-actions"><a href="docs/universalstakes/">Documentation</a><a class="buy-link" href="#">Buy <span aria-hidden="true">→</span></a></div></div></div></article>
+          <article class="plugin-card"><a class="plugin-image" href="#"><img src="assets/plugins/universalmessages.webp" alt="UniversalMessages interface preview"><span class="badge badge-free">Free</span></a><div class="plugin-content"><p class="card-type">Player experience</p><h3>UniversalMessages</h3><p>Custom join, quit, kill, and death messages for your server.</p><div class="card-footer"><span class="price price-free">Free</span><div class="card-actions"><a href="#">Details</a><a class="buy-link" href="#">Download <span aria-hidden="true">→</span></a></div></div></div></article>
+          <article class="plugin-card"><a class="plugin-image" href="#"><img src="assets/plugins/universalorders.webp" alt="UniversalOrders interface preview"><span class="badge badge-premium">Premium</span></a><div class="plugin-content"><p class="card-type">Gameplay</p><h3>UniversalOrders</h3><p>A flexible player order system for creating and completing requests.</p><div class="card-footer"><span class="price">€7.99</span><div class="card-actions"><a href="#">Details</a><a class="buy-link" href="#">Buy <span aria-hidden="true">→</span></a></div></div></div></article>
+          <article class="plugin-card"><a class="plugin-image" href="#"><img src="assets/plugins/islandhologram.webp" alt="IslandHologram interface preview"><span class="badge badge-free">Free</span></a><div class="plugin-content"><p class="card-type">Skyblock</p><h3>IslandHologram</h3><p>Clean, useful holograms for islands on SuperiorSkyblock2 servers.</p><div class="card-footer"><span class="price price-free">Free</span><div class="card-actions"><a href="#">Details</a><a class="buy-link" href="#">Download <span aria-hidden="true">→</span></a></div></div></div></article>
+          <article class="plugin-card"><a class="plugin-image" href="#"><img src="assets/plugins/oneblockcatalog.webp" alt="OneblockCatalog interface preview"><span class="badge badge-premium">Premium</span></a><div class="plugin-content"><p class="card-type">OneBlock</p><h3>OneblockCatalog</h3><p>Multi-page menus for showing blocks, mobs, and chest contents.</p><div class="card-footer"><span class="price">€6.99</span><div class="card-actions"><a href="#">Details</a><a class="buy-link" href="#">Buy <span aria-hidden="true">→</span></a></div></div></div></article>
+        </div>
+      </section>
+    </main>
+    <footer><a class="brand" href="./">ADVION<span>•</span></a><p>Tools for better Minecraft servers.</p><a href="docs/">Documentation ↗</a></footer>
+    <script>
+      document.querySelectorAll('.plugin-card').forEach((card, index) => {
+        const links = card.querySelectorAll('.card-actions a');
+        if (links.length !== 2) return;
+        links[0].href = index === 0 ? 'docs/universalstakes/' : 'docs/';
+        links[0].textContent = 'Documentation';
+        links[1].href = 'https://ko-fi.com/advion';
+        links[1].target = '_blank';
+        links[1].rel = 'noreferrer';
+        links[1].textContent = card.querySelector('.price-free') ? 'Get free' : 'Buy';
+      });
+    </script>
+  </body>
+</html>

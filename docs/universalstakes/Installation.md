@@ -1,39 +1,80 @@
+---
+order: 2
+icon: download
+---
+
 # Installation
 
-> **You need:** Paper 1.21.7 (the verified server version), Java 21, the UniversalStakes release JAR, and outbound HTTPS for the first start. Do not use a JAR whose name contains `SNAPSHOT` on a live server. Test later Paper versions on staging before production use.
+> **You need:** Paper 1.20.4 through 26.2, and the UniversalStakes release JAR. Use Java 21 on Paper
+> 1.20.4–1.21.11, or Java 25 on Paper 26.1–26.2. Never use a JAR whose name contains `SNAPSHOT` on a
+> live server.
 
-## Install in seven steps
+## Install in 7 steps
 
-1. Stop the Minecraft server.
-2. Put the UniversalStakes JAR in the server’s `plugins` folder.
-3. Start the server once. UniversalStakes creates its folders and example files.
-4. Stop the server again.
+1. **Stop** the Minecraft server.
+2. Put the UniversalStakes JAR into the server's `plugins/` folder.
+3. **Start** the server once. UniversalStakes creates its folders and example files.
+4. **Stop** the server again.
 5. Open `plugins/UniversalStakes/`.
-6. Edit or remove the example stake files in `stakes/`.
-7. Start the server and run `/stakes` in game.
+6. In `config.yml`, choose your language with `locale: english` (or another installed pack). Edit the
+   example events in `language/english/stakes/`.
+7. **Start** the server and run `/stakes` in game.
 
-## First-start network requirement
+That's it. The two shipped example events (*Coin Fever* and *Diamond Rush*) work right away for
+item- and Vault-based deposits.
 
-The plugin JAR does not embed the database stack. Paper reads `plugin.yml` and downloads HikariCP, Jdbi, SQLite JDBC, MySQL Connector/J, and their transitive dependencies from Maven Central. This happens even though SQLite is the default database.
+---
 
-For an offline server, first start the exact same release on a staging Paper installation with network access, then transfer the complete Paper library cache together with the server. A missing or blocked Maven artifact prevents the plugin from loading; check the Paper console before troubleshooting UniversalStakes configuration.
+## First start needs internet (once)
 
-> **SCREENSHOT TO ADD:** `plugins/UniversalStakes/` after the first start. Highlight `config.yml`, `stakes`, `gui`, and `language`.
+The plugin JAR does **not** bundle the database libraries. On the first start, Paper reads
+`plugin.yml` and downloads HikariCP, Jdbi, the SQLite driver, the MySQL driver, and their dependencies
+from Maven Central. This happens even though SQLite is the default.
+
+- Allow **outbound HTTPS** for that first start.
+- For an **offline server**, first run the exact same release on a staging server that has internet,
+  then copy Paper's full library cache over together with the server. If a needed library cannot be
+  downloaded, the plugin will not load — check the Paper console before blaming the plugin config.
+
+---
 
 ## Optional plugins
 
-| Plugin | Do I need it? |
+| Plugin | Do you need it? |
 | --- | --- |
-| Vault and an economy plugin | Only for stakes that use virtual money (`VAULT`). |
-| PlaceholderAPI | Only for placeholders in other plugins or custom text. Shipped stake cards use built-in `{status}` and `{time_left}` tokens. |
+| **Vault** + an economy plugin | Only if you have stakes that deposit virtual money (`type: VAULT`). |
+| **PlaceholderAPI** | Required only for `PLACEHOLDER` currencies. Optional otherwise — it also lets other plugins read UniversalStakes placeholders. |
 
-Item-based stakes work without both optional plugins.
+Item-based events work with **neither** of these installed.
 
-## What the folders are for
+---
 
-- `config.yml` — database, input timeout, and global options.
-- `stakes/` — one `.yml` file per competition.
-- `gui/` — the inventory menus players see.
-- `language/` — messages sent by the plugin.
+## A quick tour of the folder
 
-**Next step:** [Create your first stake](First-Stake.md).
+After the first start you will see:
+
+| Path | Purpose |
+| --- | --- |
+| `config.yml` | Global settings: database, command names, language, safety. |
+| `currencies.yml` | Registry for external PlaceholderAPI currencies (ships with PlayerPoints + ExcellentEconomy examples). |
+| `data/data.db` | The SQLite database (the default). |
+| `imported-items/` | Custom-item snapshots created by `/stakes admin importitem`. |
+| `language/<locale>/` | The active language pack: `messages.yml`, `menus/`, `stakes/`. |
+
+For a full explanation of every file and how they fit together, see
+[How it works](How-It-Works.md).
+
+---
+
+## Give access to players and staff
+
+By default **nobody** has UniversalStakes permissions.
+
+- Give regular players the bundle **`universalstakes.use`**.
+- Give staff the bundle **`universalstakes.admin`** (operators get it automatically).
+
+See [Commands & permissions](Commands-and-Permissions.md) for the full list and per-stake access.
+
+---
+
+**Next:** make a working event in 5 minutes — [Your first stake](First-Stake.md).

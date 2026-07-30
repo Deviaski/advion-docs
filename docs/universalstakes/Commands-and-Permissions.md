@@ -1,43 +1,58 @@
-# Commands and Permissions
+---
+order: 9
+icon: lock
+---
 
-By default, players have **no** UniversalStakes permissions. Give regular players
-`universalstakes.use`; give staff `universalstakes.admin` (operators receive it by default).
-Both are convenience bundles. You can instead grant only the exact command and menu nodes below.
+# Commands & permissions
+
+By default **nobody** has UniversalStakes permissions. Give regular players the bundle
+**`universalstakes.use`**, and give staff the bundle **`universalstakes.admin`** (operators get it
+automatically). You can also grant only the exact nodes listed below.
+
+---
 
 ## Player commands
 
-| Command | Purpose |
+| Command | What it does |
 | --- | --- |
 | `/stakes` | Open the main menu. `/stake` and `/universalstakes` also work. |
-| `/stakes <stake-id>` | Open one stake. |
-| `/stakes history` | Open personal deposit history. |
-| `/stakes rewards` | Open waiting rewards. |
-| `/<alias>` | Open a stake through its alias. |
-| `/<alias> invest <amount>` | Deposit currency. |
-| `/<alias> withdraw <amount>` | Withdraw while the round is active. |
+| `/stakes <stake-id>` | Open one event. |
+| `/stakes history` | Open your deposit history. |
+| `/stakes rewards` | Open your waiting rewards. |
+| `/stakes help` | Show player command help. |
+| `/<alias>` | Open an event through its alias (e.g. `/diamonds`). |
+| `/<alias> deposit` | Open contribution sources; left-click deposits, right-click withdraws (if enabled). |
 | `/<alias> top [page]` | Show the leaderboard in chat. |
+| `/<alias> help` | Show the commands for this event. |
 
-The first value in `config.yml` under `command.aliases` is the primary root
-command; the remaining values are aliases for the same full command tree.
-They are case-insensitive, normalized to lowercase, and must be unique. A
-restart is required after changing root or stake aliases.
+The first value in `config.yml` under `command.aliases` is the **primary** root command; the rest are
+aliases of the same full tree. They are case-insensitive and must be unique. Changing roots or event
+aliases needs a **restart**.
+
+---
 
 ## Staff commands
 
-| Command | Purpose |
+| Command | What it does |
 | --- | --- |
-| `/stakes admin reload` | Reload global configuration, language, and menus, and validate stake files. Existing stake objects are kept until restart. |
+| `/stakes admin reload` | Validate and reload language, menus, stake display/messages, and **new** `currencies.yml` entries. See [Reload & restart](Reload-and-Restart.md). |
 | `/stakes admin start <stake-id>` | Start a new round. |
 | `/stakes admin stop <stake-id>` | End the active round. |
-| `/stakes admin importitem <stake-id> <item-id>` | Save the item in the main hand as custom stake currency. |
-| `/stakes admin logs <stake-id>` | Open completed rounds for a stake and view their immutable administrator audit logs. |
+| `/stakes admin importitem <item-id>` | Save the item in your hand as a reusable custom-item ID. |
+| `/stakes admin logs <stake-id>` | Open completed rounds and their immutable audit logs. |
+| `/stakes admin help` | Show administrator command help. |
+
+Invalid syntax shows the editable `messages.commandUsage` message. A mistyped subcommand shows the
+matching help page.
+
+---
 
 ## Complete permission list
 
 | Permission | Default | Grants |
 | --- | --- | --- |
-| `universalstakes.use` | false | All standard player command and menu permissions listed below. It does not bypass a stake-specific `permission` setting. |
-| `universalstakes.admin` | op | All administrator command and audit-menu permissions listed below. |
+| `universalstakes.use` | false | All standard player command and menu nodes below. Does **not** bypass a stake's own `permission`. |
+| `universalstakes.admin` | op | All admin command and audit-menu nodes below. |
 | `universalstakes.command.main` | false | `/stakes` and configured root aliases. |
 | `universalstakes.command.history` | false | `/stakes history`. |
 | `universalstakes.command.rewards` | false | `/stakes rewards`. |
@@ -45,35 +60,33 @@ restart is required after changing root or stake aliases.
 | `universalstakes.command.help` | false | `/stakes help`. |
 | `universalstakes.command.alias.open` | false | `/<stake-alias>`. |
 | `universalstakes.command.alias.top` | false | `/<stake-alias> top [page]`. |
-| `universalstakes.command.alias.invest` | false | `/<stake-alias> invest <amount>`. |
-| `universalstakes.command.alias.withdraw` | false | `/<stake-alias> withdraw <amount>`. |
 | `universalstakes.command.alias.help` | false | `/<stake-alias> help`. |
-| `universalstakes.menu.main` | false | Main stakes menu (`stakes-main.yml`). |
-| `universalstakes.menu.stake` | false | Selected stake menu (`stakes-menu.yml`). |
-| `universalstakes.menu.history` | false | Deposit-history menu (`stakes-history.yml`). |
-| `universalstakes.menu.rewards` | false | Pending-rewards menu (`stakes-rewards.yml`). |
-| `universalstakes.menu.admin.logs` | false | Completed-round audit menu (`stakes-admin-logs.yml`). |
-| `universalstakes.menu.admin.log-events` | false | Individual audit-event menu (`stakes-admin-log-events.yml`). |
+| `universalstakes.menu.main` | false | Main menu. |
+| `universalstakes.menu.stake` | false | Selected event menu. |
+| `universalstakes.menu.history` | false | History menu. |
+| `universalstakes.menu.rewards` | false | Rewards menu. |
+| `universalstakes.menu.admin.logs` | false | Completed-round audit menu. |
+| `universalstakes.menu.admin.log-events` | false | Per-event audit menu. |
 | `universalstakes.command.admin.help` | false | `/stakes admin help`. |
 | `universalstakes.command.admin.reload` | false | `/stakes admin reload`. |
 | `universalstakes.command.admin.start` | false | `/stakes admin start <stake-id>`. |
 | `universalstakes.command.admin.stop` | false | `/stakes admin stop <stake-id>`. |
-| `universalstakes.command.admin.importitem` | false | `/stakes admin importitem <stake-id> <item-id>`. |
+| `universalstakes.command.admin.importitem` | false | `/stakes admin importitem <item-id>`. |
 | `universalstakes.command.admin.logs` | false | `/stakes admin logs <stake-id>`. |
+
+---
 
 ## Per-stake access
 
-Stake access is configured in the individual `stakes/<stake-id>.yml` file, not by a generated
-`universalstakes.stake.<stake-id>` node. Add `permission` at the root of the stake file only when
-the stake must be restricted:
+Access to a specific event is set **in the stake file**, not by a generated permission node. Add
+`permission` at the root only when the event must be restricted:
 
 ```yaml
 permission: "stake.diamondrush"
 ```
 
-If `permission` is missing or is empty (`permission: ""`), the stake is public. If it contains a
-non-empty value, only players with that exact permission can see or participate in the stake.
-Grant that configured node separately in your permissions plugin; `universalstakes.use` does not
-automatically grant it.
+- Missing or empty (`permission: ""`) → the event is **public** to anyone with the command/menu nodes.
+- Non-empty → only players with that **exact** permission can see or join it.
 
-Changing an existing stake file or running `importitem` writes/validates the files but does not replace that stake's live runtime object. Perform a full server restart before testing or enabling the new settings. Alias changes also require a restart.
+Grant that node yourself in your permissions plugin. `universalstakes.use` does **not** grant it
+automatically.
