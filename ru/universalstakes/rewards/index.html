@@ -11,38 +11,39 @@
     <meta name="generator" content="Retype 4.6.0">
 
     <!-- Primary Meta Tags -->
-    <title>How it works</title>
-    <meta name="title" content="How it works">
-    <meta name="description" content="This page explains the whole plugin in plain language: where the files live, what a round is, and what happens step by step when players deposit, when the timer ends, and when they claim rewards.">
+    <title>Награды</title>
+    <meta name="title" content="Награды">
+    <meta name="description" content="Важно: каждая команда вознаграждения запускается как консоль сервера. Только доверенные сотрудники должны редактировать файлы ставок — команда вознаграждения может давать предметы, деньги или запускать любую серверную команду.">
 
     <!-- Canonical -->
-    <link rel="canonical" href="https://deviaski.github.io/advion-docs/universalstakes/how-it-works/">
+    <link rel="canonical" href="https://deviaski.github.io/advion-docs/ru/universalstakes/rewards/">
     <link rel="sitemap" type="application/xml" title="Sitemap" href="https://deviaski.github.io/advion-docs/sitemap.xml">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://deviaski.github.io/advion-docs/universalstakes/how-it-works/">
-    <meta property="og:title" content="How it works">
-    <meta property="og:description" content="This page explains the whole plugin in plain language: where the files live, what a round is, and what happens step by step when players deposit, when the timer ends, and when they claim rewards.">
+    <meta property="og:url" content="https://deviaski.github.io/advion-docs/ru/universalstakes/rewards/">
+    <meta property="og:title" content="Награды">
+    <meta property="og:description" content="Важно: каждая команда вознаграждения запускается как консоль сервера. Только доверенные сотрудники должны редактировать файлы ставок — команда вознаграждения может давать предметы, деньги или запускать любую серверную команду.">
     <meta property="og:site_name" content="Advion Plugins">
     <meta property="og:locale" content="en_US">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://deviaski.github.io/advion-docs/universalstakes/how-it-works/">
-    <meta name="twitter:title" content="How it works">
-    <meta name="twitter:description" content="This page explains the whole plugin in plain language: where the files live, what a round is, and what happens step by step when players deposit, when the timer ends, and when they claim rewards.">
+    <meta name="twitter:url" content="https://deviaski.github.io/advion-docs/ru/universalstakes/rewards/">
+    <meta name="twitter:title" content="Награды">
+    <meta name="twitter:description" content="Важно: каждая команда вознаграждения запускается как консоль сервера. Только доверенные сотрудники должны редактировать файлы ставок — команда вознаграждения может давать предметы, деньги или запускать любую серверную команду.">
 
     <!-- Alternate Markdown -->
-    <link rel="alternate" type="text/markdown" href="https://deviaski.github.io/advion-docs/universalstakes/how-it-works.md">
+    <link rel="alternate" type="text/markdown" href="https://deviaski.github.io/advion-docs/ru/universalstakes/rewards.md">
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=4.6.0.838757101796" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=4.6.0.838757101796" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=4.6.0.838757101796" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/retype.js?v=4.6.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.6.0.838757101796" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=4.6.0.838757101796" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/retype.js?v=4.6.0" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=4.6.0.838757101796" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=4.6.0.838757101796" defer></script>
 
     <style>
       .lang-switcher {
@@ -684,258 +685,199 @@
                 <doc-page-actions></doc-page-actions>
 
                 <!-- Page content  -->
-<h1 id="how-it-works">How it works</h1>
-<p>This page explains the whole plugin in plain language: where the files live, what a round is, and
-what happens step by step when players deposit, when the timer ends, and when they claim rewards.
-You do not need to read the source code — everything here is what matters for running the plugin.</p>
+<h1 id="награды">Награды</h1>
+<blockquote>
+<p><strong>Важно:</strong> каждая команда вознаграждения запускается как <strong>консоль сервера</strong>. Только доверенные сотрудники должны редактировать
+файлы ставок — команда вознаграждения может давать предметы, деньги или запускать любую серверную команду.</p>
+</blockquote>
+<p>Когда раунд завершается, UniversalStakes оценивает каждого участника и создает <strong>ожидающие награды</strong>.
+Игроки забирают их в <code translate="no" v-pre>/stakes rewards</code>. На этой странице описано, как настроить эти награды.</p>
 <hr>
-<h2 id="the-file-layout">The file layout</h2>
-<p>After the first start, your <code translate="no" v-pre>plugins/UniversalStakes/</code> folder looks like this:</p>
-<div id="the-file-layout-code-1" class="codeblock-wrapper"><doc-codeblock>
-<pre translate="no" class="language-none"><code v-pre class="language-none">plugins/UniversalStakes/
-├── config.yml              ← global settings (database, commands, language, safety)
-├── currencies.yml          ← registry for external PlaceholderAPI currencies (optional)
-├── data/
-│   └── data.db             ← the SQLite database (default storage)
-├── imported-items/         ← snapshots of custom items (made by /stakes admin importitem)
-└── language/
-    └── english/            ← the active language pack (one folder per language)
-        ├── messages.yml    ← chat messages sent by the plugin
-        ├── menus/
-        │   ├── stakes-main.yml
-        │   ├── stakes-menu.yml
-        │   ├── deposit-menu.yml
-        │   ├── stakes-history.yml
-        │   ├── stakes-rewards.yml
-        │   ├── stakes-admin-logs.yml
-        │   └── stakes-admin-log-events.yml
-        └── stakes/
-            ├── coinfever.yml       ← one file per event
-            └── diamondrush.yml</code></pre>
+<h2 id="need-free-slots--защитить-инвентарь-игрока"><code translate="no" v-pre>need-free-slots</code> — защитить инвентарь игрока</h2>
+<p>Добавьте <code translate="no" v-pre>need-free-slots</code> рядом с любым списком <code translate="no" v-pre>rewards</code>, в котором есть элементы. Это число <strong>полностью
+пустые</strong> слоты инвентаря, которые игрок должен иметь перед запуском <strong>любой</strong> команды в этом блоке.</p>
+<div id="need-free-slots--защитить-инвентарь-игрока-code-1" class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-yaml"><code v-pre class="language-yaml">prizes:
+  top:
+    1:
+      need-free-slots: 2
+      rewards:
+        - &quot;give %player% diamond_block 64&quot;
+        - &quot;give %player% enchanted_golden_apple 1&quot;
+        - &quot;broadcast &lt;gold&gt;%player% won the race!&quot;</code></pre>
 </doc-codeblock></div>
-<h3 id="what-each-file-does">What each file does</h3>
-<retype-table copy-text="| File / folder | What it controls |
+<ul>
+<li>
+<p>Если у игрока слишком мало пустых слотов, команды <strong>не</strong> выполняются, и награда остается в ожидании в течение некоторого времени.
+позже нажмите.</p>
+</li>
+<li>
+<p><code translate="no" v-pre>0</code> отключает проверку.</p>
+</li>
+<li>
+<p>Подсчитайте каждую команду, которая может дать предмет (не стаки или суммы); такие команды, как <code translate="no" v-pre>broadcast</code> и
+<code translate="no" v-pre>msg</code> не в счет. Плагин не анализирует текст команды, поэтому это число — <strong>ваше</strong> обещание, что
+настроенные команды подходят.</p>
+</li>
+</ul>
+<hr>
+<h2 id="prizestop--победители-в-рейтинге"><code translate="no" v-pre>prizes.top</code> — победители в рейтинге</h2>
+<p>Каждая клавиша – это финишная позиция. Ключи должны представлять собой последовательные положительные целые числа, начинающиеся с <code translate="no" v-pre>1</code>.</p>
+<div id="prizestop--победители-в-рейтинге-code-1" class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-yaml"><code v-pre class="language-yaml">prizes:
+  top:
+    1:
+      material: NETHER_STAR
+      name: &quot;&lt;gold&gt;Winner&quot;
+      lore: [&quot;&lt;gray&gt;64 diamonds&quot;]
+      need-free-slots: 1
+      rewards:
+        - &quot;give %player% diamond 64&quot;
+        - &quot;broadcast &lt;gold&gt;%player% won the race!&quot;
+    2:
+      material: DIAMOND
+      name: &quot;&lt;aqua&gt;Second place&quot;
+      need-free-slots: 1
+      rewards:
+        - &quot;give %player% diamond 32&quot;</code></pre>
+</doc-codeblock></div>
+<retype-table copy-text="| Поле | Значение |
 | --- | --- |
-| `config.yml` | Database type, command names, language choice, ban handling, audit retention, debug. See [Configuration](Configuration.md). |
-| `currencies.yml` | Definitions for `PLACEHOLDER` currencies (economies without a Vault bridge). Only needed if you use that type. See [Currencies](Currencies.md). |
-| `data/data.db` | The SQLite database. Do not open or edit it while the server runs. |
-| `imported-items/*.item` | Custom-item snapshots used by `CUSTOM_ITEM` contribution sources. |
-| `language/&lt;locale&gt;/messages.yml` | All plugin chat messages. See [Messages &amp; placeholders](Messages-and-Placeholders.md). |
-| `language/&lt;locale&gt;/menus/*.yml` | The inventory menus players see. See [Menus](Menus.md). |
-| `language/&lt;locale&gt;/stakes/*.yml` | One file per event. This is where you spend most of your time. See [Stake settings](Stake-Settings.md). |">
+| `material`, `name`, `lore` | Как приз выглядит в меню. |
+| `need-free-slots` | Перед запуском команд необходимы пустые слоты (см. выше). |
+| `rewards` | Консольные команды запускаются по требованию игрока. `%player%` и `%player_name%` станут именем победителя. |">
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="comfortable">
 <thead>
 <tr>
-<th>File / folder</th>
-<th>What it controls</th>
+<th>Поле</th>
+<th>Значение</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code translate="no" v-pre>config.yml</code></td>
-<td>Database type, command names, language choice, ban handling, audit retention, debug. See <a href="../configuration/">Configuration</a>.</td>
+<td><code translate="no" v-pre>material</code>, <code translate="no" v-pre>name</code>, <code translate="no" v-pre>lore</code></td>
+<td>Как приз выглядит в меню.</td>
 </tr>
 <tr>
-<td><code translate="no" v-pre>currencies.yml</code></td>
-<td>Definitions for <code translate="no" v-pre>PLACEHOLDER</code> currencies (economies without a Vault bridge). Only needed if you use that type. See <a href="../currencies/">Currencies</a>.</td>
+<td><code translate="no" v-pre>need-free-slots</code></td>
+<td>Перед запуском команд необходимы пустые слоты (см. выше).</td>
 </tr>
 <tr>
-<td><code translate="no" v-pre>data/data.db</code></td>
-<td>The SQLite database. Do not open or edit it while the server runs.</td>
+<td><code translate="no" v-pre>rewards</code></td>
+<td>Консольные команды запускаются по требованию игрока. <code translate="no" v-pre>%player%</code> и <code translate="no" v-pre>%player_name%</code> станут именем победителя.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</retype-table>
+<p>Приз <code translate="no" v-pre>lore</code>/<code translate="no" v-pre>name</code> может использовать <code translate="no" v-pre>{rank}</code>, <code translate="no" v-pre>{player_name}</code>, <code translate="no" v-pre>{points}</code>, а также токены для каждого источника, например
+<code translate="no" v-pre>{coins.display-name}</code> и <code translate="no" v-pre>{coins.amount}</code>.</p>
+<hr>
+<h2 id="prizesothers--утешительные-уровни"><code translate="no" v-pre>prizes.others</code> — утешительные уровни</h2>
+<p>Нумерованный список утешительных уровней для игроков, не занявших первое место.</p>
+<ul>
+<li>Уровень <code translate="no" v-pre>1</code> начинается сразу после победителей в рейтинге.</li>
+<li>Уровень <code translate="no" v-pre>2</code> начинается после того, как каждый игрок выбран на уровне <code translate="no" v-pre>1</code> и так далее.</li>
+<li>Игрок получает <strong>не более одного</strong> уровня.</li>
+<li>Ключи уровня должны представлять собой непрерывные положительные целые числа, начинающиеся с <code translate="no" v-pre>1</code>.</li>
+</ul>
+<div id="prizesothers--утешительные-уровни-code-1" class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-yaml"><code v-pre class="language-yaml">prizes:
+  others:
+    1:
+      type: COUNT
+      amount: 100
+      refund-percent: 50
+      need-free-slots: 1
+      rewards:
+        - &quot;give %player% emerald 10&quot;
+    2:
+      type: PERCENT
+      amount: 100
+      refund-percent: 25
+      need-free-slots: 2
+      rewards:
+        - &quot;give %player% diamond 3&quot;</code></pre>
+</doc-codeblock></div>
+<retype-table copy-text="| Поле | Значение |
+| --- | --- |
+| `type` | `COUNT` = фиксированное количество следующих игроков. `PERCENT` = процент от всех участников. |
+| `amount` | Количество игроков (для `COUNT`) или процент `0`–`100` (для `PERCENT`). `100` присваивает уровень всем, кто еще не выбран. |
+| `refund-percent` | `0`–`100`. Возвращает процент от **чистого депозита** каждого выбранного игрока для каждого источника, округленный в меньшую сторону. Предметы, хранилища, PlaceholderAPI и депозиты пользовательских предметов возвращаются в исходной форме. |
+| `need-free-slots` | Перед запуском команд необходимы пустые слоты. |
+| `rewards` | Консольные команды выполняются по запросу. |">
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Поле</th>
+<th>Значение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code translate="no" v-pre>type</code></td>
+<td><code translate="no" v-pre>COUNT</code> = фиксированное количество следующих игроков. <code translate="no" v-pre>PERCENT</code> = процент от всех участников.</td>
 </tr>
 <tr>
-<td><code translate="no" v-pre>imported-items/*.item</code></td>
-<td>Custom-item snapshots used by <code translate="no" v-pre>CUSTOM_ITEM</code> contribution sources.</td>
+<td><code translate="no" v-pre>amount</code></td>
+<td>Количество игроков (для <code translate="no" v-pre>COUNT</code>) или процент <code translate="no" v-pre>0</code>–<code translate="no" v-pre>100</code> (для <code translate="no" v-pre>PERCENT</code>). <code translate="no" v-pre>100</code> присваивает уровень всем, кто еще не выбран.</td>
 </tr>
 <tr>
-<td><code translate="no" v-pre>language/&lt;locale&gt;/messages.yml</code></td>
-<td>All plugin chat messages. See <a href="../messages-and-placeholders/">Messages &amp; placeholders</a>.</td>
+<td><code translate="no" v-pre>refund-percent</code></td>
+<td><code translate="no" v-pre>0</code>–<code translate="no" v-pre>100</code>. Возвращает процент от <strong>чистого депозита</strong> каждого выбранного игрока для каждого источника, округленный в меньшую сторону. Предметы, хранилища, PlaceholderAPI и депозиты пользовательских предметов возвращаются в исходной форме.</td>
 </tr>
 <tr>
-<td><code translate="no" v-pre>language/&lt;locale&gt;/menus/*.yml</code></td>
-<td>The inventory menus players see. See <a href="../menus/">Menus</a>.</td>
+<td><code translate="no" v-pre>need-free-slots</code></td>
+<td>Перед запуском команд необходимы пустые слоты.</td>
 </tr>
 <tr>
-<td><code translate="no" v-pre>language/&lt;locale&gt;/stakes/*.yml</code></td>
-<td>One file per event. This is where you spend most of your time. See <a href="../stake-settings/">Stake settings</a>.</td>
+<td><code translate="no" v-pre>rewards</code></td>
+<td>Консольные команды выполняются по запросу.</td>
 </tr>
 </tbody>
 </table>
 </div>
 </retype-table>
 <blockquote>
-<p>The plugin ships <strong>19 language packs</strong>. On the very first start it extracts them all into
-<code translate="no" v-pre>language/</code>. You can delete the ones you do not use — they are never recreated automatically. Pick
-one with <code translate="no" v-pre>locale:</code> in <code translate="no" v-pre>config.yml</code> (for example <code translate="no" v-pre>english</code>).</p>
+<p>Старый одноуровневый ключ <code translate="no" v-pre>prizes.others.near-top</code> по-прежнему читается как уровень <code translate="no" v-pre>1</code>, но в новых файлах следует использовать
+пронумерованные уровни. Для изменения выбора уровня или доставки вознаграждений требуется <strong>перезапуск</strong>.</p>
 </blockquote>
-<h3 id="two-naming-styles-to-remember">Two naming styles to remember</h3>
-<ul>
-<li><strong><code translate="no" v-pre>config.yml</code></strong> uses <code translate="no" v-pre>camelCase</code> keys: <code translate="no" v-pre>sqliteFile</code>, <code translate="no" v-pre>poolSize</code>, <code translate="no" v-pre>promptTimeoutSeconds</code>.</li>
-<li><strong>Stake files and <code translate="no" v-pre>currencies.yml</code></strong> use <code translate="no" v-pre>kebab-case</code> keys: <code translate="no" v-pre>withdrawals-enabled</code>, <code translate="no" v-pre>raw-placeholder</code>.</li>
-</ul>
-<p>Both are normal — the plugin reads them that way on purpose. Just copy the spelling from this wiki or
-from the example files.</p>
 <hr>
-<h2 id="what-a-stake-is-made-of">What a &quot;stake&quot; is made of</h2>
-<p>Every event is one <code translate="no" v-pre>.yml</code> file with the same building blocks:</p>
-<div id="what-a-stake-is-made-of-code-1" class="codeblock-wrapper"><doc-codeblock>
-<pre translate="no" class="language-none"><code v-pre class="language-none">stake file
-├── display        how the event looks in the main menu (icon, name, lore)
-├── alias          the short command, e.g. /diamonds
-├── permission     optional: who can see and join this event
-├── withdrawals    can players take resources back during a round?
-├── messages       what is broadcast when the round starts, runs, and ends
-├── contributions  the resources players can deposit (currency + points + limits)
-├── time           round length, cooldown, auto-restart
-└── prizes         top-place prizes + consolation tiers + refunds</code></pre>
-</doc-codeblock></div>
-<p>You only need to fill in the blocks you care about. The full field-by-field reference is in
-<a href="../stake-settings/">Stake settings</a>.</p>
-<hr>
-<h2 id="how-points-work">How points work</h2>
-<p>Points are the leaderboard score. Each contribution source has a <code translate="no" v-pre>points</code> value. When a player
-deposits an amount, they earn <strong><code translate="no" v-pre>amount × points</code></strong>.</p>
-<div id="how-points-work-code-1" class="codeblock-wrapper"><doc-codeblock>
-<pre translate="no" class="language-none"><code v-pre class="language-none">Example: a &quot;diamonds&quot; source with points: 5
-  Player deposits 10 diamonds  →  10 × 5 = 50 points
-  Player deposits 3 more       →  total 13 diamonds = 65 points</code></pre>
-</doc-codeblock></div>
-<p>If a stake has several sources, the points from each are simply added together. <strong>Sources never
-convert into each other</strong> — 10 diamonds and 20 carrots stay separate, they just both add to the same
-score. <code translate="no" v-pre>points</code> must be a positive whole number (no decimals).</p>
-<hr>
-<h2 id="the-round-lifecycle-events">The round lifecycle (events)</h2>
-<p>A <strong>round</strong> is one timed run of a stake. Behind the scenes each round moves through a few states.
-You do not control these states directly, but knowing them helps you understand reload rules and
-error messages.</p>
-<div id="the-round-lifecycle-events-code-1" class="codeblock-wrapper"><doc-codeblock>
-<pre translate="no" class="language-none"><code v-pre class="language-none">              (auto-restart or /stakes admin start)
-                            │
-                            ▼
-        ┌──── ACTIVE ───────────────────────┐
-        │  Players deposit and withdraw.    │
-        │  Reminders broadcast on interval. │
-        │  Timer counts down.               │
-        └──────────────┬───────────────────┘
-                       │ timer ends  OR  /stakes admin stop
-                       ▼
-                  CLOSING  ← wait for any in-flight deposits to settle
-                       │
-                       ▼
-                FINALIZING  ← calculate results, store pending rewards
-                       │
-                       ▼
-                   ENDED  ← broadcast winners, prizes become claimable
-                       │
-                       │  (if auto-restart: true)
-                       │  wait restart-delay, then a new ACTIVE round starts
-                       ▼
-                   next round…</code></pre>
-</doc-codeblock></div>
-<h3 id="what-happens-at-each-step">What happens at each step</h3>
-<ul>
-<li>
-<p><strong>Round starts</strong> → the plugin records a <code translate="no" v-pre>ROUND_STARTED</code> audit event and broadcasts
-<code translate="no" v-pre>messages.started</code> to every online player who can access the event.</p>
-</li>
-<li>
-<p><strong>While active</strong> → players deposit/withdraw. Every <code translate="no" v-pre>reminder.interval</code> (for example <code translate="no" v-pre>5m</code>), the
-<code translate="no" v-pre>reminder.message</code> is broadcast to online players who can access the event.</p>
-</li>
-<li>
-<p><strong>Round ends</strong> (timer or admin stop) → the round moves through <code translate="no" v-pre>CLOSING</code> → <code translate="no" v-pre>FINALIZING</code> → <code translate="no" v-pre>ENDED</code>.
-Finalizing calculates the ranking, creates the <strong>pending rewards</strong>, and then broadcasts
-<code translate="no" v-pre>messages.stopped</code> (with the winner placeholders) to eligible online players.</p>
-</li>
-<li>
-<p><strong>After it ends</strong> → if <code translate="no" v-pre>auto-restart: true</code>, the plugin waits <code translate="no" v-pre>restart-delay</code> and starts a new
-round automatically. If the server was offline when that delay elapsed, the new round starts on the
-next startup. A round that was <strong>active when the server stopped is resumed</strong> on restart, so deposits
-are never silently lost.</p>
-</li>
-</ul>
-<h3 id="the-one-error-state">The one error state</h3>
-<p>If the database ever contains a round status the plugin does not recognize, that round goes into an
-<strong><code translate="no" v-pre>ERROR</code></strong> state and fails closed: <strong>no deposits are accepted</strong> until an administrator fixes the
-database row. This is deliberate — it never silently reopens a broken round. You will see a clear
-console error naming the stake and round.</p>
-<hr>
-<h2 id="what-happens-when-a-player-deposits">What happens when a player deposits</h2>
+<h2 id="как-игроки-получают-награды">Как игроки получают награды</h2>
 <ol>
-<li>
-<p>The player opens the deposit menu and left-clicks a contribution source.</p>
-</li>
-<li>
-<p>The plugin asks in chat: <em>type the amount to invest, or cancel</em>.</p>
-</li>
-<li>
-<p>The player types a whole number.</p>
-</li>
-<li>
-<p>The plugin checks: is the round active? Is the amount inside <code translate="no" v-pre>min-invest</code>, <code translate="no" v-pre>max-invest</code>, and the
-<code translate="no" v-pre>daily-limit</code>? Does the player actually have that much of the resource?</p>
-</li>
-<li>
-<p>If everything is fine, the resource is taken from the player and the points are added to the
-leaderboard.</p>
-</li>
-<li>
-<p>For external currencies (PlaceholderAPI), the plugin runs your configured <code translate="no" v-pre>take-command</code> and then
-<strong>checks the balance changed by exactly that amount</strong>. If it cannot confirm the change, the
-deposit is cancelled <strong>without</strong> awarding points and the audit log records <code translate="no" v-pre>UNCONFIRMED</code>.</p>
-</li>
+<li>Раунд завершается и завершается. Ожидаемые награды созданы.</li>
+<li>Игрок получает сообщение в чате, указывающее на <code translate="no" v-pre>/stakes rewards</code>.</li>
+<li>Они открывают меню и либо нажимают на одну награду, либо используют <strong>Требовать все</strong>.</li>
+<li>Команды запускаются как консольные. Если <code translate="no" v-pre>need-free-slots</code> не выполнено, ничего не выполняется и вознаграждение остается в ожидании.</li>
 </ol>
-<p>A <strong>right-click</strong> starts a withdrawal (only if <code translate="no" v-pre>withdrawals-enabled: true</code> and the round is active).
-The resource is returned to the player <strong>immediately and directly</strong> — it never goes through
-<code translate="no" v-pre>/stakes rewards</code>. The matching points are removed from the board.</p>
-<hr>
-<h2 id="what-happens-when-a-round-ends-and-rewards-are-claimed">What happens when a round ends and rewards are claimed</h2>
-<ol>
-<li>
-<p>On finalize, the plugin ranks every participant by points.</p>
-</li>
-<li>
-<p>Top-place prizes (<code translate="no" v-pre>prizes.top</code>) are created as <strong>pending rewards</strong> for the ranked players.</p>
-</li>
-<li>
-<p>Consolation tiers (<code translate="no" v-pre>prizes.others</code>) are handed to the next players, plus any configured
-<code translate="no" v-pre>refund-percent</code> of their deposit.</p>
-</li>
-<li>
-<p>Each affected player gets a chat message pointing them to <code translate="no" v-pre>/stakes rewards</code>.</p>
-</li>
-<li>
-<p>The player opens <code translate="no" v-pre>/stakes rewards</code>, clicks a reward (or <strong>Claim All</strong>), and the configured reward
-commands run <strong>as the server console</strong>.</p>
-</li>
-</ol>
-<blockquote>
-<p>Reward commands run with <strong>console authority</strong>. That is why only trusted staff should edit stake
-files. See <a href="../database-and-safety/">Database &amp; safety</a>.</p>
-</blockquote>
-<h3 id="what-if-delivery-fails">What if delivery fails?</h3>
+<p>Это удерживает офлайн-победителей от потери призов — награды спокойно ждут, пока их не заберут.</p>
+<h3 id="когда-доставка-идет-не-так">Когда доставка идет не так</h3>
+<p>Плагин может подтвердить, что консольная команда <strong>увенчалась успехом</strong>, но не может доказать произвольный результат.
+Сторонняя команда фактически принесла свой эффект. Так:</p>
 <ul>
 <li>
-<p>A <strong>temporary</strong> error returns the reward to <code translate="no" v-pre>PENDING</code>, so the player can just click again.</p>
+<p>Подтвержденная <strong>временная</strong> ошибка → награда возвращается в <code translate="no" v-pre>PENDING</code>; игрок нажимает еще раз.</p>
 </li>
 <li>
-<p>An <strong>ambiguous</strong> failure (the command might have partly worked) marks the reward <strong><code translate="no" v-pre>BLOCKED</code></strong> so it
-is never replayed automatically — replaying could give the prize twice. An admin reviews it in
-<code translate="no" v-pre>/stakes admin logs &lt;stake&gt;</code> and resolves it manually.</p>
+<p><strong>неоднозначный</strong> сбой (возможно, частично сработал) → награда становится <strong><code translate="no" v-pre>BLOCKED</code></strong> и никогда не выплачивается.
+воспроизводится автоматически (повторное воспроизведение может дублировать приз). Просмотрите это в
+<code translate="no" v-pre>/stakes admin logs &lt;stake&gt;</code> и разрешите его вручную.</p>
 </li>
 <li>
-<p>If the server <strong>crashes mid-claim</strong>, a stuck <code translate="no" v-pre>CLAIMING</code> lease older than 5 minutes is moved to
-<code translate="no" v-pre>BLOCKED</code> on startup (and every 60 seconds). It stays visible to admins but cannot be claimed again.</p>
+<p>Сервер <strong>сбой во время подачи заявки</strong> → зависшая аренда <code translate="no" v-pre>CLAIMING</code> старше 5 минут перемещается на
+<code translate="no" v-pre>BLOCKED</code> при запуске и каждые 60 секунд. Он остается видимым для администраторов, но не может быть востребован снова.</p>
 </li>
 </ul>
+<p>См. <a href="../database-and-safety/">База данных и безопасность</a> для получения полного списка автоматических результатов.
+(<code translate="no" v-pre>BLOCKED</code>, <code translate="no" v-pre>UNCONFIRMED</code>, <code translate="no" v-pre>PAYOUT_FAILED</code>) и что с ними делать.</p>
 <hr>
-<h2 id="where-to-go-next">Where to go next</h2>
-<ul>
-<li>Make your first event now: <a href="../first-stake/">Your first stake</a>.</li>
-<li>Understand every field: <a href="../stake-settings/">Stake settings</a>.</li>
-<li>Set up prizes and refunds: <a href="../rewards/">Rewards</a>.</li>
-</ul>
+<h2 id="ограничения-размера">Ограничения размера</h2>
+<p>Команды каждого блока вознаграждения имеют закодированный бюджет размером <strong>12 000 байт</strong>. Держите каждую команду на одной строке;
+новая строка, возврат каретки и зарезервированный разделитель U+0001 отклоняются. Полная ожидаемая награда
+полезная нагрузка ограничена <strong>60 000 байтами UTF-8</strong>, а каждый импортированный пользовательский элемент — <strong>32 КиБ</strong>. Если
+проверка сообщает об ограничении, разделяет список команд или упрощает метаданные элемента, а не обходит его.</p>
 
                 
                 <!-- Required only on API pages -->
@@ -943,20 +885,6 @@ is never replayed automatically — replaying could give the prize twice. An adm
             </div>
             <footer id="retype-content-footer" class="clear-both">
             
-                <nav id="retype-nextprev" class="print:hidden flex mt-14">
-                    <div class="w-1/2">
-                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-r rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../universalstakes/installation/">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
-                            <span>
-                                <span class="block text-xs font-normal text-base-text-muted">Previous</span>
-                                <span class="block mt-1">Installation</span>
-                            </span>
-                        </a>
-                    </div>
-            
-                    <div class="w-1/2">
-                    </div>
-                </nav>
             </footer>
         </main>
 
@@ -995,6 +923,6 @@ is never replayed automatically — replaying could give the prize twice. An adm
 
     <div id="retype-overlay-target"></div>
 
-        <script data-cfasync="false">window.__DOCS__ = { "title": "How it works", level: 2, icon: "file", hasPrism: false, hasInstagram: false, hasMermaid: false, hasMath: false, tocDepth: 23, "md": "/universalstakes/how-it-works.md" }</script>
+        <script data-cfasync="false">window.__DOCS__ = { "title": "Награды", level: 3, icon: "file", hasPrism: true, hasInstagram: false, hasMermaid: false, hasMath: false, tocDepth: 23, "md": "/ru/universalstakes/rewards.md" }</script>
 </body>
 </html>

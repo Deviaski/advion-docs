@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <meta name="turbo-root" content="/advion-docs">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.838750301270">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.838757101796">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.6.0">
@@ -38,11 +38,505 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=4.6.0.838750301270" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=4.6.0.838757101796" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=4.6.0.838750301270" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=4.6.0.838757101796" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=4.6.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.6.0.838750301270" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.6.0.838757101796" data-turbo-eval="false" defer></script>
+
+    <style>
+      .lang-switcher {
+        position: relative;
+        display: inline-block;
+        margin-left: 0.5rem;
+      }
+
+      .lang-switcher__button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 2.5rem;
+        height: 2.5rem;
+        padding: 0;
+        color: inherit;
+        cursor: pointer;
+        background: transparent;
+        border: 0;
+        border-radius: 9999px;
+      }
+
+      .lang-switcher__button:hover,
+      .lang-switcher__button[aria-expanded="true"] {
+        background: var(--base-item-bg-hover, rgba(127, 127, 127, 0.12));
+      }
+
+      .lang-switcher__button:focus-visible,
+      .lang-switcher__item:focus-visible {
+        outline: 2px solid var(--base-link, #60a5fa);
+        outline-offset: 2px;
+      }
+
+      .lang-switcher__icon {
+        width: 1.25rem;
+        height: 1.25rem;
+        fill: currentColor;
+      }
+
+      .lang-switcher__menu {
+        position: absolute;
+        z-index: 60;
+        top: calc(100% + 0.5rem);
+        right: 0;
+        min-width: 10rem;
+        padding: 0.375rem;
+        background: #1f2937;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 0.5rem;
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.26);
+      }
+
+      .lang-switcher__item {
+        display: block;
+        width: 100%;
+        padding: 0.5rem 0.75rem;
+        color: #f9fafb;
+        font: inherit;
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+        text-align: left;
+        text-decoration: none;
+        cursor: pointer;
+        background: transparent;
+        border: 0;
+        border-radius: 0.375rem;
+      }
+
+      .lang-switcher__item:hover,
+      .lang-switcher__item:focus-visible {
+        background: rgba(255, 255, 255, 0.12);
+      }
+
+      .lang-switcher__item--active {
+        font-weight: 600;
+        color: #ffffff;
+        background: rgba(255, 255, 255, 0.18);
+      }
+
+      .lang-switcher__item:disabled {
+        cursor: wait;
+        opacity: 0.65;
+      }
+
+      .lang-switcher__item[aria-disabled="true"] {
+        cursor: wait;
+        pointer-events: none;
+        opacity: 0.65;
+      }
+
+      .lang-switcher__nav-active {
+        color: var(--nav-item-text-active, inherit);
+        font-weight: var(--nav-item-text-active-weight, 600);
+        background: var(--nav-item-bg-active, rgba(127, 127, 127, 0.14));
+        box-shadow: inset -1px 0 var(--nav-item-border-active, currentColor);
+      }
+    </style>
+
+    <script>
+    (() => {
+      const STORAGE_KEY = 'advion-preferred-locale';
+      const SWITCHER_SELECTOR = '.lang-switcher';
+      const THEME_SWITCHER_SELECTOR = '#retype-scheme-button';
+
+      let locales = [];
+      let defaultLocale;
+      let basePath = '/';
+      let localesPromise;
+      let pageLoadInProgress = false;
+      let activeMenuEvents;
+      let sidebarObserver;
+
+      const normalizePath = (path) => {
+        const normalized = `/${path || ''}`.replace(/\/{2,}/g, '/');
+        return normalized.endsWith('/') ? normalized : `${normalized}/`;
+      };
+
+      const getBasePath = () => {
+        const turboRoot = document
+          .querySelector('meta[name="turbo-root"]')
+          ?.getAttribute('content');
+
+        return normalizePath(turboRoot || '/');
+      };
+
+      const getRelativeSegments = () => {
+        const pathname = decodeURIComponent(location.pathname);
+        const relativePath = pathname.startsWith(basePath)
+          ? pathname.slice(basePath.length)
+          : pathname.replace(/^\/+/, '');
+
+        return relativePath.split('/').filter(Boolean);
+      };
+
+      const getCurrentLocale = () => {
+        const firstSegment = getRelativeSegments()[0];
+
+        return locales.some((locale) => locale.code === firstSegment)
+          ? firstSegment
+          : defaultLocale.code;
+      };
+
+      const getPageSegments = () => {
+        const segments = getRelativeSegments();
+
+        if (locales.some((locale) => locale.code === segments[0])) {
+          segments.shift();
+        }
+
+        return segments;
+      };
+
+      const getLocaleFromPathname = (pathname) => {
+        const decodedPathname = decodeURIComponent(pathname);
+        const relativePath = decodedPathname.startsWith(basePath)
+          ? decodedPathname.slice(basePath.length)
+          : decodedPathname.replace(/^\/+/, '');
+        const firstSegment = relativePath.split('/').filter(Boolean)[0];
+
+        return locales.some((locale) => locale.code === firstSegment)
+          ? firstSegment
+          : defaultLocale.code;
+      };
+
+      const buildUrl = (localeCode, pageSegments = [], preserveLocationState = true) => {
+        const prefix = localeCode === defaultLocale.code ? [] : [localeCode];
+        const pathname = normalizePath([
+          basePath.replace(/^\/|\/$/g, ''),
+          ...prefix,
+          ...pageSegments
+        ].filter(Boolean).join('/'));
+        const target = new URL(pathname, location.origin);
+
+        if (preserveLocationState) {
+          target.search = location.search;
+          target.hash = location.hash;
+        }
+
+        return target;
+      };
+
+      const pageExists = async (url) => {
+        try {
+          const response = await fetch(url, {
+            method: 'HEAD',
+            cache: 'no-cache',
+            redirect: 'follow',
+            signal: AbortSignal.timeout(5000)
+          });
+
+          return response.ok;
+        } catch {
+          return false;
+        }
+      };
+
+      const getPreferredLocale = () => {
+        const localeCode = localStorage.getItem(STORAGE_KEY);
+
+        return locales.some((locale) => locale.code === localeCode)
+          ? localeCode
+          : null;
+      };
+
+      const closeMenu = (switcher) => {
+        const button = switcher.querySelector('.lang-switcher__button');
+        const menu = switcher.querySelector('.lang-switcher__menu');
+
+        menu.hidden = true;
+        button.setAttribute('aria-expanded', 'false');
+      };
+
+      const createSwitcher = () => {
+        const currentLocale = getCurrentLocale();
+        const switcher = document.createElement('div');
+        switcher.className = 'lang-switcher';
+
+        switcher.innerHTML = `
+          <button class="lang-switcher__button" type="button" aria-label="Change language" aria-expanded="false" aria-haspopup="menu">
+            <svg class="lang-switcher__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M12 3h9v2h-3.1a15.4 15.4 0 0 1-2.9 6.4A15.7 15.7 0 0 0 19.2 14l-1.3 1.5a17.8 17.8 0 0 1-4.2-2.9A16.4 16.4 0 0 1 8 16.3l-1-1.7a14.4 14.4 0 0 0 5.2-3.3A13.2 13.2 0 0 1 9.7 5H6V3h6Zm-.3 2a11.4 11.4 0 0 0 2 4.9A12.7 12.7 0 0 0 15.8 5ZM5 13h2l4 8H8.8l-.9-2H4.1l-.9 2H1Zm.1 4h2l-1-2.3Z"></path>
+            </svg>
+          </button>
+          <div class="lang-switcher__menu" role="menu" hidden></div>
+        `;
+
+        const button = switcher.querySelector('.lang-switcher__button');
+        const menu = switcher.querySelector('.lang-switcher__menu');
+
+        locales.forEach((locale) => {
+          const item = document.createElement('a');
+          item.className = 'lang-switcher__item';
+          item.role = 'menuitem';
+          item.textContent = locale.label;
+          const samePage = buildUrl(locale.code, getPageSegments(), false);
+          const languageHome = buildUrl(locale.code, [], false);
+          item.href = samePage.href;
+          item.dataset.langSwitcherSamePage = samePage.href;
+          item.dataset.langSwitcherHome = languageHome.href;
+          item.setAttribute('aria-disabled', 'true');
+
+          if (locale.code === currentLocale) {
+            item.classList.add('lang-switcher__item--active');
+            item.setAttribute('aria-current', 'true');
+          }
+
+          item.addEventListener('click', (event) => {
+            if (event.button !== 0 || event.metaKey || event.ctrlKey ||
+                event.shiftKey || event.altKey) return;
+
+            if (item.getAttribute('aria-disabled') === 'true') {
+              event.preventDefault();
+              return;
+            }
+
+            localStorage.setItem(STORAGE_KEY, locale.code);
+
+            if (locale.code === currentLocale) {
+              event.preventDefault();
+              closeMenu(switcher);
+            }
+          });
+
+          menu.append(item);
+        });
+
+        button.addEventListener('click', async () => {
+          const willOpen = menu.hidden;
+          menu.hidden = !willOpen;
+          button.setAttribute('aria-expanded', String(willOpen));
+
+          if (!willOpen) return;
+
+          const languageItems = Array.from(menu.querySelectorAll('.lang-switcher__item'));
+          await Promise.all(languageItems.map(async (item) => {
+            const samePage = new URL(item.dataset.langSwitcherSamePage);
+            const languageHome = new URL(item.dataset.langSwitcherHome);
+            item.href = (await pageExists(samePage))
+              ? samePage.href
+              : languageHome.href;
+            item.removeAttribute('aria-disabled');
+          }));
+        });
+
+        activeMenuEvents = new AbortController();
+
+        document.addEventListener('click', (event) => {
+          if (!switcher.contains(event.target)) closeMenu(switcher);
+        }, { signal: activeMenuEvents.signal });
+
+        document.addEventListener('keydown', (event) => {
+          if (event.key === 'Escape') {
+            closeMenu(switcher);
+            button.focus();
+          }
+        }, { signal: activeMenuEvents.signal });
+
+        return switcher;
+      };
+
+      const mountSwitcher = () => {
+        activeMenuEvents?.abort();
+        document.querySelector(SWITCHER_SELECTOR)?.remove();
+
+        const themeSwitcher = document.querySelector(THEME_SWITCHER_SELECTOR);
+        if (!themeSwitcher) return false;
+
+        themeSwitcher.before(createSwitcher());
+        return true;
+      };
+
+      const getSidebarList = () => {
+        const sidebarLists = document.querySelectorAll('#retype-sidebar-left ul');
+        return Array.from(sidebarLists).find((list) =>
+          Array.from(list.children).some((child) =>
+            child.tagName === 'LI' && child.querySelector('a[href]')
+          )
+        );
+      };
+
+      const getSegmentsFromUrl = (url) => {
+        const relativePath = url.pathname.startsWith(basePath)
+          ? url.pathname.slice(basePath.length)
+          : url.pathname.replace(/^\/+/, '');
+        const segments = relativePath.split('/').filter(Boolean);
+
+        if (locales.some((locale) => locale.code === segments[0])) {
+          segments.shift();
+        }
+
+        return segments;
+      };
+
+      const getLocalizedPageTitle = async (url) => {
+        const response = await fetch(url, { cache: 'no-cache' });
+        if (!response.ok) return null;
+
+        const page = await response.text();
+        const titleMatch = page.match(/window\.__DOCS__\s*=\s*\{\s*"title":\s*"([^"]+)"/);
+
+        return titleMatch ? titleMatch[1] : null;
+      };
+
+      const localizeSidebar = async () => {
+        const sidebarList = getSidebarList();
+
+        if (!sidebarList) return false;
+
+        const currentLocale = getCurrentLocale();
+        if (currentLocale === defaultLocale.code ||
+            sidebarList.dataset.langSwitcherLocale === currentLocale) {
+          return true;
+        }
+
+        sidebarList.dataset.langSwitcherLocale = currentLocale;
+        sidebarList.querySelectorAll('.lang-switcher__nav-active').forEach((row) => {
+          row.classList.remove('lang-switcher__nav-active');
+        });
+
+        const links = Array.from(sidebarList.querySelectorAll('a[href]'));
+        await Promise.all(links.map(async (link) => {
+          const sourceUrl = new URL(link.href, location.origin);
+          if (sourceUrl.origin !== location.origin) return;
+
+          const localizedUrl = buildUrl(
+            currentLocale,
+            getSegmentsFromUrl(sourceUrl),
+            false
+          );
+          const title = await getLocalizedPageTitle(localizedUrl);
+
+          if (!title) return;
+
+          link.href = localizedUrl.href;
+          link.dataset.langSwitcherUrl = localizedUrl.href;
+
+          const label = link.querySelector('span[class~="py-1.5"]');
+          if (label) label.textContent = title;
+
+          const isCurrentPage = normalizePath(localizedUrl.pathname) ===
+            normalizePath(location.pathname);
+          const row = link.closest('li')?.firstElementChild;
+
+          if (isCurrentPage) {
+            link.setAttribute('aria-current', 'page');
+            row?.classList.add('lang-switcher__nav-active');
+          } else {
+            link.removeAttribute('aria-current');
+          }
+
+          link.addEventListener('click', (event) => {
+            if (event.button !== 0 || event.metaKey || event.ctrlKey ||
+                event.shiftKey || event.altKey) return;
+
+            event.preventDefault();
+            event.stopImmediatePropagation();
+            location.assign(localizedUrl);
+          }, { capture: true });
+        }));
+
+        return true;
+      };
+
+      const watchSidebarLocale = () => {
+        sidebarObserver?.disconnect();
+        localizeSidebar();
+
+        sidebarObserver = new MutationObserver(() => {
+          localizeSidebar();
+        });
+
+        sidebarObserver.observe(document.body, {
+          childList: true,
+          subtree: true
+        });
+      };
+
+      const redirectToPreferredLocale = async () => {
+        const isDefaultHome =
+          getCurrentLocale() === defaultLocale.code &&
+          getPageSegments().length === 0;
+        const preferredLocale = getPreferredLocale();
+
+        if (!isDefaultHome || !preferredLocale ||
+            preferredLocale === defaultLocale.code) {
+          return false;
+        }
+
+        const preferredHome = buildUrl(preferredLocale);
+
+        if (await pageExists(preferredHome)) {
+          location.replace(preferredHome);
+          return true;
+        }
+
+        return false;
+      };
+
+      const loadLocales = () => {
+        if (!localesPromise) {
+          basePath = getBasePath();
+          const localesUrl = new URL(`${basePath}static/locales.json`, location.origin);
+
+          localesPromise = fetch(localesUrl, { cache: 'no-cache' })
+            .then((response) => {
+              if (!response.ok) throw new Error(`HTTP ${response.status}`);
+              return response.json();
+            })
+            .then((loadedLocales) => {
+              if (!Array.isArray(loadedLocales) || loadedLocales.length === 0) {
+                throw new Error('The locale list is empty.');
+              }
+
+              locales = loadedLocales;
+              defaultLocale = locales[0];
+            });
+        }
+
+        return localesPromise;
+      };
+
+      const onPageLoad = async () => {
+        if (pageLoadInProgress) return;
+        pageLoadInProgress = true;
+
+        try {
+          await loadLocales();
+          if (await redirectToPreferredLocale()) return;
+
+          if (mountSwitcher()) {
+            requestAnimationFrame(watchSidebarLocale);
+            return;
+          }
+
+          const observer = new MutationObserver(() => {
+            if (mountSwitcher()) {
+              requestAnimationFrame(watchSidebarLocale);
+              observer.disconnect();
+            }
+          });
+
+          observer.observe(document.body, { childList: true, subtree: true });
+        } catch (error) {
+          console.warn('Language switcher could not be initialized.', error);
+        } finally {
+          pageLoadInProgress = false;
+        }
+      };
+
+      document.addEventListener('DOMContentLoaded', onPageLoad, { once: true });
+      document.addEventListener('turbo:load', onPageLoad);
+    })();
+    </script>
+
 </head>
 <body>
     <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
@@ -69,7 +563,31 @@
                 <!-- Top Nav -->
                 <nav id="retype-header-nav" class="hidden md:flex">
                     <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
-                        
+                        <li class="mr-6">
+                            <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text hover:text-header-text-hover" href="https://ko-fi.com/advion" target="_blank">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="block shrink-0 mr-1.5" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+                                    <g fill="currentColor"><title>Ko-fi</title><path d="M11.351 2.715c-2.7 0-4.986.025-6.83.26C2.078 3.285 0 5.154 0 8.61c0 3.506.182 6.13 1.585 8.493 1.584 2.701 4.233 4.182 7.662 4.182h.83c4.209 0 6.494-2.234 7.637-4a9.5 9.5 0 0 0 1.091-2.338C21.792 14.688 24 12.22 24 9.208v-.415c0-3.247-2.13-5.507-5.792-5.87-1.558-.156-2.65-.208-6.857-.208m0 1.947c4.208 0 5.09.052 6.571.182 2.624.311 4.13 1.584 4.13 4v.39c0 2.156-1.792 3.844-3.87 3.844h-.935l-.156.649c-.208 1.013-.597 1.818-1.039 2.546-.909 1.428-2.545 3.064-5.922 3.064h-.805c-2.571 0-4.831-.883-6.078-3.195-1.09-2-1.298-4.155-1.298-7.506 0-2.181.857-3.402 3.012-3.714 1.533-.233 3.559-.26 6.39-.26m6.547 2.287c-.416 0-.65.234-.65.546v2.935c0 .311.234.545.65.545 1.324 0 2.051-.754 2.051-2s-.727-2.026-2.052-2.026m-10.39.182c-1.818 0-3.013 1.48-3.013 3.142 0 1.533.858 2.857 1.949 3.897.727.701 1.87 1.429 2.649 1.896a1.47 1.47 0 0 0 1.507 0c.78-.467 1.922-1.195 2.623-1.896 1.117-1.039 1.974-2.364 1.974-3.897 0-1.662-1.247-3.142-3.039-3.142-1.065 0-1.792.545-2.338 1.298-.493-.753-1.246-1.298-2.312-1.298"/></g>
+                                </svg>
+                                <span>Donate</span>
+                            </a>
+                        </li>
+                        <li class="mr-6">
+                            <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text hover:text-header-text-hover" href="https://discord.com/invite/Qk3RYxEcTR" target="_blank">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="block shrink-0 mr-1.5" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+                                    <g fill="currentColor"><title>Discord</title><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/></g>
+                                </svg>
+                                <span>Discord</span>
+                            </a>
+                        </li>
+                        <li class="mr-6">
+                            <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text hover:text-header-text-hover" href="https://builtbybit.com/members/advion.382347/" target="_blank">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="block shrink-0 mr-1.5" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+                                    <g fill="currentColor"><title>BuiltByBit</title><path d="M11.877.032 1.252 5.885a.253.253 0 0 0 .003.446l5.679 3.02c.077.041.17.04.246-.004l4.694-2.697a.254.254 0 0 1 .253 0l4.692 2.697a.253.253 0 0 0 .246.004l5.682-3.021a.253.253 0 0 0 .003-.446L12.122.031a.254.254 0 0 0-.245 0ZM6.924 10.898l-5.71-3.036a.254.254 0 0 0-.373.224V18.25c0 .093.05.178.131.222l9.976 5.495a.254.254 0 0 0 .376-.222v-6.053a.255.255 0 0 0-.127-.22l-4.012-2.305a.252.252 0 0 1-.127-.22v-3.825a.253.253 0 0 0-.135-.224Zm10.152 0 5.71-3.035a.254.254 0 0 1 .373.224v10.164c0 .093-.05.178-.131.222l-9.976 5.495a.254.254 0 0 1-.376-.222v-6.053c0-.091.049-.175.127-.22l4.012-2.305a.252.252 0 0 1 .127-.22v-3.825c0-.094.052-.18.135-.224Z"/></g>
+                                </svg>
+                                <span>BuiltByBit</span>
+                            </a>
+                        </li>
+    
                     </ul>
                 </nav>
     
@@ -114,6 +632,38 @@
         <doc-sidebar v-cloak>
             <template #sidebar-footer>
                 <div class="shrink-0 mt-auto border-t md:bg-transparent md:border-none dark:border-base-border">
+        
+                    <div class="py-3 px-6 md:hidden border-b dark:border-base-border">
+                        <nav>
+                            <ul class="flex flex-wrap justify-center items-center">
+                                <li class="mr-6">
+                                    <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text hover:text-header-text-hover" href="https://ko-fi.com/advion" target="_blank">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="block shrink-0 mr-1.5" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+                                            <g fill="currentColor"><title>Ko-fi</title><path d="M11.351 2.715c-2.7 0-4.986.025-6.83.26C2.078 3.285 0 5.154 0 8.61c0 3.506.182 6.13 1.585 8.493 1.584 2.701 4.233 4.182 7.662 4.182h.83c4.209 0 6.494-2.234 7.637-4a9.5 9.5 0 0 0 1.091-2.338C21.792 14.688 24 12.22 24 9.208v-.415c0-3.247-2.13-5.507-5.792-5.87-1.558-.156-2.65-.208-6.857-.208m0 1.947c4.208 0 5.09.052 6.571.182 2.624.311 4.13 1.584 4.13 4v.39c0 2.156-1.792 3.844-3.87 3.844h-.935l-.156.649c-.208 1.013-.597 1.818-1.039 2.546-.909 1.428-2.545 3.064-5.922 3.064h-.805c-2.571 0-4.831-.883-6.078-3.195-1.09-2-1.298-4.155-1.298-7.506 0-2.181.857-3.402 3.012-3.714 1.533-.233 3.559-.26 6.39-.26m6.547 2.287c-.416 0-.65.234-.65.546v2.935c0 .311.234.545.65.545 1.324 0 2.051-.754 2.051-2s-.727-2.026-2.052-2.026m-10.39.182c-1.818 0-3.013 1.48-3.013 3.142 0 1.533.858 2.857 1.949 3.897.727.701 1.87 1.429 2.649 1.896a1.47 1.47 0 0 0 1.507 0c.78-.467 1.922-1.195 2.623-1.896 1.117-1.039 1.974-2.364 1.974-3.897 0-1.662-1.247-3.142-3.039-3.142-1.065 0-1.792.545-2.338 1.298-.493-.753-1.246-1.298-2.312-1.298"/></g>
+                                        </svg>
+                                        <span>Donate</span>
+                                    </a>
+                                </li>
+                                <li class="mr-6">
+                                    <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text hover:text-header-text-hover" href="https://discord.com/invite/Qk3RYxEcTR" target="_blank">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="block shrink-0 mr-1.5" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+                                            <g fill="currentColor"><title>Discord</title><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/></g>
+                                        </svg>
+                                        <span>Discord</span>
+                                    </a>
+                                </li>
+                                <li class="mr-6">
+                                    <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text hover:text-header-text-hover" href="https://builtbybit.com/members/advion.382347/" target="_blank">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="block shrink-0 mr-1.5" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+                                            <g fill="currentColor"><title>BuiltByBit</title><path d="M11.877.032 1.252 5.885a.253.253 0 0 0 .003.446l5.679 3.02c.077.041.17.04.246-.004l4.694-2.697a.254.254 0 0 1 .253 0l4.692 2.697a.253.253 0 0 0 .246.004l5.682-3.021a.253.253 0 0 0 .003-.446L12.122.031a.254.254 0 0 0-.245 0ZM6.924 10.898l-5.71-3.036a.254.254 0 0 0-.373.224V18.25c0 .093.05.178.131.222l9.976 5.495a.254.254 0 0 0 .376-.222v-6.053a.255.255 0 0 0-.127-.22l-4.012-2.305a.252.252 0 0 1-.127-.22v-3.825a.253.253 0 0 0-.135-.224Zm10.152 0 5.71-3.035a.254.254 0 0 1 .373.224v10.164c0 .093-.05.178-.131.222l-9.976 5.495a.254.254 0 0 1-.376-.222v-6.053c0-.091.049-.175.127-.22l4.012-2.305a.252.252 0 0 1 .127-.22v-3.825c0-.094.052-.18.135-.224Z"/></g>
+                                        </svg>
+                                        <span>BuiltByBit</span>
+                                    </a>
+                                </li>
+        
+                            </ul>
+                        </nav>
+                    </div>
         
                     <a class="flex items-center justify-center flex-nowrap h-16 text-gray-350 dark:text-dark-400 hover:text-gray-600 dark:hover:text-dark-300 transition-colors duration-150 ease-in docs-powered-by" target="_blank" href="https://retype.com/" rel="noopener">
                         <span class="text-xs whitespace-nowrap">Powered by</span>
