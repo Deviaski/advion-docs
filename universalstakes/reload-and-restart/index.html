@@ -5,44 +5,44 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <meta name="turbo-root" content="/advion-docs">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.838750093208">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.838750301270">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.6.0">
 
     <!-- Primary Meta Tags -->
-    <title>Integrations</title>
-    <meta name="title" content="Integrations">
-    <meta name="description" content="Use Vault only when: Players should deposit virtual money instead of items.">
+    <title>Reload &amp; restart</title>
+    <meta name="title" content="Reload & restart">
+    <meta name="description" content="/stakes admin reload validates every edited file before applying it. If validation fails, the currently running registry and currency definitions stay in use.">
 
     <!-- Canonical -->
-    <link rel="canonical" href="https://deviaski.github.io/advion-docs/universalstakes/integrations/">
+    <link rel="canonical" href="https://deviaski.github.io/advion-docs/universalstakes/reload-and-restart/">
     <link rel="sitemap" type="application/xml" title="Sitemap" href="https://deviaski.github.io/advion-docs/sitemap.xml">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://deviaski.github.io/advion-docs/universalstakes/integrations/">
-    <meta property="og:title" content="Integrations">
-    <meta property="og:description" content="Use Vault only when: Players should deposit virtual money instead of items.">
+    <meta property="og:url" content="https://deviaski.github.io/advion-docs/universalstakes/reload-and-restart/">
+    <meta property="og:title" content="Reload & restart">
+    <meta property="og:description" content="/stakes admin reload validates every edited file before applying it. If validation fails, the currently running registry and currency definitions stay in use.">
     <meta property="og:site_name" content="Advion Plugins">
     <meta property="og:locale" content="en_US">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://deviaski.github.io/advion-docs/universalstakes/integrations/">
-    <meta name="twitter:title" content="Integrations">
-    <meta name="twitter:description" content="Use Vault only when: Players should deposit virtual money instead of items.">
+    <meta name="twitter:url" content="https://deviaski.github.io/advion-docs/universalstakes/reload-and-restart/">
+    <meta name="twitter:title" content="Reload & restart">
+    <meta name="twitter:description" content="/stakes admin reload validates every edited file before applying it. If validation fails, the currently running registry and currency definitions stay in use.">
 
     <!-- Alternate Markdown -->
-    <link rel="alternate" type="text/markdown" href="https://deviaski.github.io/advion-docs/universalstakes/integrations.md">
+    <link rel="alternate" type="text/markdown" href="https://deviaski.github.io/advion-docs/universalstakes/reload-and-restart.md">
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=4.6.0.838750093208" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=4.6.0.838750301270" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=4.6.0.838750093208" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=4.6.0.838750301270" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=4.6.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.6.0.838750093208" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.6.0.838750301270" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
@@ -134,29 +134,107 @@
                 <doc-page-actions></doc-page-actions>
 
                 <!-- Page content  -->
-<h1 id="integrations">Integrations</h1>
-<h2 id="vault-economy">Vault economy</h2>
-<blockquote>
-<p><strong>Use Vault only when:</strong> Players should deposit virtual money instead of items.</p>
-</blockquote>
-<p>Install Vault and a Vault-compatible economy plugin, then restart the server. Set <code translate="no" v-pre>currency.type: VAULT</code> in the stake. If no economy is found, Vault stakes cannot accept deposits; item stakes still work.</p>
-<blockquote>
-<p><strong>SCREENSHOT TO ADD:</strong> Console message confirming that a Vault economy was connected.</p>
-</blockquote>
-<h2 id="placeholderapi">PlaceholderAPI</h2>
-<p>PlaceholderAPI is optional. When it is installed, UniversalStakes registers its expansion automatically.</p>
-<p>The two shipped stake cards do not require PlaceholderAPI: their <code translate="no" v-pre>{status}</code> and <code translate="no" v-pre>{time_left}</code> values are supplied by UniversalStakes itself. If you put <code translate="no" v-pre>%universalstakes_...%</code> tokens into custom stake lore or menu text, install PlaceholderAPI; otherwise those percent-delimited tokens remain visible as literal text.</p>
-<div id="placeholderapi-code-1" class="codeblock-wrapper"><doc-codeblock>
-<pre translate="no" class="language-none"><code v-pre class="language-none">%universalstakes_&lt;stake-id&gt;_&lt;key&gt;%</code></pre>
-</doc-codeblock></div>
-<p>Available keys: <code translate="no" v-pre>display_name</code>, <code translate="no" v-pre>status</code>, <code translate="no" v-pre>time_left</code>, <code translate="no" v-pre>total</code>, <code translate="no" v-pre>participants</code>, <code translate="no" v-pre>player_invested</code>, <code translate="no" v-pre>player_place</code>, <code translate="no" v-pre>top_name_1</code>, and <code translate="no" v-pre>top_amount_1</code>.</p>
-<p>Example: <code translate="no" v-pre>%universalstakes_diamonds_top_name_1%</code> shows the first-place player in the <code translate="no" v-pre>diamonds</code> stake.</p>
-<h2 id="custom-items">Custom items</h2>
-<p>Use this for keys, named items, NBT items, or items with Custom Model Data. Create the stake first, hold the sample item, then run:</p>
-<div id="custom-items-code-1" class="codeblock-wrapper"><doc-codeblock>
-<pre translate="no" class="language-none"><code v-pre class="language-none">/stakes admin importitem &lt;stake-id&gt; &lt;item-id&gt;</code></pre>
-</doc-codeblock></div>
-<p>Restart the server before an existing stake uses the imported item. Choose the matching strictness with <code translate="no" v-pre>match-mode</code>; the three modes are explained in <a href="../stake-reference/">Stake Settings Reference</a>.</p>
+<h1 id="reload--restart">Reload &amp; restart</h1>
+<p><code translate="no" v-pre>/stakes admin reload</code> <strong>validates every edited file before applying it</strong>. If validation fails, the
+currently running registry and currency definitions stay in use. Read the console error, fix the file,
+and run the command again.</p>
+<p>This page tells you exactly what each kind of edit needs.</p>
+<hr>
+<h2 id="applied-by-stakes-admin-reload">Applied by <code translate="no" v-pre>/stakes admin reload</code></h2>
+<ul>
+<li>
+<p>The <code translate="no" v-pre>locale</code> setting and all files in the selected <code translate="no" v-pre>language/&lt;locale&gt;/</code> pack (menus, messages).</p>
+</li>
+<li>
+<p><code translate="no" v-pre>debug</code>, <code translate="no" v-pre>input</code>, <code translate="no" v-pre>banDisqualification</code>, and <code translate="no" v-pre>auditLog</code> in <code translate="no" v-pre>config.yml</code>.</p>
+</li>
+<li>
+<p>An existing stake&#x27;s <code translate="no" v-pre>display</code>, <code translate="no" v-pre>messages</code> (including the reminder interval — it restarts a fresh
+interval after reload), and <code translate="no" v-pre>withdrawals-enabled</code>.</p>
+</li>
+<li>
+<p>The <strong>presentation</strong> fields of contribution sources (<code translate="no" v-pre>display-name</code>, <code translate="no" v-pre>display</code>) and ranked prizes
+(<code translate="no" v-pre>material</code>, <code translate="no" v-pre>model-data</code>, <code translate="no" v-pre>name</code>, <code translate="no" v-pre>lore</code>). Financial rules and reward delivery do not change.</p>
+</li>
+<li>
+<p>A <strong>new</strong> stake file. Its startup state follows its <code translate="no" v-pre>time.auto-restart</code>, but its <code translate="no" v-pre>alias</code> command is
+not registered until a restart. It is still reachable via <code translate="no" v-pre>/stakes &lt;stake-id&gt;</code>.</p>
+</li>
+<li>
+<p><strong>Removal</strong> of an ended or not-yet-started stake. An active/closing/finalizing/initializing stake
+cannot be removed by reload.</p>
+</li>
+<li>
+<p><strong>New IDs added</strong> to <code translate="no" v-pre>currencies.yml</code>.</p>
+</li>
+<li>
+<p>Currency, point, and limit rules below <code translate="no" v-pre>contributions</code> — but <strong>only after the current round is fully
+<code translate="no" v-pre>ENDED</code></strong>. Stop the stake and wait for finalization first.</p>
+</li>
+</ul>
+<hr>
+<h2 id="require-a-full-server-restart">Require a full server restart</h2>
+<ul>
+<li>
+<p><code translate="no" v-pre>command.aliases</code> in <code translate="no" v-pre>config.yml</code>, and any new or renamed stake <code translate="no" v-pre>alias</code> (commands register only at
+startup).</p>
+</li>
+<li>
+<p><strong>Database settings</strong> in <code translate="no" v-pre>config.yml</code> (the connection pool is built only at startup).</p>
+</li>
+<li>
+<p>An existing stake&#x27;s <code translate="no" v-pre>permission</code>, timing (<code translate="no" v-pre>duration</code>/<code translate="no" v-pre>restart-delay</code>/<code translate="no" v-pre>auto-restart</code>), reward
+commands, numbered consolation tiers, and <code translate="no" v-pre>need-free-slots</code>.</p>
+</li>
+<li>
+<p>Contribution <strong>currency, points, limits, or custom-item matching</strong> while a round is not fully ended.</p>
+</li>
+<li>
+<p>Imported custom-item snapshots (after <code translate="no" v-pre>/stakes admin importitem</code>).</p>
+</li>
+<li>
+<p><strong>Editing or removing</strong> an existing <code translate="no" v-pre>currencies.yml</code> definition (reload allows additions only —
+existing entries are protected because deferred rewards may still refer to them).</p>
+</li>
+</ul>
+<hr>
+<h2 id="change-contribution-rules-without-a-restart">Change contribution rules without a restart</h2>
+<p>Use this safe workflow to change a live stake&#x27;s currency/points/limits:</p>
+<ol>
+<li>
+<p>Stop the stake: <code translate="no" v-pre>/stakes admin stop &lt;stake-id&gt;</code>.</p>
+</li>
+<li>
+<p>Wait until finalization completes — the round must be <code translate="no" v-pre>ENDED</code>.</p>
+</li>
+<li>
+<p>If you need a new external currency, <strong>add</strong> a new <code translate="no" v-pre>currencies.yml</code> entry. Do <strong>not</strong> alter an
+existing one.</p>
+</li>
+<li>
+<p>Change the stake&#x27;s <code translate="no" v-pre>contributions</code> block and run <code translate="no" v-pre>/stakes admin reload</code>.</p>
+</li>
+</ol>
+<p>This keeps the finalized round and its pending rewards attached to their original currency ID, while
+the next round uses the new one. Keep old <code translate="no" v-pre>currencies.yml</code> entries until their pending refunds are
+claimed or deliberately resolved.</p>
+<hr>
+<h2 id="startup-and-auto-restart-behaviour">Startup and auto-restart behaviour</h2>
+<ul>
+<li>
+<p><code translate="no" v-pre>auto-restart: false</code> → a new stake does <strong>not</strong> start just because the server starts, and an ended
+stake stays stopped after a restart. Start it explicitly with <code translate="no" v-pre>/stakes admin start &lt;stake-id&gt;</code>.</p>
+</li>
+<li>
+<p><code translate="no" v-pre>auto-restart: true</code> → the first round is created on startup. After a round ends, the next starts
+after <code translate="no" v-pre>restart-delay</code>; if the server was offline when that delay elapsed, the new round starts on the
+next startup.</p>
+</li>
+<li>
+<p>A round that was <strong>already active</strong> when the server stopped is <strong>always resumed</strong> on restart,
+regardless of <code translate="no" v-pre>auto-restart</code>, so deposits are never silently discarded.</p>
+</li>
+</ul>
 
                 
                 <!-- Required only on API pages -->
@@ -166,20 +244,20 @@
             
                 <nav id="retype-nextprev" class="print:hidden flex mt-14">
                     <div class="w-1/2">
-                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../universalstakes/installation/">
+                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../universalstakes/database-and-safety/">
                             <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                             <span>
                                 <span class="block text-xs font-normal text-base-text-muted">Previous</span>
-                                <span class="block mt-1">Installation</span>
+                                <span class="block mt-1">Database &amp; safety</span>
                             </span>
                         </a>
                     </div>
             
                     <div class="w-1/2">
-                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../universalstakes/menus/">
+                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../universalstakes/configuration/">
                             <span>
                                 <span class="block text-xs font-normal text-right text-base-text-muted">Next</span>
-                                <span class="block mt-1">Menus</span>
+                                <span class="block mt-1">Configuration</span>
                             </span>
                             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                         </a>
@@ -223,6 +301,6 @@
 
     <div id="retype-overlay-target"></div>
 
-        <script data-cfasync="false">window.__DOCS__ = { "title": "Integrations", level: 2, icon: "file", hasPrism: false, hasInstagram: false, hasMermaid: false, hasMath: false, tocDepth: 23, "md": "/universalstakes/integrations.md" }</script>
+        <script data-cfasync="false">window.__DOCS__ = { "title": "Reload & restart", level: 2, icon: "file", hasPrism: false, hasInstagram: false, hasMermaid: false, hasMath: false, tocDepth: 23, "md": "/universalstakes/reload-and-restart.md" }</script>
 </body>
 </html>

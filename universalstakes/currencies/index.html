@@ -11,30 +11,30 @@
     <meta name="generator" content="Retype 4.6.0">
 
     <!-- Primary Meta Tags -->
-    <title>Rewards</title>
-    <meta name="title" content="Rewards">
-    <meta name="description" content="Important: every reward command runs as the server console. Only trusted staff should edit stake files — a reward command can give items, money, or run any server command.">
+    <title>Currencies</title>
+    <meta name="title" content="Currencies">
+    <meta name="description" content="A contribution source takes a currency block. There are four types. Pick the one that matches what players should deposit.">
 
     <!-- Canonical -->
-    <link rel="canonical" href="https://deviaski.github.io/advion-docs/universalstakes/rewards/">
+    <link rel="canonical" href="https://deviaski.github.io/advion-docs/universalstakes/currencies/">
     <link rel="sitemap" type="application/xml" title="Sitemap" href="https://deviaski.github.io/advion-docs/sitemap.xml">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://deviaski.github.io/advion-docs/universalstakes/rewards/">
-    <meta property="og:title" content="Rewards">
-    <meta property="og:description" content="Important: every reward command runs as the server console. Only trusted staff should edit stake files — a reward command can give items, money, or run any server command.">
+    <meta property="og:url" content="https://deviaski.github.io/advion-docs/universalstakes/currencies/">
+    <meta property="og:title" content="Currencies">
+    <meta property="og:description" content="A contribution source takes a currency block. There are four types. Pick the one that matches what players should deposit.">
     <meta property="og:site_name" content="Advion Plugins">
     <meta property="og:locale" content="en_US">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://deviaski.github.io/advion-docs/universalstakes/rewards/">
-    <meta name="twitter:title" content="Rewards">
-    <meta name="twitter:description" content="Important: every reward command runs as the server console. Only trusted staff should edit stake files — a reward command can give items, money, or run any server command.">
+    <meta name="twitter:url" content="https://deviaski.github.io/advion-docs/universalstakes/currencies/">
+    <meta name="twitter:title" content="Currencies">
+    <meta name="twitter:description" content="A contribution source takes a currency block. There are four types. Pick the one that matches what players should deposit.">
 
     <!-- Alternate Markdown -->
-    <link rel="alternate" type="text/markdown" href="https://deviaski.github.io/advion-docs/universalstakes/rewards.md">
+    <link rel="alternate" type="text/markdown" href="https://deviaski.github.io/advion-docs/universalstakes/currencies.md">
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
@@ -135,199 +135,245 @@
                 <doc-page-actions></doc-page-actions>
 
                 <!-- Page content  -->
-<h1 id="rewards">Rewards</h1>
-<blockquote>
-<p><strong>Important:</strong> every reward command runs as the <strong>server console</strong>. Only trusted staff should edit
-stake files — a reward command can give items, money, or run any server command.</p>
-</blockquote>
-<p>When a round finalizes, UniversalStakes ranks every participant and creates <strong>pending rewards</strong>.
-Players claim them in <code translate="no" v-pre>/stakes rewards</code>. This page covers how to configure those rewards.</p>
-<hr>
-<h2 id="need-free-slots--protect-the-players-inventory"><code translate="no" v-pre>need-free-slots</code> — protect the player&#x27;s inventory</h2>
-<p>Add <code translate="no" v-pre>need-free-slots</code> next to any <code translate="no" v-pre>rewards</code> list that gives items. It is the number of <strong>completely
-empty</strong> inventory slots a player must have before <strong>any</strong> command in that block runs.</p>
-<div id="need-free-slots--protect-the-players-inventory-code-1" class="codeblock-wrapper"><doc-codeblock>
-<pre translate="no" class="language-yaml"><code v-pre class="language-yaml">prizes:
-  top:
-    1:
-      need-free-slots: 2
-      rewards:
-        - &quot;give %player% diamond_block 64&quot;
-        - &quot;give %player% enchanted_golden_apple 1&quot;
-        - &quot;broadcast &lt;gold&gt;%player% won the race!&quot;</code></pre>
+<h1 id="currencies">Currencies</h1>
+<p>A contribution source takes a <code translate="no" v-pre>currency</code> block. There are <strong>four types</strong>. Pick the one that matches
+what players should deposit.</p>
+<div id="currencies-code-1" class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-yaml"><code v-pre class="language-yaml">contributions:
+  diamonds:
+    currency:
+      type: ITEM          # or VAULT / PLACEHOLDER / CUSTOM_ITEM
+      material: DIAMOND   # depends on type
+    points: 5</code></pre>
 </doc-codeblock></div>
-<ul>
-<li>
-<p>If the player has too few empty slots, the commands do <strong>not</strong> run and the reward stays pending for a
-later click.</p>
-</li>
-<li>
-<p><code translate="no" v-pre>0</code> disables the check.</p>
-</li>
-<li>
-<p>Count each command that can give an item (not stacks or amounts); commands like <code translate="no" v-pre>broadcast</code> and
-<code translate="no" v-pre>msg</code> don&#x27;t count. The plugin does not parse command text, so this number is <strong>your</strong> promise that
-the configured commands fit.</p>
-</li>
-</ul>
-<hr>
-<h2 id="prizestop--ranked-winners"><code translate="no" v-pre>prizes.top</code> — ranked winners</h2>
-<p>Each key is a finishing position. Keys must be contiguous positive integers starting at <code translate="no" v-pre>1</code>.</p>
-<div id="prizestop--ranked-winners-code-1" class="codeblock-wrapper"><doc-codeblock>
-<pre translate="no" class="language-yaml"><code v-pre class="language-yaml">prizes:
-  top:
-    1:
-      material: NETHER_STAR
-      name: &quot;&lt;gold&gt;Winner&quot;
-      lore: [&quot;&lt;gray&gt;64 diamonds&quot;]
-      need-free-slots: 1
-      rewards:
-        - &quot;give %player% diamond 64&quot;
-        - &quot;broadcast &lt;gold&gt;%player% won the race!&quot;
-    2:
-      material: DIAMOND
-      name: &quot;&lt;aqua&gt;Second place&quot;
-      need-free-slots: 1
-      rewards:
-        - &quot;give %player% diamond 32&quot;</code></pre>
-</doc-codeblock></div>
-<retype-table copy-text="| Field | Meaning |
-| --- | --- |
-| `material`, `name`, `lore` | How the prize looks in the menu. |
-| `need-free-slots` | Empty slots required before commands run (see above). |
-| `rewards` | Console commands run when the player claims. `%player%` and `%player_name%` become the winner's name. |">
+<h2 id="the-four-types-at-a-glance">The four types at a glance</h2>
+<retype-table copy-text="| `type` | What players deposit | Extra setup needed |
+| --- | --- | --- |
+| `ITEM` | A normal Minecraft item (diamonds, emeralds…). | `material:` only. |
+| `VAULT` | Virtual money from your economy plugin. | Install Vault + an economy plugin. |
+| `PLACEHOLDER` | An integer balance from an economy without a Vault bridge. | PlaceholderAPI + a `currencies.yml` entry. |
+| `CUSTOM_ITEM` | An imported item snapshot (keys, named items, NBT, custom model data). | `/stakes admin importitem`. |">
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="comfortable">
 <thead>
 <tr>
-<th>Field</th>
-<th>Meaning</th>
+<th><code translate="no" v-pre>type</code></th>
+<th>What players deposit</th>
+<th>Extra setup needed</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code translate="no" v-pre>material</code>, <code translate="no" v-pre>name</code>, <code translate="no" v-pre>lore</code></td>
-<td>How the prize looks in the menu.</td>
+<td><code translate="no" v-pre>ITEM</code></td>
+<td>A normal Minecraft item (diamonds, emeralds…).</td>
+<td><code translate="no" v-pre>material:</code> only.</td>
 </tr>
 <tr>
-<td><code translate="no" v-pre>need-free-slots</code></td>
-<td>Empty slots required before commands run (see above).</td>
+<td><code translate="no" v-pre>VAULT</code></td>
+<td>Virtual money from your economy plugin.</td>
+<td>Install Vault + an economy plugin.</td>
 </tr>
 <tr>
-<td><code translate="no" v-pre>rewards</code></td>
-<td>Console commands run when the player claims. <code translate="no" v-pre>%player%</code> and <code translate="no" v-pre>%player_name%</code> become the winner&#x27;s name.</td>
+<td><code translate="no" v-pre>PLACEHOLDER</code></td>
+<td>An integer balance from an economy without a Vault bridge.</td>
+<td>PlaceholderAPI + a <code translate="no" v-pre>currencies.yml</code> entry.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>CUSTOM_ITEM</code></td>
+<td>An imported item snapshot (keys, named items, NBT, custom model data).</td>
+<td><code translate="no" v-pre>/stakes admin importitem</code>.</td>
 </tr>
 </tbody>
 </table>
 </div>
 </retype-table>
-<p>The prize <code translate="no" v-pre>lore</code>/<code translate="no" v-pre>name</code> can use <code translate="no" v-pre>{rank}</code>, <code translate="no" v-pre>{player_name}</code>, <code translate="no" v-pre>{points}</code>, plus per-source tokens like
-<code translate="no" v-pre>{coins.display-name}</code> and <code translate="no" v-pre>{coins.amount}</code>.</p>
 <hr>
-<h2 id="prizesothers--consolation-tiers"><code translate="no" v-pre>prizes.others</code> — consolation tiers</h2>
-<p>A numbered list of consolation tiers for players who did not win a top place.</p>
-<ul>
-<li>Tier <code translate="no" v-pre>1</code> starts right after the ranked winners.</li>
-<li>Tier <code translate="no" v-pre>2</code> starts after every player picked by tier <code translate="no" v-pre>1</code>, and so on.</li>
-<li>A player receives <strong>at most one</strong> tier.</li>
-<li>Tier keys must be contiguous positive integers starting at <code translate="no" v-pre>1</code>.</li>
-</ul>
-<div id="prizesothers--consolation-tiers-code-1" class="codeblock-wrapper"><doc-codeblock>
-<pre translate="no" class="language-yaml"><code v-pre class="language-yaml">prizes:
-  others:
-    1:
-      type: COUNT
-      amount: 100
-      refund-percent: 50
-      need-free-slots: 1
-      rewards:
-        - &quot;give %player% emerald 10&quot;
-    2:
-      type: PERCENT
-      amount: 100
-      refund-percent: 25
-      need-free-slots: 2
-      rewards:
-        - &quot;give %player% diamond 3&quot;</code></pre>
+<h2 id="item--a-plain-minecraft-item"><code translate="no" v-pre>ITEM</code> — a plain Minecraft item</h2>
+<p>The simplest type. Players deposit a vanilla material from their inventory.</p>
+<div id="item--a-plain-minecraft-item-code-1" class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-yaml"><code v-pre class="language-yaml">currency:
+  type: ITEM
+  material: DIAMOND</code></pre>
 </doc-codeblock></div>
-<retype-table copy-text="| Field | Meaning |
-| --- | --- |
-| `type` | `COUNT` = a fixed number of the next players. `PERCENT` = a percentage of all participants. |
-| `amount` | Player count (for `COUNT`), or a `0`–`100` percentage (for `PERCENT`). `100` gives the tier to everyone still unselected. |
-| `refund-percent` | `0`–`100`. Returns that percentage of each selected player's **net deposit**, per source, rounded down. Item, Vault, PlaceholderAPI and custom-item deposits are each returned in their original form. |
-| `need-free-slots` | Empty slots required before commands run. |
-| `rewards` | Console commands run on claim. |">
-<div class="table-wrapper scrollbar overflow-hidden">
-<table class="comfortable">
-<thead>
-<tr>
-<th>Field</th>
-<th>Meaning</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code translate="no" v-pre>type</code></td>
-<td><code translate="no" v-pre>COUNT</code> = a fixed number of the next players. <code translate="no" v-pre>PERCENT</code> = a percentage of all participants.</td>
-</tr>
-<tr>
-<td><code translate="no" v-pre>amount</code></td>
-<td>Player count (for <code translate="no" v-pre>COUNT</code>), or a <code translate="no" v-pre>0</code>–<code translate="no" v-pre>100</code> percentage (for <code translate="no" v-pre>PERCENT</code>). <code translate="no" v-pre>100</code> gives the tier to everyone still unselected.</td>
-</tr>
-<tr>
-<td><code translate="no" v-pre>refund-percent</code></td>
-<td><code translate="no" v-pre>0</code>–<code translate="no" v-pre>100</code>. Returns that percentage of each selected player&#x27;s <strong>net deposit</strong>, per source, rounded down. Item, Vault, PlaceholderAPI and custom-item deposits are each returned in their original form.</td>
-</tr>
-<tr>
-<td><code translate="no" v-pre>need-free-slots</code></td>
-<td>Empty slots required before commands run.</td>
-</tr>
-<tr>
-<td><code translate="no" v-pre>rewards</code></td>
-<td>Console commands run on claim.</td>
-</tr>
-</tbody>
-</table>
-</div>
-</retype-table>
-<blockquote>
-<p>The old single-tier key <code translate="no" v-pre>prizes.others.near-top</code> is still read as tier <code translate="no" v-pre>1</code>, but new files should use
-numbered tiers. Changing tier selection or reward delivery requires a <strong>restart</strong>.</p>
-</blockquote>
+<p><code translate="no" v-pre>material:</code> is any valid Bukkit material name (uppercase, e.g. <code translate="no" v-pre>DIAMOND</code>, <code translate="no" v-pre>EMERALD</code>, <code translate="no" v-pre>CARROT</code>).</p>
 <hr>
-<h2 id="how-players-receive-rewards">How players receive rewards</h2>
+<h2 id="vault--virtual-money"><code translate="no" v-pre>VAULT</code> — virtual money</h2>
+<p>Use this when players should deposit server money instead of items.</p>
+<div id="vault--virtual-money-code-1" class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-yaml"><code v-pre class="language-yaml">currency:
+  type: VAULT</code></pre>
+</doc-codeblock></div>
+<p>Requirements:</p>
 <ol>
-<li>The round ends and finalizes. Pending rewards are created.</li>
-<li>The player gets a chat message pointing to <code translate="no" v-pre>/stakes rewards</code>.</li>
-<li>They open the menu and either click one reward or use <strong>Claim All</strong>.</li>
-<li>Commands run as console. If <code translate="no" v-pre>need-free-slots</code> isn&#x27;t met, nothing runs and the reward stays pending.</li>
+<li>Install <strong>Vault</strong> and a Vault-compatible economy plugin. Restart the server.</li>
+<li>Look for the console message confirming the economy connected.</li>
+<li>Give players the deposit permission as usual.</li>
 </ol>
-<p>This keeps offline winners from losing prizes — rewards wait safely until claim.</p>
-<h3 id="when-delivery-goes-wrong">When delivery goes wrong</h3>
-<p>The plugin can confirm that a console command <strong>returned success</strong>, but it cannot prove an arbitrary
-third-party command actually delivered its effect. So:</p>
-<ul>
-<li>
-<p>A confirmed <strong>temporary</strong> error → the reward returns to <code translate="no" v-pre>PENDING</code>; the player clicks again.</p>
-</li>
-<li>
-<p>An <strong>ambiguous</strong> failure (might have partly worked) → the reward becomes <strong><code translate="no" v-pre>BLOCKED</code></strong> and is never
-replayed automatically (replaying could duplicate a prize). Review it in
-<code translate="no" v-pre>/stakes admin logs &lt;stake&gt;</code> and resolve it manually.</p>
-</li>
-<li>
-<p>A server <strong>crash during a claim</strong> → a stuck <code translate="no" v-pre>CLAIMING</code> lease older than 5 minutes moves to
-<code translate="no" v-pre>BLOCKED</code> on startup and every 60 seconds. It stays visible to admins but cannot be claimed again.</p>
-</li>
-</ul>
-<p>See <a href="../database-and-safety/">Database &amp; safety</a> for the full list of automatic outcomes
-(<code translate="no" v-pre>BLOCKED</code>, <code translate="no" v-pre>UNCONFIRMED</code>, <code translate="no" v-pre>PAYOUT_FAILED</code>) and what to do about them.</p>
+<p>If no economy is found, <code translate="no" v-pre>VAULT</code> sources cannot accept deposits (item sources in the same stake still
+work). UniversalStakes does <strong>not</strong> create money itself.</p>
 <hr>
-<h2 id="size-limits">Size limits</h2>
-<p>Each reward block&#x27;s commands have a <strong>12,000-byte</strong> encoded budget. Keep each command on one line;
-newline, carriage-return and the reserved U+0001 separator are rejected. The full pending-reward
-payload is limited to <strong>60,000 UTF-8 bytes</strong>, and each imported custom item to <strong>32 KiB</strong>. If
-validation reports a limit, split the command list or simplify item metadata rather than bypassing it.</p>
+<h2 id="placeholder--economy-without-a-vault-bridge"><code translate="no" v-pre>PLACEHOLDER</code> — economy without a Vault bridge</h2>
+<p>For economies that expose a balance through PlaceholderAPI but have no Vault hook (PlayerPoints,
+ExcellentEconomy, CoinsEngine, …). The stake refers to a currency by its <strong>ID</strong>, and the actual
+definition lives in <code translate="no" v-pre>currencies.yml</code>.</p>
+<div id="placeholder--economy-without-a-vault-bridge-code-1" class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-yaml"><code v-pre class="language-yaml"># in the stake file
+contributions:
+  gems:
+    currency:
+      type: PLACEHOLDER
+      id: gems
+    points: 1</code></pre>
+</doc-codeblock></div>
+<div id="placeholder--economy-without-a-vault-bridge-code-2" class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-yaml"><code v-pre class="language-yaml"># in plugins/UniversalStakes/currencies.yml
+currencies:
+  gems:
+    display-name: &quot;Gems&quot;
+    symbol: &quot;&quot;
+    raw-placeholder: &quot;%coinsengine_balance_gems%&quot;
+    give-command: &quot;ce give %player% gems %amount%&quot;
+    take-command: &quot;ce take %player% gems %amount%&quot;
+    works-offline: false
+    balance-check-after: true
+    balance-check-delay-ticks: 5</code></pre>
+</doc-codeblock></div>
+<h3 id="currenciesyml-fields"><code translate="no" v-pre>currencies.yml</code> fields</h3>
+<retype-table copy-text="| Field | Meaning |
+| --- | --- |
+| `display-name` | Required name used for validation. |
+| `symbol` | Optional metadata (not auto-shown in current menus). |
+| `raw-placeholder` | Must return **digits only** — no symbol, commas, decimals, color codes. |
+| `give-command` / `take-command` | Run as **console**. Must contain `%player%` and `%amount%`. A leading `/` is optional. |
+| `works-offline` | May the provider read/operate on an offline player? Normal deposits are started by online players. |
+| `balance-check-after` | After the command, re-read the balance and require it changed by exactly the amount. |
+| `balance-check-delay-ticks` | Wait this many ticks before the post-command balance check (for async-updating economies). |">
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Field</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code translate="no" v-pre>display-name</code></td>
+<td>Required name used for validation.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>symbol</code></td>
+<td>Optional metadata (not auto-shown in current menus).</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>raw-placeholder</code></td>
+<td>Must return <strong>digits only</strong> — no symbol, commas, decimals, color codes.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>give-command</code> / <code translate="no" v-pre>take-command</code></td>
+<td>Run as <strong>console</strong>. Must contain <code translate="no" v-pre>%player%</code> and <code translate="no" v-pre>%amount%</code>. A leading <code translate="no" v-pre>/</code> is optional.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>works-offline</code></td>
+<td>May the provider read/operate on an offline player? Normal deposits are started by online players.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>balance-check-after</code></td>
+<td>After the command, re-read the balance and require it changed by exactly the amount.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>balance-check-delay-ticks</code></td>
+<td>Wait this many ticks before the post-command balance check (for async-updating economies).</td>
+</tr>
+</tbody>
+</table>
+</div>
+</retype-table>
+<h3 id="how-a-placeholder-deposit-is-confirmed">How a PLACEHOLDER deposit is confirmed</h3>
+<ol>
+<li>Read the player&#x27;s balance from <code translate="no" v-pre>raw-placeholder</code>.</li>
+<li>Run <code translate="no" v-pre>take-command</code> as console.</li>
+<li>Wait <code translate="no" v-pre>balance-check-delay-ticks</code>, then read the balance again.</li>
+<li>The balance must have dropped by <strong>exactly</strong> the requested integer amount.</li>
+<li>If it cannot be confirmed, the deposit is <strong>cancelled without awarding points</strong> and the audit log
+records <code translate="no" v-pre>UNCONFIRMED</code>. It is never retried automatically.</li>
+</ol>
+<blockquote>
+<p>The generated <code translate="no" v-pre>currencies.yml</code> ships PlayerPoints and ExcellentEconomy <strong>templates</strong>. Verify the
+currency ID, command alias and placeholder against your own economy config before using them.</p>
+</blockquote>
+<blockquote>
+<p>Never edit or remove an existing <code translate="no" v-pre>currencies.yml</code> entry while a stake using it still has unclaimed
+refunds — pending refunds store the ID, not a copy of the old command. Reload permits <strong>adding</strong>
+entries only; changing/removing requires a restart and is unsafe until those rewards are resolved.</p>
+</blockquote>
+<hr>
+<h2 id="custom_item--imported-item-snapshots"><code translate="no" v-pre>CUSTOM_ITEM</code> — imported item snapshots</h2>
+<p>For keys, renamed items, NBT items, or items with Custom Model Data.</p>
+<h3 id="step-1--import-the-item">Step 1 — import the item</h3>
+<p>Hold the sample item in your <strong>main hand</strong> and run:</p>
+<div id="step-1--import-the-item-code-1" class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-none"><code v-pre class="language-none">/stakes admin importitem &lt;item-id&gt;</code></pre>
+</doc-codeblock></div>
+<p>The item is saved globally as <code translate="no" v-pre>plugins/UniversalStakes/imported-items/&lt;item-id&gt;.item</code>. The item ID is
+global and can be reused by several stakes.</p>
+<h3 id="step-2--use-it-in-a-stake">Step 2 — use it in a stake</h3>
+<p>The contribution <strong>source ID must equal the imported item ID</strong>. Do <strong>not</strong> add <code translate="no" v-pre>currency.id</code> or an
+<code translate="no" v-pre>item:</code> field — custom-item lookup always uses the source ID.</p>
+<div id="step-2--use-it-in-a-stake-code-1" class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-yaml"><code v-pre class="language-yaml">contributions:
+  magic_key:              # this ID must match the imported item ID
+    currency:
+      type: CUSTOM_ITEM
+      match-mode: SIMILAR
+    points: 10</code></pre>
+</doc-codeblock></div>
+<h3 id="match-mode--how-stacks-are-matched"><code translate="no" v-pre>match-mode</code> — how stacks are matched</h3>
+<retype-table copy-text="| Mode | What it checks |
+| --- | --- |
+| `SIMILAR` | The normal, lenient choice. Matches the item type and key item data. |
+| `EXACT` | Requires a full, exact match of the whole stack. |
+| `CUSTOM_MODEL_DATA` | Checks material **and** custom model data only. |">
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Mode</th>
+<th>What it checks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code translate="no" v-pre>SIMILAR</code></td>
+<td>The normal, lenient choice. Matches the item type and key item data.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>EXACT</code></td>
+<td>Requires a full, exact match of the whole stack.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>CUSTOM_MODEL_DATA</code></td>
+<td>Checks material <strong>and</strong> custom model data only.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</retype-table>
+<p>Importing a new snapshot (or re-importing) takes effect after a <strong>restart</strong>.</p>
+<hr>
+<h2 id="mixing-sources">Mixing sources</h2>
+<p>A stake can have several contribution sources of different types. Their points simply add together;
+the resources never convert into each other.</p>
+<div id="mixing-sources-code-1" class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-yaml"><code v-pre class="language-yaml">contributions:
+  diamonds:
+    currency: { type: ITEM, material: DIAMOND }
+    points: 5
+  coins:
+    currency: { type: VAULT }
+    points: 1</code></pre>
+</doc-codeblock></div>
+<p>10 diamonds (×5 = 50) + 1000 coins (×1 = 1000) = 1050 total points.</p>
 
                 
                 <!-- Required only on API pages -->
@@ -337,20 +383,20 @@ validation reports a limit, split the command list or simplify item metadata rat
             
                 <nav id="retype-nextprev" class="print:hidden flex mt-14">
                     <div class="w-1/2">
-                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../universalstakes/menus/">
+                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../universalstakes/rewards/">
                             <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                             <span>
                                 <span class="block text-xs font-normal text-base-text-muted">Previous</span>
-                                <span class="block mt-1">Menus</span>
+                                <span class="block mt-1">Rewards</span>
                             </span>
                         </a>
                     </div>
             
                     <div class="w-1/2">
-                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../universalstakes/currencies/">
+                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../universalstakes/stake-settings/">
                             <span>
                                 <span class="block text-xs font-normal text-right text-base-text-muted">Next</span>
-                                <span class="block mt-1">Currencies</span>
+                                <span class="block mt-1">Stake settings</span>
                             </span>
                             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                         </a>
@@ -394,6 +440,6 @@ validation reports a limit, split the command list or simplify item metadata rat
 
     <div id="retype-overlay-target"></div>
 
-        <script data-cfasync="false">window.__DOCS__ = { "title": "Rewards", level: 2, icon: "file", hasPrism: true, hasInstagram: false, hasMermaid: false, hasMath: false, tocDepth: 23, "md": "/universalstakes/rewards.md" }</script>
+        <script data-cfasync="false">window.__DOCS__ = { "title": "Currencies", level: 2, icon: "file", hasPrism: true, hasInstagram: false, hasMermaid: false, hasMath: false, tocDepth: 23, "md": "/universalstakes/currencies.md" }</script>
 </body>
 </html>

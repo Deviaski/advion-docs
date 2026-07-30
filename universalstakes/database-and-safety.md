@@ -1,18 +1,24 @@
-# Database and Safety
+# Database & safety
 
-> **Before updating the plugin:** Stop the server and back up the database. This is the one habit that prevents most data-loss problems.
+> **Before updating the plugin:** stop the server and **back up the database**. This one habit
+> prevents most data-loss problems.
 
-## SQLite: the default choice
+---
 
-SQLite needs no separate database server. Its file is `plugins/UniversalStakes/data.db`. Use it for a normal single Minecraft server.
+## SQLite — the default
 
-Do not open or edit `data.db` while the server is running.
+SQLite needs no separate database server. Its file is `plugins/UniversalStakes/data/data.db`. Use it
+for a normal single Minecraft server.
 
-## MySQL: for external storage
+- Do **not** open or edit `data.db` while the server is running.
+- The relevant `config.yml` key is `database.sqliteFile` (default `data/data.db`); MySQL and pool
+  settings are ignored.
 
-Use MySQL when your server already has a database server or you need data outside the game server. Edit `config.yml`:
+---
 
-MySQL does **not** enable a multi-server network: exactly one active UniversalStakes plugin instance may use a database. Do not point multiple Paper servers at the same schema; the current lifecycle and financial coordination is process-local.
+## MySQL — external storage
+
+Use MySQL when you already have a database server or need the data outside the game server.
 
 ```yaml
 database:
@@ -29,46 +35,70 @@ database:
   allowPublicKeyRetrieval: false
 ```
 
-Configuration keys are case-sensitive and use the Java field names shown above. `sqliteFile`, `poolSize`, `input.promptTimeoutSeconds`, and the `banDisqualification` section are also camelCase. Only `sqlite` and `mysql` are accepted for `database.type`; an unknown value stops plugin startup instead of silently opening a SQLite database.
+> MySQL does **not** enable a multi-server network. **Exactly one** active UniversalStakes instance
+> may use a database. Do not point multiple Paper servers at the same schema — lifecycle and financial
+> coordination are process-local.
 
-`VERIFY_IDENTITY` is the secure default for MySQL: it encrypts the connection, verifies the certificate chain, and checks that the certificate matches `host`. Put the database CA in a dedicated PKCS#12/JKS truststore and use its absolute `file:` URL. Do not set `allowPublicKeyRetrieval: true` as a substitute for TLS. Modes `REQUIRED` and `VERIFY_CA` weaken hostname verification; `PREFERRED`/`DISABLED` permit plaintext and must not be used for a remote database.
+### Secure MySQL setup
 
-Create a dedicated least-privilege database user instead of using `root`. UniversalStakes creates its own tables and indexes. Restrict the database account and network ACL to the Minecraft host, because pending reward records can contain commands that later execute as console.
+- `VERIFY_IDENTITY` is the secure default: it encrypts the connection, verifies the certificate chain,
+  and checks the certificate matches `host`. Put the database CA in a dedicated PKCS#12/JKS truststore
+  and use its absolute `file:` URL.
+- Do **not** set `allowPublicKeyRetrieval: true` as a substitute for TLS. `REQUIRED` and `VERIFY_CA`
+  weaken hostname verification; `PREFERRED`/`DISABLED` allow plaintext and must not be used for a
+  remote database.
+- Create a **dedicated least-privilege** database user instead of `root`. The plugin creates its own
+  tables and indexes. Restrict the account and network ACL to the Minecraft host — pending reward
+  records can contain commands that later run as console.
+- The database password and truststore password are plain text in `config.yml`. Restrict file access
+  to the server account and keep this file out of shared backups/logs.
 
-Both the database password and truststore password are stored as plain text in `config.yml`; restrict filesystem access to the server account and keep this file out of backups or logs shared with third parties.
+Changing database settings requires a **restart** (the pool is built only at startup).
 
-For SQLite, the relevant key is `database.sqliteFile` (default `data.db`); MySQL and pool settings are ignored.
-
-Other root configuration keys include:
-
-- `input.promptTimeoutSeconds`: seconds before a chat investment prompt expires (default `120`).
-- `banDisqualification.activeRounds`: remove banned players from active leaderboards (default `true`).
-- `banDisqualification.endedRounds`: remove banned players from ended rounds and delete unclaimed rewards (default `false`).
-- `banDisqualification.checkIntervalSeconds`: ban scan interval (default `60`).
+---
 
 ## Keep the server safe
 
-- Test reward commands on a test server before enabling a stake.
+- Test reward commands on a test server before enabling a stake for real players.
 - Never give players or untrusted moderators write access to plugin files.
 - Back up the database before changing database type or editing many stakes.
 - Do not deliberately stop the server while rewards are being claimed.
+- Keep every `currencies.yml` ID and its give/take commands **unchanged** while a stake using it has
+  unclaimed currency refunds. A pending refund stores the currency ID, not a historical copy of its
+  command template — changing/removing it and restarting can send an old refund through the new
+  command or make it impossible to claim. Wait until those rewards are resolved.
 
-If the server crashes during a claim, a `CLAIMING` lease older than five minutes moves to `BLOCKED` during startup or the 60-second sweep. It remains in the database but cannot be claimed again, preventing duplicate external commands or payments. Confirmed delivery errors return the reward to `PENDING` for another player click.
+---
 
-## Automatic outcomes and administrator audit
+## Automatic outcomes (no reconciliation command needed)
 
-The plugin never requires a reconciliation command. Every completed round can be inspected with `/stakes admin logs <stake-id>`; the menu shows immutable events, including player, amount, currency, operation ID, result, and any error.
-Only rounds with events recorded after this feature is installed appear in the menu; historical delivery outcomes are not reconstructed.
+The plugin never requires a manual reconciliation command. Every completed round can be inspected with
+`/stakes admin logs <stake-id>`; the menu shows **immutable** events — player, amount, currency,
+operation ID, result, and any error. Only rounds with events recorded after this feature was installed
+appear; historical delivery outcomes are not reconstructed.
 
-- A reward whose external result cannot be confirmed is `BLOCKED` and recorded as `UNCONFIRMED`; it is not replayed.
-- An investment whose external withdrawal cannot be confirmed is automatically cancelled without stake credit and recorded as `UNCONFIRMED`.
-- `audit-log.retention-days: 0` keeps audit entries indefinitely. A positive value removes only expired audit entries; it does not delete financial or round records.
+| Outcome | When it happens | What to do |
+| --- | --- | --- |
+| `PENDING` | A reward is waiting to be claimed, or a confirmed temporary error put it back. | Player clicks again in `/stakes rewards`. |
+| `BLOCKED` | A reward command was ambiguous (might have partly worked), so it is not replayed automatically. | Review `/stakes admin logs <stake>` and resolve manually. |
+| `BLOCKED` (from crash) | A `CLAIMING` lease older than 5 minutes during a crash. Moved to `BLOCKED` on startup / every 60 s. | Same — review and resolve manually; it cannot be claimed again. |
+| `UNCONFIRMED` (deposit) | An external currency withdrawal during a deposit could not be confirmed. | The deposit is cancelled **without** stake credit. Not retried. Check the provider. |
+| `PAYOUT_FAILED` (withdrawal) | A right-click withdrawal reduced the ledger but the payout to the player failed. | Compensate the player manually. The contribution was already removed — do **not** tell them to repeat the withdrawal. |
 
-## Safety limits
+`auditLog.retentionDays: 0` keeps audit events forever. A positive value removes only expired audit
+events; it never deletes financial or round records.
 
-- Any financial amount (investment, withdrawal, total, or refund input) must be no greater than `9,007,199,254,740,991`.
-- A pending reward's serialized payload is limited to `60,000` UTF-8 bytes.
-- Configured reward commands have a `12,000`-byte encoded budget per reward block and must be single lines without the reserved U+0001 payload separator.
-- An imported custom-item snapshot is limited to `32 KiB` of serialized binary data.
+---
 
-These bounds prevent integer/precision overflow and unbounded database payloads. Reduce amounts, command lists, or item metadata when validation rejects a value; never edit oversized values directly into the database.
+## Safety limits (plugin-wide)
+
+These bounds prevent integer/precision overflow and unbounded database payloads. Validation rejects
+values that exceed them — reduce amounts, command lists, or item metadata instead of bypassing them,
+and never edit oversized values directly into the database.
+
+| Limit | Value |
+| --- | --- |
+| Any financial amount (investment, withdrawal, total, refund input) | at most `9,007,199,254,740,991` |
+| A pending reward's serialized payload | at most `60,000` UTF-8 bytes |
+| Encoded reward-command budget per reward block | `12,000` bytes (one line each, no reserved U+0001 char) |
+| An imported custom-item snapshot | at most `32 KiB` binary |

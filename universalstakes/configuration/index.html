@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <meta name="turbo-root" content="/advion-docs">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.838750301270">
+
+    <!-- See retype.com -->
+    <meta name="generator" content="Retype 4.6.0">
+
+    <!-- Primary Meta Tags -->
+    <title>Configuration</title>
+    <meta name="title" content="Configuration">
+    <meta name="description" content="This page covers the two global files: config.yml (server-wide settings) and currencies.yml (external PlaceholderAPI currencies). For the per-event files, see Stake settings.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://deviaski.github.io/advion-docs/universalstakes/configuration/">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://deviaski.github.io/advion-docs/sitemap.xml">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://deviaski.github.io/advion-docs/universalstakes/configuration/">
+    <meta property="og:title" content="Configuration">
+    <meta property="og:description" content="This page covers the two global files: config.yml (server-wide settings) and currencies.yml (external PlaceholderAPI currencies). For the per-event files, see Stake settings.">
+    <meta property="og:site_name" content="Advion Plugins">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://deviaski.github.io/advion-docs/universalstakes/configuration/">
+    <meta name="twitter:title" content="Configuration">
+    <meta name="twitter:description" content="This page covers the two global files: config.yml (server-wide settings) and currencies.yml (external PlaceholderAPI currencies). For the per-event files, see Stake settings.">
+
+    <!-- Alternate Markdown -->
+    <link rel="alternate" type="text/markdown" href="https://deviaski.github.io/advion-docs/universalstakes/configuration.md">
+
+    <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
+
+    <link href="../../resources/css/retype.css?v=4.6.0.838750301270" rel="stylesheet">
+
+    <script data-cfasync="false" src="../../resources/js/config.js?v=4.6.0.838750301270" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/retype.js?v=4.6.0" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.6.0.838750301270" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.6.0.838750301270" defer></script>
+</head>
+<body>
+    <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
+    <div class="absolute bottom-0 left-0" style="top: 5rem; right: 50%"></div>
+
+    <header id="retype-header" class="sticky top-0 z-30 flex w-full h-16 bg-header-bg border-b border-header-border md:h-20">
+        <div class="container relative flex items-center justify-between pr-6 grow md:justify-start">
+            <!-- Mobile menu button skeleton -->
+            <button v-cloak class="skeleton retype-mobile-menu-button flex items-center justify-center shrink-0 overflow-hidden dark:text-white focus:outline-hidden rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
+            <div v-cloak id="retype-sidebar-left-toggle-button"></div>
+    
+            <!-- Logo -->
+            <div class="flex items-center justify-between h-full py-2 md:w-75">
+                <div class="flex items-center px-2 md:px-6">
+                    <a id="retype-branding-logo" href="https://deviaski.github.io/advion-docs/" class="flex items-center leading-snug text-xl">
+                        <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">Advion Plugins</span>
+                    </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">Docs</span>
+                </div>
+    
+                <span class="hidden h-8 border-r md:inline-block border-base-border"></span>
+            </div>
+    
+            <div class="flex justify-between md:grow">
+                <!-- Top Nav -->
+                <nav id="retype-header-nav" class="hidden md:flex">
+                    <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
+                        
+                    </ul>
+                </nav>
+    
+                <div v-cloak class="flex justify-end grow">
+                    <div id="retype-mobile-search-button"></div>
+                    <doc-search-desktop></doc-search-desktop>
+    
+                    <doc-theme-switch class="lg:ml-2"></doc-theme-switch>
+                    <doc-history></doc-history>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <div id="retype-container" class="container relative flex bg-white">
+        <!-- Sidebar Skeleton -->
+        <div v-cloak class="fixed flex flex-col shrink-0 duration-300 ease-in-out bg-sidebar-left-bg border-sidebar-left-border sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton">
+        
+            <div class="flex items-center h-16 px-6">
+                <input id="retype-filter-input-mock" class="w-full h-10 pl-8 px-3 py-2 transition-colors duration-200 ease-linear bg-filter-bg border border-filter-border rounded-lg shadow-none md:text-sm hover:border-filter-border-hover focus:outline-hidden focus:border-filter-border-focus placeholder-filter-placeholder" type="text">
+            </div>
+        
+            <div class="pl-6 mt-1 mb-4">
+                <div class="w-32 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                <div class="w-48 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                <div class="w-40 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                <div class="w-32 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                <div class="w-48 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                <div class="w-40 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+            </div>
+        
+            <div class="shrink-0 mt-auto bg-transparent dark:border-base-border">
+                <a class="flex items-center justify-center flex-nowrap h-16 text-gray-350 dark:text-dark-400 hover:text-gray-600 dark:hover:text-dark-300 transition-colors duration-150 ease-in docs-powered-by" target="_blank" href="https://retype.com/" rel="noopener">
+                    <span class="text-xs whitespace-nowrap">Powered by</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="ml-2" fill="currentColor" width="96" height="20" overflow="visible"><path d="M0 0v20h13.59V0H0zm11.15 17.54H2.44V2.46h8.71v15.08zM15.8 20h2.44V4.67L15.8 2.22zM20.45 6.89V20h2.44V9.34z"/><g><path d="M40.16 8.44c0 1.49-.59 2.45-1.75 2.88l2.34 3.32h-2.53l-2.04-2.96h-1.43v2.96h-2.06V5.36h3.5c1.43 0 2.46.24 3.07.73s.9 1.27.9 2.35zm-2.48 1.1c.26-.23.38-.59.38-1.09 0-.5-.13-.84-.4-1.03s-.73-.28-1.39-.28h-1.54v2.75h1.5c.72 0 1.2-.12 1.45-.35zM51.56 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92h4.74v1.83h-6.79V5.36h6.64zM60.09 7.15v7.48h-2.06V7.15h-2.61V5.36h7.28v1.79h-2.61zM70.81 14.64h-2.06v-3.66l-3.19-5.61h2.23l1.99 3.45 1.99-3.45H74l-3.19 5.61v3.66zM83.99 6.19c.65.55.97 1.4.97 2.55s-.33 1.98-1 2.51-1.68.8-3.04.8h-1.23v2.59h-2.06V5.36h3.26c1.42 0 2.45.28 3.1.83zm-1.51 3.65c.25-.28.37-.69.37-1.22s-.16-.92-.48-1.14c-.32-.23-.82-.34-1.5-.34H79.7v3.12h1.38c.68 0 1.15-.14 1.4-.42zM95.85 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92H96v1.83h-6.79V5.36h6.64z"/></g></svg>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Sidebar component -->
+        <doc-sidebar v-cloak>
+            <template #sidebar-footer>
+                <div class="shrink-0 mt-auto border-t md:bg-transparent md:border-none dark:border-base-border">
+        
+                    <a class="flex items-center justify-center flex-nowrap h-16 text-gray-350 dark:text-dark-400 hover:text-gray-600 dark:hover:text-dark-300 transition-colors duration-150 ease-in docs-powered-by" target="_blank" href="https://retype.com/" rel="noopener">
+                        <span class="text-xs whitespace-nowrap">Powered by</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="ml-2" fill="currentColor" width="96" height="20" overflow="visible"><path d="M0 0v20h13.59V0H0zm11.15 17.54H2.44V2.46h8.71v15.08zM15.8 20h2.44V4.67L15.8 2.22zM20.45 6.89V20h2.44V9.34z"/><g><path d="M40.16 8.44c0 1.49-.59 2.45-1.75 2.88l2.34 3.32h-2.53l-2.04-2.96h-1.43v2.96h-2.06V5.36h3.5c1.43 0 2.46.24 3.07.73s.9 1.27.9 2.35zm-2.48 1.1c.26-.23.38-.59.38-1.09 0-.5-.13-.84-.4-1.03s-.73-.28-1.39-.28h-1.54v2.75h1.5c.72 0 1.2-.12 1.45-.35zM51.56 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92h4.74v1.83h-6.79V5.36h6.64zM60.09 7.15v7.48h-2.06V7.15h-2.61V5.36h7.28v1.79h-2.61zM70.81 14.64h-2.06v-3.66l-3.19-5.61h2.23l1.99 3.45 1.99-3.45H74l-3.19 5.61v3.66zM83.99 6.19c.65.55.97 1.4.97 2.55s-.33 1.98-1 2.51-1.68.8-3.04.8h-1.23v2.59h-2.06V5.36h3.26c1.42 0 2.45.28 3.1.83zm-1.51 3.65c.25-.28.37-.69.37-1.22s-.16-.92-.48-1.14c-.32-.23-.82-.34-1.5-.34H79.7v3.12h1.38c.68 0 1.15-.14 1.4-.42zM95.85 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92H96v1.83h-6.79V5.36h6.64z"/></g></svg>
+                    </a>
+                </div>
+            </template>
+        </doc-sidebar>
+
+        <div class="grow min-w-0 bg-body-bg">
+            <!-- Render "toolbar" template here on api pages --><!-- Render page content -->
+<div class="flex">
+    <div id="retype-main" class="min-w-0 p-4 grow md:px-16">
+        <main class="relative pb-12 lg:pt-2">
+            <div class="relative retype-markdown" id="retype-content">
+                <!-- Rendered if sidebar right is enabled -->
+                <div id="retype-sidebar-right-toggle"></div>
+                <doc-page-actions></doc-page-actions>
+
+                <!-- Page content  -->
+<h1 id="configuration">Configuration</h1>
+<p>This page covers the two global files: <code translate="no" v-pre>config.yml</code> (server-wide settings) and <code translate="no" v-pre>currencies.yml</code>
+(external PlaceholderAPI currencies). For the per-event files, see <a href="../stake-settings/">Stake settings</a>.</p>
+<blockquote>
+<p><code translate="no" v-pre>config.yml</code> uses <strong>camelCase</strong> keys (<code translate="no" v-pre>sqliteFile</code>, <code translate="no" v-pre>poolSize</code>). <code translate="no" v-pre>currencies.yml</code> uses
+<strong>kebab-case</strong> (<code translate="no" v-pre>raw-placeholder</code>, <code translate="no" v-pre>give-command</code>). Both are intentional — copy the spelling exactly.</p>
+</blockquote>
+<hr>
+<h2 id="configyml"><code translate="no" v-pre>config.yml</code></h2>
+<div id="configyml-code-1" class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-yaml"><code v-pre class="language-yaml">debug: false
+locale: &quot;english&quot;
+
+database:
+  type: sqlite
+  host: localhost
+  port: 3306
+  name: universalstakes
+  user: universalstakes
+  password: &quot;&quot;
+  sqliteFile: data/data.db
+  poolSize: 10
+  sslMode: VERIFY_IDENTITY
+  trustCertificateKeyStoreUrl: &quot;&quot;
+  trustCertificateKeyStorePassword: &quot;&quot;
+  allowPublicKeyRetrieval: false
+
+command:
+  aliases:
+    - universalstakes
+    - stake
+    - stakes
+
+input:
+  promptTimeoutSeconds: 120
+
+banDisqualification:
+  activeRounds: true
+  endedRounds: false
+  checkIntervalSeconds: 60
+
+auditLog:
+  retentionDays: 0</code></pre>
+</doc-codeblock></div>
+<h3 id="every-field-explained">Every field explained</h3>
+<retype-table copy-text="| Field | Default | Meaning |
+| --- | --- | --- |
+| `debug` | `false` | Print extra diagnostics (incl. stack traces) to the console. |
+| `locale` | `english` | The language pack loaded from `language/&lt;locale&gt;/`. Must match an installed folder. |
+| `database.type` | `sqlite` | `sqlite` or `mysql`. An unknown value stops startup rather than silently using SQLite. |
+| `database.host` | `localhost` | MySQL host (MySQL only). |
+| `database.port` | `3306` | MySQL port (MySQL only). |
+| `database.name` | `universalstakes` | MySQL database name (MySQL only). |
+| `database.user` / `password` | — | MySQL credentials (MySQL only). |
+| `database.sqliteFile` | `data/data.db` | SQLite file path relative to the plugin folder. |
+| `database.poolSize` | `10` | HikariCP max pool size. |
+| `database.sslMode` | `VERIFY_IDENTITY` | MySQL TLS mode. `VERIFY_IDENTITY` (recommended), `VERIFY_CA`, `REQUIRED`, `PREFERRED`, or `DISABLED`. |
+| `database.trustCertificateKeyStoreUrl` | `&quot;&quot;` | Optional truststore URL for MySQL TLS, e.g. `file:/path/to/truststore.p12`. |
+| `database.trustCertificateKeyStorePassword` | `&quot;&quot;` | Password for that truststore. |
+| `database.allowPublicKeyRetrieval` | `false` | Allow RSA public-key retrieval. Keep `false` unless your setup requires it. |
+| `command.aliases` | `universalstakes, stake, stakes` | Root commands. First is primary; the rest are aliases of the same tree. Restart required to change. |
+| `input.promptTimeoutSeconds` | `120` | Seconds before a chat &quot;type the amount&quot; prompt expires. |
+| `banDisqualification.activeRounds` | `true` | Remove banned players from active leaderboards (no refund). |
+| `banDisqualification.endedRounds` | `false` | Remove banned players from ended rounds and delete their unclaimed rewards. |
+| `banDisqualification.checkIntervalSeconds` | `60` | How often to scan participants for bans. |
+| `auditLog.retentionDays` | `0` | Days to keep admin audit events. `0` = keep forever. |">
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Field</th>
+<th>Default</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code translate="no" v-pre>debug</code></td>
+<td><code translate="no" v-pre>false</code></td>
+<td>Print extra diagnostics (incl. stack traces) to the console.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>locale</code></td>
+<td><code translate="no" v-pre>english</code></td>
+<td>The language pack loaded from <code translate="no" v-pre>language/&lt;locale&gt;/</code>. Must match an installed folder.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>database.type</code></td>
+<td><code translate="no" v-pre>sqlite</code></td>
+<td><code translate="no" v-pre>sqlite</code> or <code translate="no" v-pre>mysql</code>. An unknown value stops startup rather than silently using SQLite.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>database.host</code></td>
+<td><code translate="no" v-pre>localhost</code></td>
+<td>MySQL host (MySQL only).</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>database.port</code></td>
+<td><code translate="no" v-pre>3306</code></td>
+<td>MySQL port (MySQL only).</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>database.name</code></td>
+<td><code translate="no" v-pre>universalstakes</code></td>
+<td>MySQL database name (MySQL only).</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>database.user</code> / <code translate="no" v-pre>password</code></td>
+<td>—</td>
+<td>MySQL credentials (MySQL only).</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>database.sqliteFile</code></td>
+<td><code translate="no" v-pre>data/data.db</code></td>
+<td>SQLite file path relative to the plugin folder.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>database.poolSize</code></td>
+<td><code translate="no" v-pre>10</code></td>
+<td>HikariCP max pool size.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>database.sslMode</code></td>
+<td><code translate="no" v-pre>VERIFY_IDENTITY</code></td>
+<td>MySQL TLS mode. <code translate="no" v-pre>VERIFY_IDENTITY</code> (recommended), <code translate="no" v-pre>VERIFY_CA</code>, <code translate="no" v-pre>REQUIRED</code>, <code translate="no" v-pre>PREFERRED</code>, or <code translate="no" v-pre>DISABLED</code>.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>database.trustCertificateKeyStoreUrl</code></td>
+<td><code translate="no" v-pre>&quot;&quot;</code></td>
+<td>Optional truststore URL for MySQL TLS, e.g. <code translate="no" v-pre>file:/path/to/truststore.p12</code>.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>database.trustCertificateKeyStorePassword</code></td>
+<td><code translate="no" v-pre>&quot;&quot;</code></td>
+<td>Password for that truststore.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>database.allowPublicKeyRetrieval</code></td>
+<td><code translate="no" v-pre>false</code></td>
+<td>Allow RSA public-key retrieval. Keep <code translate="no" v-pre>false</code> unless your setup requires it.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>command.aliases</code></td>
+<td><code translate="no" v-pre>universalstakes, stake, stakes</code></td>
+<td>Root commands. First is primary; the rest are aliases of the same tree. Restart required to change.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>input.promptTimeoutSeconds</code></td>
+<td><code translate="no" v-pre>120</code></td>
+<td>Seconds before a chat &quot;type the amount&quot; prompt expires.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>banDisqualification.activeRounds</code></td>
+<td><code translate="no" v-pre>true</code></td>
+<td>Remove banned players from active leaderboards (no refund).</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>banDisqualification.endedRounds</code></td>
+<td><code translate="no" v-pre>false</code></td>
+<td>Remove banned players from ended rounds and delete their unclaimed rewards.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>banDisqualification.checkIntervalSeconds</code></td>
+<td><code translate="no" v-pre>60</code></td>
+<td>How often to scan participants for bans.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>auditLog.retentionDays</code></td>
+<td><code translate="no" v-pre>0</code></td>
+<td>Days to keep admin audit events. <code translate="no" v-pre>0</code> = keep forever.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</retype-table>
+<blockquote>
+<p>The database password and truststore password are stored as <strong>plain text</strong> in <code translate="no" v-pre>config.yml</code>. Restrict
+filesystem access to the server account and keep this file out of shared backups/logs. See
+<a href="../database-and-safety/">Database &amp; safety</a>.</p>
+</blockquote>
+<h3 id="what-reload-applies">What reload applies</h3>
+<p><code translate="no" v-pre>/stakes admin reload</code> applies <code translate="no" v-pre>locale</code>, <code translate="no" v-pre>debug</code>, <code translate="no" v-pre>input</code>, <code translate="no" v-pre>banDisqualification</code>, and <code translate="no" v-pre>auditLog</code>.
+<strong>Database settings and <code translate="no" v-pre>command.aliases</code> require a restart</strong> (the connection pool and commands are
+built only at startup).</p>
+<hr>
+<h2 id="currenciesyml"><code translate="no" v-pre>currencies.yml</code></h2>
+<p>Only needed if you use <code translate="no" v-pre>PLACEHOLDER</code> currencies. The generated file ships PlayerPoints and
+ExcellentEconomy <strong>templates</strong> — verify them against your economy before use.</p>
+<div id="currenciesyml-code-1" class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-yaml"><code v-pre class="language-yaml">currencies:
+  gems:
+    display-name: &quot;Gems&quot;
+    symbol: &quot;&quot;
+    raw-placeholder: &quot;%coinsengine_balance_gems%&quot;
+    give-command: &quot;ce give %player% gems %amount%&quot;
+    take-command: &quot;ce take %player% gems %amount%&quot;
+    works-offline: false
+    balance-check-after: true
+    balance-check-delay-ticks: 5</code></pre>
+</doc-codeblock></div>
+<retype-table copy-text="| Field | Meaning |
+| --- | --- |
+| `display-name` | Required name used for validation. |
+| `symbol` | Optional metadata (not auto-shown in current menus). |
+| `raw-placeholder` | Must return **digits only** — no symbol, commas, decimals, or color codes. |
+| `give-command` / `take-command` | Run as **console**; must contain `%player%` and `%amount%`. Leading `/` optional. |
+| `works-offline` | May the provider operate on an offline player? |
+| `balance-check-after` | Re-read the balance after the command and require it changed by exactly the amount. |
+| `balance-check-delay-ticks` | Ticks to wait before the post-command check (for async economies). |">
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Field</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code translate="no" v-pre>display-name</code></td>
+<td>Required name used for validation.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>symbol</code></td>
+<td>Optional metadata (not auto-shown in current menus).</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>raw-placeholder</code></td>
+<td>Must return <strong>digits only</strong> — no symbol, commas, decimals, or color codes.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>give-command</code> / <code translate="no" v-pre>take-command</code></td>
+<td>Run as <strong>console</strong>; must contain <code translate="no" v-pre>%player%</code> and <code translate="no" v-pre>%amount%</code>. Leading <code translate="no" v-pre>/</code> optional.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>works-offline</code></td>
+<td>May the provider operate on an offline player?</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>balance-check-after</code></td>
+<td>Re-read the balance after the command and require it changed by exactly the amount.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>balance-check-delay-ticks</code></td>
+<td>Ticks to wait before the post-command check (for async economies).</td>
+</tr>
+</tbody>
+</table>
+</div>
+</retype-table>
+<h3 id="reload-rules-for-currencies">Reload rules for currencies</h3>
+<ul>
+<li><strong>Adding</strong> a new ID: applied by <code translate="no" v-pre>/stakes admin reload</code>.</li>
+<li><strong>Editing or removing</strong> an existing ID: requires a <strong>restart</strong> and is <strong>unsafe</strong> while a stake using
+it still has unclaimed refunds (pending refunds store the ID, not a copy of the old command).</li>
+</ul>
+<p>For how PLACEHOLDER deposits are confirmed step by step, see <a href="../currencies/">Currencies</a>.</p>
+<hr>
+<h2 id="configuration-trust">Configuration trust</h2>
+<p>Files under <code translate="no" v-pre>plugins/UniversalStakes/</code> are part of your server&#x27;s trusted admin surface. Some
+configured actions run with <strong>console authority</strong>: menu <code translate="no" v-pre>console:</code> actions, PlaceholderAPI currency
+<code translate="no" v-pre>give</code>/<code translate="no" v-pre>take</code> commands, and reward commands. That is necessary for economy/item integrations, but it
+means these files must never be writable by ordinary players, unreviewed automation, or web-panel
+roles meant only for moderators. Treat config edits like server command edits — review before applying.</p>
+
+                
+                <!-- Required only on API pages -->
+                <doc-toolbar-member-filter-no-results></doc-toolbar-member-filter-no-results>
+            </div>
+            <footer id="retype-content-footer" class="clear-both">
+            
+                <nav id="retype-nextprev" class="print:hidden flex mt-14">
+                    <div class="w-1/2">
+                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../universalstakes/reload-and-restart/">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                            <span>
+                                <span class="block text-xs font-normal text-base-text-muted">Previous</span>
+                                <span class="block mt-1">Reload &amp; restart</span>
+                            </span>
+                        </a>
+                    </div>
+            
+                    <div class="w-1/2">
+                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../universalstakes/commands-and-permissions/">
+                            <span>
+                                <span class="block text-xs font-normal text-right text-base-text-muted">Next</span>
+                                <span class="block mt-1">Commands &amp; permissions</span>
+                            </span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                        </a>
+                    </div>
+                </nav>
+            </footer>
+        </main>
+
+        <div id="retype-page-footer" class="print:border-none border-t border-base-border pt-6 mb-8">
+            <footer class="flex flex-wrap items-center justify-between print:justify-center">
+                <div id="retype-footer-links" class="print:hidden">
+                    <ul class="flex flex-wrap items-center text-sm">
+                    </ul>
+                </div>
+                <div id="retype-copyright" class="print:justify-center py-2 text-footer-text font-footer-link text-sm leading-relaxed"><p>© Copyright 2026. All rights reserved.</p></div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Rendered if sidebar right is enabled -->
+    <!-- Sidebar right skeleton-->
+    <div v-cloak class="fixed top-0 bottom-0 right-0 translate-x-full bg-sidebar-right-bg border-sidebar-right-border lg:sticky lg:border-l lg:shrink-0 lg:pt-6 lg:translate-x-0 sm:w-1/2 lg:w-64 lg:z-0 md:w-104 sidebar-right skeleton">
+        <div class="pl-5">
+            <div class="w-32 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+            <div class="w-48 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+            <div class="w-40 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+        </div>
+    </div>
+
+    <!-- User should be able to hide sidebar right -->
+    <doc-sidebar-right v-cloak></doc-sidebar-right>
+</div>
+
+        </div>
+    </div>
+
+    <doc-search-mobile></doc-search-mobile>
+    <doc-back-to-top></doc-back-to-top>
+</div>
+
+
+    <div id="retype-overlay-target"></div>
+
+        <script data-cfasync="false">window.__DOCS__ = { "title": "Configuration", level: 2, icon: "file", hasPrism: true, hasInstagram: false, hasMermaid: false, hasMath: false, tocDepth: 23, "md": "/universalstakes/configuration.md" }</script>
+</body>
+</html>

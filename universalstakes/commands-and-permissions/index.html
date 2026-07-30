@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <meta name="turbo-root" content="/advion-docs">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.838750093208">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.838750301270">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.6.0">
 
     <!-- Primary Meta Tags -->
-    <title>Commands and Permissions</title>
-    <meta name="title" content="Commands and Permissions">
-    <meta name="description" content="By default, players have no UniversalStakes permissions. Give regular players universalstakes.use; give staff universalstakes.admin (operators receive it by default).">
+    <title>Commands &amp; permissions</title>
+    <meta name="title" content="Commands & permissions">
+    <meta name="description" content="By default nobody has UniversalStakes permissions. Give regular players the bundle universalstakes.use, and give staff the bundle universalstakes.admin (operators get it automatically).">
 
     <!-- Canonical -->
     <link rel="canonical" href="https://deviaski.github.io/advion-docs/universalstakes/commands-and-permissions/">
@@ -22,28 +22,28 @@
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://deviaski.github.io/advion-docs/universalstakes/commands-and-permissions/">
-    <meta property="og:title" content="Commands and Permissions">
-    <meta property="og:description" content="By default, players have no UniversalStakes permissions. Give regular players universalstakes.use; give staff universalstakes.admin (operators receive it by default).">
+    <meta property="og:title" content="Commands & permissions">
+    <meta property="og:description" content="By default nobody has UniversalStakes permissions. Give regular players the bundle universalstakes.use, and give staff the bundle universalstakes.admin (operators get it automatically).">
     <meta property="og:site_name" content="Advion Plugins">
     <meta property="og:locale" content="en_US">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://deviaski.github.io/advion-docs/universalstakes/commands-and-permissions/">
-    <meta name="twitter:title" content="Commands and Permissions">
-    <meta name="twitter:description" content="By default, players have no UniversalStakes permissions. Give regular players universalstakes.use; give staff universalstakes.admin (operators receive it by default).">
+    <meta name="twitter:title" content="Commands & permissions">
+    <meta name="twitter:description" content="By default nobody has UniversalStakes permissions. Give regular players the bundle universalstakes.use, and give staff the bundle universalstakes.admin (operators get it automatically).">
 
     <!-- Alternate Markdown -->
     <link rel="alternate" type="text/markdown" href="https://deviaski.github.io/advion-docs/universalstakes/commands-and-permissions.md">
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=4.6.0.838750093208" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=4.6.0.838750301270" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=4.6.0.838750093208" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=4.6.0.838750301270" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=4.6.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.6.0.838750093208" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.6.0.838750093208" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.6.0.838750301270" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.6.0.838750301270" defer></script>
 </head>
 <body>
     <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
@@ -135,27 +135,29 @@
                 <doc-page-actions></doc-page-actions>
 
                 <!-- Page content  -->
-<h1 id="commands-and-permissions">Commands and Permissions</h1>
-<p>By default, players have <strong>no</strong> UniversalStakes permissions. Give regular players
-<code translate="no" v-pre>universalstakes.use</code>; give staff <code translate="no" v-pre>universalstakes.admin</code> (operators receive it by default).
-Both are convenience bundles. You can instead grant only the exact command and menu nodes below.</p>
+<h1 id="commands--permissions">Commands &amp; permissions</h1>
+<p>By default <strong>nobody</strong> has UniversalStakes permissions. Give regular players the bundle
+<strong><code translate="no" v-pre>universalstakes.use</code></strong>, and give staff the bundle <strong><code translate="no" v-pre>universalstakes.admin</code></strong> (operators get it
+automatically). You can also grant only the exact nodes listed below.</p>
+<hr>
 <h2 id="player-commands">Player commands</h2>
-<retype-table copy-text="| Command | Purpose |
+<retype-table copy-text="| Command | What it does |
 | --- | --- |
 | `/stakes` | Open the main menu. `/stake` and `/universalstakes` also work. |
-| `/stakes &lt;stake-id&gt;` | Open one stake. |
-| `/stakes history` | Open personal deposit history. |
-| `/stakes rewards` | Open waiting rewards. |
-| `/&lt;alias&gt;` | Open a stake through its alias. |
-| `/&lt;alias&gt; invest &lt;amount&gt;` | Deposit currency. |
-| `/&lt;alias&gt; withdraw &lt;amount&gt;` | Withdraw while the round is active. |
-| `/&lt;alias&gt; top [page]` | Show the leaderboard in chat. |">
+| `/stakes &lt;stake-id&gt;` | Open one event. |
+| `/stakes history` | Open your deposit history. |
+| `/stakes rewards` | Open your waiting rewards. |
+| `/stakes help` | Show player command help. |
+| `/&lt;alias&gt;` | Open an event through its alias (e.g. `/diamonds`). |
+| `/&lt;alias&gt; deposit` | Open contribution sources; left-click deposits, right-click withdraws (if enabled). |
+| `/&lt;alias&gt; top [page]` | Show the leaderboard in chat. |
+| `/&lt;alias&gt; help` | Show the commands for this event. |">
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="comfortable">
 <thead>
 <tr>
 <th>Command</th>
-<th>Purpose</th>
+<th>What it does</th>
 </tr>
 </thead>
 <tbody>
@@ -165,60 +167,65 @@ Both are convenience bundles. You can instead grant only the exact command and m
 </tr>
 <tr>
 <td><code translate="no" v-pre>/stakes &lt;stake-id&gt;</code></td>
-<td>Open one stake.</td>
+<td>Open one event.</td>
 </tr>
 <tr>
 <td><code translate="no" v-pre>/stakes history</code></td>
-<td>Open personal deposit history.</td>
+<td>Open your deposit history.</td>
 </tr>
 <tr>
 <td><code translate="no" v-pre>/stakes rewards</code></td>
-<td>Open waiting rewards.</td>
+<td>Open your waiting rewards.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>/stakes help</code></td>
+<td>Show player command help.</td>
 </tr>
 <tr>
 <td><code translate="no" v-pre>/&lt;alias&gt;</code></td>
-<td>Open a stake through its alias.</td>
+<td>Open an event through its alias (e.g. <code translate="no" v-pre>/diamonds</code>).</td>
 </tr>
 <tr>
-<td><code translate="no" v-pre>/&lt;alias&gt; invest &lt;amount&gt;</code></td>
-<td>Deposit currency.</td>
-</tr>
-<tr>
-<td><code translate="no" v-pre>/&lt;alias&gt; withdraw &lt;amount&gt;</code></td>
-<td>Withdraw while the round is active.</td>
+<td><code translate="no" v-pre>/&lt;alias&gt; deposit</code></td>
+<td>Open contribution sources; left-click deposits, right-click withdraws (if enabled).</td>
 </tr>
 <tr>
 <td><code translate="no" v-pre>/&lt;alias&gt; top [page]</code></td>
 <td>Show the leaderboard in chat.</td>
 </tr>
+<tr>
+<td><code translate="no" v-pre>/&lt;alias&gt; help</code></td>
+<td>Show the commands for this event.</td>
+</tr>
 </tbody>
 </table>
 </div>
 </retype-table>
-<p>The first value in <code translate="no" v-pre>config.yml</code> under <code translate="no" v-pre>command.aliases</code> is the primary root
-command; the remaining values are aliases for the same full command tree.
-They are case-insensitive, normalized to lowercase, and must be unique. A
-restart is required after changing root or stake aliases.</p>
+<p>The first value in <code translate="no" v-pre>config.yml</code> under <code translate="no" v-pre>command.aliases</code> is the <strong>primary</strong> root command; the rest are
+aliases of the same full tree. They are case-insensitive and must be unique. Changing roots or event
+aliases needs a <strong>restart</strong>.</p>
+<hr>
 <h2 id="staff-commands">Staff commands</h2>
-<retype-table copy-text="| Command | Purpose |
+<retype-table copy-text="| Command | What it does |
 | --- | --- |
-| `/stakes admin reload` | Reload global configuration, language, and menus, and validate stake files. Existing stake objects are kept until restart. |
+| `/stakes admin reload` | Validate and reload language, menus, stake display/messages, and **new** `currencies.yml` entries. See [Reload &amp; restart](Reload-and-Restart.md). |
 | `/stakes admin start &lt;stake-id&gt;` | Start a new round. |
 | `/stakes admin stop &lt;stake-id&gt;` | End the active round. |
-| `/stakes admin importitem &lt;stake-id&gt; &lt;item-id&gt;` | Save the item in the main hand as custom stake currency. |
-| `/stakes admin logs &lt;stake-id&gt;` | Open completed rounds for a stake and view their immutable administrator audit logs. |">
+| `/stakes admin importitem &lt;item-id&gt;` | Save the item in your hand as a reusable custom-item ID. |
+| `/stakes admin logs &lt;stake-id&gt;` | Open completed rounds and their immutable audit logs. |
+| `/stakes admin help` | Show administrator command help. |">
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="comfortable">
 <thead>
 <tr>
 <th>Command</th>
-<th>Purpose</th>
+<th>What it does</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code translate="no" v-pre>/stakes admin reload</code></td>
-<td>Reload global configuration, language, and menus, and validate stake files. Existing stake objects are kept until restart.</td>
+<td>Validate and reload language, menus, stake display/messages, and <strong>new</strong> <code translate="no" v-pre>currencies.yml</code> entries. See <a href="../reload-and-restart/">Reload &amp; restart</a>.</td>
 </tr>
 <tr>
 <td><code translate="no" v-pre>/stakes admin start &lt;stake-id&gt;</code></td>
@@ -229,22 +236,29 @@ restart is required after changing root or stake aliases.</p>
 <td>End the active round.</td>
 </tr>
 <tr>
-<td><code translate="no" v-pre>/stakes admin importitem &lt;stake-id&gt; &lt;item-id&gt;</code></td>
-<td>Save the item in the main hand as custom stake currency.</td>
+<td><code translate="no" v-pre>/stakes admin importitem &lt;item-id&gt;</code></td>
+<td>Save the item in your hand as a reusable custom-item ID.</td>
 </tr>
 <tr>
 <td><code translate="no" v-pre>/stakes admin logs &lt;stake-id&gt;</code></td>
-<td>Open completed rounds for a stake and view their immutable administrator audit logs.</td>
+<td>Open completed rounds and their immutable audit logs.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>/stakes admin help</code></td>
+<td>Show administrator command help.</td>
 </tr>
 </tbody>
 </table>
 </div>
 </retype-table>
+<p>Invalid syntax shows the editable <code translate="no" v-pre>messages.commandUsage</code> message. A mistyped subcommand shows the
+matching help page.</p>
+<hr>
 <h2 id="complete-permission-list">Complete permission list</h2>
 <retype-table copy-text="| Permission | Default | Grants |
 | --- | --- | --- |
-| `universalstakes.use` | false | All standard player command and menu permissions listed below. It does not bypass a stake-specific `permission` setting. |
-| `universalstakes.admin` | op | All administrator command and audit-menu permissions listed below. |
+| `universalstakes.use` | false | All standard player command and menu nodes below. Does **not** bypass a stake's own `permission`. |
+| `universalstakes.admin` | op | All admin command and audit-menu nodes below. |
 | `universalstakes.command.main` | false | `/stakes` and configured root aliases. |
 | `universalstakes.command.history` | false | `/stakes history`. |
 | `universalstakes.command.rewards` | false | `/stakes rewards`. |
@@ -252,20 +266,18 @@ restart is required after changing root or stake aliases.</p>
 | `universalstakes.command.help` | false | `/stakes help`. |
 | `universalstakes.command.alias.open` | false | `/&lt;stake-alias&gt;`. |
 | `universalstakes.command.alias.top` | false | `/&lt;stake-alias&gt; top [page]`. |
-| `universalstakes.command.alias.invest` | false | `/&lt;stake-alias&gt; invest &lt;amount&gt;`. |
-| `universalstakes.command.alias.withdraw` | false | `/&lt;stake-alias&gt; withdraw &lt;amount&gt;`. |
 | `universalstakes.command.alias.help` | false | `/&lt;stake-alias&gt; help`. |
-| `universalstakes.menu.main` | false | Main stakes menu (`stakes-main.yml`). |
-| `universalstakes.menu.stake` | false | Selected stake menu (`stakes-menu.yml`). |
-| `universalstakes.menu.history` | false | Deposit-history menu (`stakes-history.yml`). |
-| `universalstakes.menu.rewards` | false | Pending-rewards menu (`stakes-rewards.yml`). |
-| `universalstakes.menu.admin.logs` | false | Completed-round audit menu (`stakes-admin-logs.yml`). |
-| `universalstakes.menu.admin.log-events` | false | Individual audit-event menu (`stakes-admin-log-events.yml`). |
+| `universalstakes.menu.main` | false | Main menu. |
+| `universalstakes.menu.stake` | false | Selected event menu. |
+| `universalstakes.menu.history` | false | History menu. |
+| `universalstakes.menu.rewards` | false | Rewards menu. |
+| `universalstakes.menu.admin.logs` | false | Completed-round audit menu. |
+| `universalstakes.menu.admin.log-events` | false | Per-event audit menu. |
 | `universalstakes.command.admin.help` | false | `/stakes admin help`. |
 | `universalstakes.command.admin.reload` | false | `/stakes admin reload`. |
 | `universalstakes.command.admin.start` | false | `/stakes admin start &lt;stake-id&gt;`. |
 | `universalstakes.command.admin.stop` | false | `/stakes admin stop &lt;stake-id&gt;`. |
-| `universalstakes.command.admin.importitem` | false | `/stakes admin importitem &lt;stake-id&gt; &lt;item-id&gt;`. |
+| `universalstakes.command.admin.importitem` | false | `/stakes admin importitem &lt;item-id&gt;`. |
 | `universalstakes.command.admin.logs` | false | `/stakes admin logs &lt;stake-id&gt;`. |">
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="comfortable">
@@ -280,12 +292,12 @@ restart is required after changing root or stake aliases.</p>
 <tr>
 <td><code translate="no" v-pre>universalstakes.use</code></td>
 <td>false</td>
-<td>All standard player command and menu permissions listed below. It does not bypass a stake-specific <code translate="no" v-pre>permission</code> setting.</td>
+<td>All standard player command and menu nodes below. Does <strong>not</strong> bypass a stake&#x27;s own <code translate="no" v-pre>permission</code>.</td>
 </tr>
 <tr>
 <td><code translate="no" v-pre>universalstakes.admin</code></td>
 <td>op</td>
-<td>All administrator command and audit-menu permissions listed below.</td>
+<td>All admin command and audit-menu nodes below.</td>
 </tr>
 <tr>
 <td><code translate="no" v-pre>universalstakes.command.main</code></td>
@@ -323,16 +335,6 @@ restart is required after changing root or stake aliases.</p>
 <td><code translate="no" v-pre>/&lt;stake-alias&gt; top [page]</code>.</td>
 </tr>
 <tr>
-<td><code translate="no" v-pre>universalstakes.command.alias.invest</code></td>
-<td>false</td>
-<td><code translate="no" v-pre>/&lt;stake-alias&gt; invest &lt;amount&gt;</code>.</td>
-</tr>
-<tr>
-<td><code translate="no" v-pre>universalstakes.command.alias.withdraw</code></td>
-<td>false</td>
-<td><code translate="no" v-pre>/&lt;stake-alias&gt; withdraw &lt;amount&gt;</code>.</td>
-</tr>
-<tr>
 <td><code translate="no" v-pre>universalstakes.command.alias.help</code></td>
 <td>false</td>
 <td><code translate="no" v-pre>/&lt;stake-alias&gt; help</code>.</td>
@@ -340,32 +342,32 @@ restart is required after changing root or stake aliases.</p>
 <tr>
 <td><code translate="no" v-pre>universalstakes.menu.main</code></td>
 <td>false</td>
-<td>Main stakes menu (<code translate="no" v-pre>stakes-main.yml</code>).</td>
+<td>Main menu.</td>
 </tr>
 <tr>
 <td><code translate="no" v-pre>universalstakes.menu.stake</code></td>
 <td>false</td>
-<td>Selected stake menu (<code translate="no" v-pre>stakes-menu.yml</code>).</td>
+<td>Selected event menu.</td>
 </tr>
 <tr>
 <td><code translate="no" v-pre>universalstakes.menu.history</code></td>
 <td>false</td>
-<td>Deposit-history menu (<code translate="no" v-pre>stakes-history.yml</code>).</td>
+<td>History menu.</td>
 </tr>
 <tr>
 <td><code translate="no" v-pre>universalstakes.menu.rewards</code></td>
 <td>false</td>
-<td>Pending-rewards menu (<code translate="no" v-pre>stakes-rewards.yml</code>).</td>
+<td>Rewards menu.</td>
 </tr>
 <tr>
 <td><code translate="no" v-pre>universalstakes.menu.admin.logs</code></td>
 <td>false</td>
-<td>Completed-round audit menu (<code translate="no" v-pre>stakes-admin-logs.yml</code>).</td>
+<td>Completed-round audit menu.</td>
 </tr>
 <tr>
 <td><code translate="no" v-pre>universalstakes.menu.admin.log-events</code></td>
 <td>false</td>
-<td>Individual audit-event menu (<code translate="no" v-pre>stakes-admin-log-events.yml</code>).</td>
+<td>Per-event audit menu.</td>
 </tr>
 <tr>
 <td><code translate="no" v-pre>universalstakes.command.admin.help</code></td>
@@ -390,7 +392,7 @@ restart is required after changing root or stake aliases.</p>
 <tr>
 <td><code translate="no" v-pre>universalstakes.command.admin.importitem</code></td>
 <td>false</td>
-<td><code translate="no" v-pre>/stakes admin importitem &lt;stake-id&gt; &lt;item-id&gt;</code>.</td>
+<td><code translate="no" v-pre>/stakes admin importitem &lt;item-id&gt;</code>.</td>
 </tr>
 <tr>
 <td><code translate="no" v-pre>universalstakes.command.admin.logs</code></td>
@@ -401,18 +403,19 @@ restart is required after changing root or stake aliases.</p>
 </table>
 </div>
 </retype-table>
+<hr>
 <h2 id="per-stake-access">Per-stake access</h2>
-<p>Stake access is configured in the individual <code translate="no" v-pre>stakes/&lt;stake-id&gt;.yml</code> file, not by a generated
-<code translate="no" v-pre>universalstakes.stake.&lt;stake-id&gt;</code> node. Add <code translate="no" v-pre>permission</code> at the root of the stake file only when
-the stake must be restricted:</p>
+<p>Access to a specific event is set <strong>in the stake file</strong>, not by a generated permission node. Add
+<code translate="no" v-pre>permission</code> at the root only when the event must be restricted:</p>
 <div id="per-stake-access-code-1" class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-yaml"><code v-pre class="language-yaml">permission: &quot;stake.diamondrush&quot;</code></pre>
 </doc-codeblock></div>
-<p>If <code translate="no" v-pre>permission</code> is missing or is empty (<code translate="no" v-pre>permission: &quot;&quot;</code>), the stake is public. If it contains a
-non-empty value, only players with that exact permission can see or participate in the stake.
-Grant that configured node separately in your permissions plugin; <code translate="no" v-pre>universalstakes.use</code> does not
-automatically grant it.</p>
-<p>Changing an existing stake file or running <code translate="no" v-pre>importitem</code> writes/validates the files but does not replace that stake&#x27;s live runtime object. Perform a full server restart before testing or enabling the new settings. Alias changes also require a restart.</p>
+<ul>
+<li>Missing or empty (<code translate="no" v-pre>permission: &quot;&quot;</code>) → the event is <strong>public</strong> to anyone with the command/menu nodes.</li>
+<li>Non-empty → only players with that <strong>exact</strong> permission can see or join it.</li>
+</ul>
+<p>Grant that node yourself in your permissions plugin. <code translate="no" v-pre>universalstakes.use</code> does <strong>not</strong> grant it
+automatically.</p>
 
                 
                 <!-- Required only on API pages -->
@@ -422,20 +425,20 @@ automatically grant it.</p>
             
                 <nav id="retype-nextprev" class="print:hidden flex mt-14">
                     <div class="w-1/2">
-                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../universalstakes/">
+                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../universalstakes/configuration/">
                             <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                             <span>
                                 <span class="block text-xs font-normal text-base-text-muted">Previous</span>
-                                <span class="block mt-1">Universal​Stakes Wiki</span>
+                                <span class="block mt-1">Configuration</span>
                             </span>
                         </a>
                     </div>
             
                     <div class="w-1/2">
-                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../universalstakes/first-stake/">
+                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../universalstakes/messages-and-placeholders/">
                             <span>
                                 <span class="block text-xs font-normal text-right text-base-text-muted">Next</span>
-                                <span class="block mt-1">Create Your First Stake</span>
+                                <span class="block mt-1">Messages &amp; placeholders</span>
                             </span>
                             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                         </a>
@@ -479,6 +482,6 @@ automatically grant it.</p>
 
     <div id="retype-overlay-target"></div>
 
-        <script data-cfasync="false">window.__DOCS__ = { "title": "Commands and Permissions", level: 2, icon: "file", hasPrism: true, hasInstagram: false, hasMermaid: false, hasMath: false, tocDepth: 23, "md": "/universalstakes/commands-and-permissions.md" }</script>
+        <script data-cfasync="false">window.__DOCS__ = { "title": "Commands & permissions", level: 2, icon: "file", hasPrism: true, hasInstagram: false, hasMermaid: false, hasMath: false, tocDepth: 23, "md": "/universalstakes/commands-and-permissions.md" }</script>
 </body>
 </html>

@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <meta name="turbo-root" content="/advion-docs">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.838750301270">
+
+    <!-- See retype.com -->
+    <meta name="generator" content="Retype 4.6.0">
+
+    <!-- Primary Meta Tags -->
+    <title>Stake settings</title>
+    <meta name="title" content="Stake settings">
+    <meta name="description" content="Use this page when you already have a stake file and want to understand one setting. For a copy-paste starter, use Your first stake.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://deviaski.github.io/advion-docs/universalstakes/stake-settings/">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://deviaski.github.io/advion-docs/sitemap.xml">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://deviaski.github.io/advion-docs/universalstakes/stake-settings/">
+    <meta property="og:title" content="Stake settings">
+    <meta property="og:description" content="Use this page when you already have a stake file and want to understand one setting. For a copy-paste starter, use Your first stake.">
+    <meta property="og:site_name" content="Advion Plugins">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://deviaski.github.io/advion-docs/universalstakes/stake-settings/">
+    <meta name="twitter:title" content="Stake settings">
+    <meta name="twitter:description" content="Use this page when you already have a stake file and want to understand one setting. For a copy-paste starter, use Your first stake.">
+
+    <!-- Alternate Markdown -->
+    <link rel="alternate" type="text/markdown" href="https://deviaski.github.io/advion-docs/universalstakes/stake-settings.md">
+
+    <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
+
+    <link href="../../resources/css/retype.css?v=4.6.0.838750301270" rel="stylesheet">
+
+    <script data-cfasync="false" src="../../resources/js/config.js?v=4.6.0.838750301270" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/retype.js?v=4.6.0" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.6.0.838750301270" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.6.0.838750301270" defer></script>
+</head>
+<body>
+    <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
+    <div class="absolute bottom-0 left-0" style="top: 5rem; right: 50%"></div>
+
+    <header id="retype-header" class="sticky top-0 z-30 flex w-full h-16 bg-header-bg border-b border-header-border md:h-20">
+        <div class="container relative flex items-center justify-between pr-6 grow md:justify-start">
+            <!-- Mobile menu button skeleton -->
+            <button v-cloak class="skeleton retype-mobile-menu-button flex items-center justify-center shrink-0 overflow-hidden dark:text-white focus:outline-hidden rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
+            <div v-cloak id="retype-sidebar-left-toggle-button"></div>
+    
+            <!-- Logo -->
+            <div class="flex items-center justify-between h-full py-2 md:w-75">
+                <div class="flex items-center px-2 md:px-6">
+                    <a id="retype-branding-logo" href="https://deviaski.github.io/advion-docs/" class="flex items-center leading-snug text-xl">
+                        <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">Advion Plugins</span>
+                    </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">Docs</span>
+                </div>
+    
+                <span class="hidden h-8 border-r md:inline-block border-base-border"></span>
+            </div>
+    
+            <div class="flex justify-between md:grow">
+                <!-- Top Nav -->
+                <nav id="retype-header-nav" class="hidden md:flex">
+                    <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
+                        
+                    </ul>
+                </nav>
+    
+                <div v-cloak class="flex justify-end grow">
+                    <div id="retype-mobile-search-button"></div>
+                    <doc-search-desktop></doc-search-desktop>
+    
+                    <doc-theme-switch class="lg:ml-2"></doc-theme-switch>
+                    <doc-history></doc-history>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <div id="retype-container" class="container relative flex bg-white">
+        <!-- Sidebar Skeleton -->
+        <div v-cloak class="fixed flex flex-col shrink-0 duration-300 ease-in-out bg-sidebar-left-bg border-sidebar-left-border sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton">
+        
+            <div class="flex items-center h-16 px-6">
+                <input id="retype-filter-input-mock" class="w-full h-10 pl-8 px-3 py-2 transition-colors duration-200 ease-linear bg-filter-bg border border-filter-border rounded-lg shadow-none md:text-sm hover:border-filter-border-hover focus:outline-hidden focus:border-filter-border-focus placeholder-filter-placeholder" type="text">
+            </div>
+        
+            <div class="pl-6 mt-1 mb-4">
+                <div class="w-32 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                <div class="w-48 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                <div class="w-40 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                <div class="w-32 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                <div class="w-48 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                <div class="w-40 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+            </div>
+        
+            <div class="shrink-0 mt-auto bg-transparent dark:border-base-border">
+                <a class="flex items-center justify-center flex-nowrap h-16 text-gray-350 dark:text-dark-400 hover:text-gray-600 dark:hover:text-dark-300 transition-colors duration-150 ease-in docs-powered-by" target="_blank" href="https://retype.com/" rel="noopener">
+                    <span class="text-xs whitespace-nowrap">Powered by</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="ml-2" fill="currentColor" width="96" height="20" overflow="visible"><path d="M0 0v20h13.59V0H0zm11.15 17.54H2.44V2.46h8.71v15.08zM15.8 20h2.44V4.67L15.8 2.22zM20.45 6.89V20h2.44V9.34z"/><g><path d="M40.16 8.44c0 1.49-.59 2.45-1.75 2.88l2.34 3.32h-2.53l-2.04-2.96h-1.43v2.96h-2.06V5.36h3.5c1.43 0 2.46.24 3.07.73s.9 1.27.9 2.35zm-2.48 1.1c.26-.23.38-.59.38-1.09 0-.5-.13-.84-.4-1.03s-.73-.28-1.39-.28h-1.54v2.75h1.5c.72 0 1.2-.12 1.45-.35zM51.56 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92h4.74v1.83h-6.79V5.36h6.64zM60.09 7.15v7.48h-2.06V7.15h-2.61V5.36h7.28v1.79h-2.61zM70.81 14.64h-2.06v-3.66l-3.19-5.61h2.23l1.99 3.45 1.99-3.45H74l-3.19 5.61v3.66zM83.99 6.19c.65.55.97 1.4.97 2.55s-.33 1.98-1 2.51-1.68.8-3.04.8h-1.23v2.59h-2.06V5.36h3.26c1.42 0 2.45.28 3.1.83zm-1.51 3.65c.25-.28.37-.69.37-1.22s-.16-.92-.48-1.14c-.32-.23-.82-.34-1.5-.34H79.7v3.12h1.38c.68 0 1.15-.14 1.4-.42zM95.85 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92H96v1.83h-6.79V5.36h6.64z"/></g></svg>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Sidebar component -->
+        <doc-sidebar v-cloak>
+            <template #sidebar-footer>
+                <div class="shrink-0 mt-auto border-t md:bg-transparent md:border-none dark:border-base-border">
+        
+                    <a class="flex items-center justify-center flex-nowrap h-16 text-gray-350 dark:text-dark-400 hover:text-gray-600 dark:hover:text-dark-300 transition-colors duration-150 ease-in docs-powered-by" target="_blank" href="https://retype.com/" rel="noopener">
+                        <span class="text-xs whitespace-nowrap">Powered by</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="ml-2" fill="currentColor" width="96" height="20" overflow="visible"><path d="M0 0v20h13.59V0H0zm11.15 17.54H2.44V2.46h8.71v15.08zM15.8 20h2.44V4.67L15.8 2.22zM20.45 6.89V20h2.44V9.34z"/><g><path d="M40.16 8.44c0 1.49-.59 2.45-1.75 2.88l2.34 3.32h-2.53l-2.04-2.96h-1.43v2.96h-2.06V5.36h3.5c1.43 0 2.46.24 3.07.73s.9 1.27.9 2.35zm-2.48 1.1c.26-.23.38-.59.38-1.09 0-.5-.13-.84-.4-1.03s-.73-.28-1.39-.28h-1.54v2.75h1.5c.72 0 1.2-.12 1.45-.35zM51.56 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92h4.74v1.83h-6.79V5.36h6.64zM60.09 7.15v7.48h-2.06V7.15h-2.61V5.36h7.28v1.79h-2.61zM70.81 14.64h-2.06v-3.66l-3.19-5.61h2.23l1.99 3.45 1.99-3.45H74l-3.19 5.61v3.66zM83.99 6.19c.65.55.97 1.4.97 2.55s-.33 1.98-1 2.51-1.68.8-3.04.8h-1.23v2.59h-2.06V5.36h3.26c1.42 0 2.45.28 3.1.83zm-1.51 3.65c.25-.28.37-.69.37-1.22s-.16-.92-.48-1.14c-.32-.23-.82-.34-1.5-.34H79.7v3.12h1.38c.68 0 1.15-.14 1.4-.42zM95.85 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92H96v1.83h-6.79V5.36h6.64z"/></g></svg>
+                    </a>
+                </div>
+            </template>
+        </doc-sidebar>
+
+        <div class="grow min-w-0 bg-body-bg">
+            <!-- Render "toolbar" template here on api pages --><!-- Render page content -->
+<div class="flex">
+    <div id="retype-main" class="min-w-0 p-4 grow md:px-16">
+        <main class="relative pb-12 lg:pt-2">
+            <div class="relative retype-markdown" id="retype-content">
+                <!-- Rendered if sidebar right is enabled -->
+                <div id="retype-sidebar-right-toggle"></div>
+                <doc-page-actions></doc-page-actions>
+
+                <!-- Page content  -->
+<h1 id="stake-settings">Stake settings</h1>
+<blockquote>
+<p>Use this page when you already have a stake file and want to understand one setting. For a
+copy-paste starter, use <a href="../first-stake/">Your first stake</a>.</p>
+</blockquote>
+<p>The <strong>stake ID</strong> is the file name without <code translate="no" v-pre>.yml</code>. Use simple lowercase names such as
+<code translate="no" v-pre>weekly-diamonds.yml</code>. Stake files use <strong>kebab-case</strong> keys (<code translate="no" v-pre>withdrawals-enabled</code>, <code translate="no" v-pre>min-invest</code>).</p>
+<p>This page covers each block top to bottom. The currency types themselves are explained in depth in
+<a href="../currencies/">Currencies</a>, and prizes in <a href="../rewards/">Rewards</a>.</p>
+<hr>
+<h2 id="root-settings">Root settings</h2>
+<retype-table copy-text="| Setting | Type | Default | Meaning |
+| --- | --- | --- | --- |
+| `alias` | text | `&quot;&quot;` | Short command for this event, e.g. `diamonds` enables `/diamonds`. Empty = no alias. Unique; restart required to add/change. |
+| `permission` | text | `&quot;&quot;` | Permission node required to see and join. Empty/missing = public. Not auto-generated; grant it yourself. |
+| `withdrawals-enabled` | true/false | `true` | Can players right-click to take resources back during an active round? Reload-safe. |">
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Setting</th>
+<th>Type</th>
+<th>Default</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code translate="no" v-pre>alias</code></td>
+<td>text</td>
+<td><code translate="no" v-pre>&quot;&quot;</code></td>
+<td>Short command for this event, e.g. <code translate="no" v-pre>diamonds</code> enables <code translate="no" v-pre>/diamonds</code>. Empty = no alias. Unique; restart required to add/change.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>permission</code></td>
+<td>text</td>
+<td><code translate="no" v-pre>&quot;&quot;</code></td>
+<td>Permission node required to see and join. Empty/missing = public. Not auto-generated; grant it yourself.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>withdrawals-enabled</code></td>
+<td>true/false</td>
+<td><code translate="no" v-pre>true</code></td>
+<td>Can players right-click to take resources back during an active round? Reload-safe.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</retype-table>
+<hr>
+<h2 id="display--the-event-card"><code translate="no" v-pre>display</code> — the event card</h2>
+<p>This is how the event looks in the main menu list.</p>
+<div id="display--the-event-card-code-1" class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-yaml"><code v-pre class="language-yaml">display:
+  display-name: &quot;Diamond Race&quot;
+  name: &quot;&lt;aqua&gt;Diamond Race&quot;
+  lore:
+    - &quot;&lt;gray&gt;Deposit diamonds and reach first place!&quot;
+  material: DIAMOND
+  model-data: 0</code></pre>
+</doc-codeblock></div>
+<retype-table copy-text="| Field | Meaning |
+| --- | --- |
+| `display-name` | The human-readable name used in messages, history, rewards and placeholders. Blank falls back to `name`. |
+| `name` | The item title shown on the card. Supports MiniMessage (`&lt;aqua&gt;`, `&lt;gold&gt;`…). |
+| `lore` | The lines under the title. |
+| `material` | A Minecraft material, e.g. `DIAMOND`, `PAPER`, `EMERALD`. |
+| `model-data` | Custom model data for resource packs. Leave `0` if you don't use one. |">
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Field</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code translate="no" v-pre>display-name</code></td>
+<td>The human-readable name used in messages, history, rewards and placeholders. Blank falls back to <code translate="no" v-pre>name</code>.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>name</code></td>
+<td>The item title shown on the card. Supports MiniMessage (<code translate="no" v-pre>&lt;aqua&gt;</code>, <code translate="no" v-pre>&lt;gold&gt;</code>…).</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>lore</code></td>
+<td>The lines under the title.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>material</code></td>
+<td>A Minecraft material, e.g. <code translate="no" v-pre>DIAMOND</code>, <code translate="no" v-pre>PAPER</code>, <code translate="no" v-pre>EMERALD</code>.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>model-data</code></td>
+<td>Custom model data for resource packs. Leave <code translate="no" v-pre>0</code> if you don&#x27;t use one.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</retype-table>
+<p>The card lore can use built-in tokens like <code translate="no" v-pre>{status}</code>, <code translate="no" v-pre>{time_left}</code>, and <code translate="no" v-pre>{participants}</code> — these are
+provided by the plugin itself and work without PlaceholderAPI.</p>
+<hr>
+<h2 id="messages--start-stop-reminders"><code translate="no" v-pre>messages</code> — start, stop, reminders</h2>
+<div id="messages--start-stop-reminders-code-1" class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-yaml"><code v-pre class="language-yaml">messages:
+  started:
+    - &quot;{prefix}&lt;green&gt;{stake} has been started.&quot;
+  stopped:
+    - &quot;{prefix}&lt;green&gt;{stake} has ended. Winner: {winner-player-1}!&quot;
+  reminder:
+    interval: &quot;5m&quot;
+    message:
+      - &quot;{prefix}&lt;aqua&gt;{stake}&lt;/aqua&gt; is active! Time left: &lt;yellow&gt;{time_left}&lt;/yellow&gt;&quot;</code></pre>
+</doc-codeblock></div>
+<retype-table copy-text="| Field | When it is sent |
+| --- | --- |
+| `started` | When a round starts. Broadcast to online players who can access the event. |
+| `stopped` | When a round finalizes. Broadcast to online players who can access the event. |
+| `reminder.message` | Every `reminder.interval` while the round is active, to online eligible players. |">
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Field</th>
+<th>When it is sent</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code translate="no" v-pre>started</code></td>
+<td>When a round starts. Broadcast to online players who can access the event.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>stopped</code></td>
+<td>When a round finalizes. Broadcast to online players who can access the event.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>reminder.message</code></td>
+<td>Every <code translate="no" v-pre>reminder.interval</code> while the round is active, to online eligible players.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</retype-table>
+<p>Use an empty list (<code translate="no" v-pre>[]</code>) for any of them to disable that message. The <code translate="no" v-pre>reminder.interval</code> must be a
+positive duration like <code translate="no" v-pre>30s</code>, <code translate="no" v-pre>5m</code>, or <code translate="no" v-pre>1h</code>.</p>
+<h3 id="placeholders-available-in-stake-messages">Placeholders available in stake messages</h3>
+<p><code translate="no" v-pre>{stake}</code>, <code translate="no" v-pre>{stake_raw}</code> (plain-text name), <code translate="no" v-pre>{time_left}</code>, <code translate="no" v-pre>{participants}</code>, <code translate="no" v-pre>{total}</code> (total
+points), <code translate="no" v-pre>{alias}</code>. In <code translate="no" v-pre>stopped</code> you also get <code translate="no" v-pre>{winner-rank-1}</code>, <code translate="no" v-pre>{winner-player-1}</code>,
+<code translate="no" v-pre>{winner-points-1}</code> … up to your highest configured top rank.</p>
+<p>See <a href="../messages-and-placeholders/">Messages &amp; placeholders</a> for the full list and formatting.</p>
+<hr>
+<h2 id="contributions--what-players-deposit"><code translate="no" v-pre>contributions</code> — what players deposit</h2>
+<p>Every stake needs at least one entry. The map key is the <strong>source ID</strong> (1–64 chars, must start with a
+lowercase letter or digit, then lowercase letters/digits/<code translate="no" v-pre>_</code>/<code translate="no" v-pre>-</code>; case-sensitive).</p>
+<div id="contributions--what-players-deposit-code-1" class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-yaml"><code v-pre class="language-yaml">contributions:
+  diamonds:
+    display-name: &quot;Diamonds&quot;
+    currency:
+      type: ITEM
+      material: DIAMOND
+    points: 5
+    display:
+      material: DIAMOND
+      name: &quot;&lt;aqua&gt;Diamonds&quot;
+      lore:
+        - &quot;&lt;gray&gt;Deposited: {deposited}&quot;
+    limits:
+      min-invest: 1
+      max-invest: 64
+      daily-limit: 256</code></pre>
+</doc-codeblock></div>
+<retype-table copy-text="| Field | Meaning |
+| --- | --- |
+| `display-name` | Source name used in history and prize placeholders, available as `{&lt;id&gt;.display-name}`. |
+| `currency` | What resource this is. See [Currencies](Currencies.md). |
+| `points` | Positive whole number. Score = `amount × points`. |
+| `display` | How the source looks in the deposit menu (`material`, `model-data`, `name`, `lore`). |
+| `limits` | Per-player deposit limits (see below). |">
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Field</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code translate="no" v-pre>display-name</code></td>
+<td>Source name used in history and prize placeholders, available as <code translate="no" v-pre>{&lt;id&gt;.display-name}</code>.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>currency</code></td>
+<td>What resource this is. See <a href="../currencies/">Currencies</a>.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>points</code></td>
+<td>Positive whole number. Score = <code translate="no" v-pre>amount × points</code>.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>display</code></td>
+<td>How the source looks in the deposit menu (<code translate="no" v-pre>material</code>, <code translate="no" v-pre>model-data</code>, <code translate="no" v-pre>name</code>, <code translate="no" v-pre>lore</code>).</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>limits</code></td>
+<td>Per-player deposit limits (see below).</td>
+</tr>
+</tbody>
+</table>
+</div>
+</retype-table>
+<p>The source <code translate="no" v-pre>lore</code> can use <code translate="no" v-pre>{source_id}</code>, <code translate="no" v-pre>{display-name}</code>, <code translate="no" v-pre>{deposited}</code>, <code translate="no" v-pre>{points-per-unit}</code>,
+<code translate="no" v-pre>{min-invest}</code>, <code translate="no" v-pre>{max-invest}</code>, and <code translate="no" v-pre>{daily-limit}</code>.</p>
+<h3 id="limits">Limits</h3>
+<retype-table copy-text="| Setting | Meaning |
+| --- | --- |
+| `min-invest` | Minimum size of one deposit. Must be positive and ≤ `max-invest`. |
+| `max-invest` | Maximum size of one deposit. Must be positive and ≥ `min-invest`. |
+| `daily-limit` | Max net deposit into this source per server day. `0` = unlimited. When set, must be ≥ `min-invest`. |">
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Setting</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code translate="no" v-pre>min-invest</code></td>
+<td>Minimum size of one deposit. Must be positive and ≤ <code translate="no" v-pre>max-invest</code>.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>max-invest</code></td>
+<td>Maximum size of one deposit. Must be positive and ≥ <code translate="no" v-pre>min-invest</code>.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>daily-limit</code></td>
+<td>Max net deposit into this source per server day. <code translate="no" v-pre>0</code> = unlimited. When set, must be ≥ <code translate="no" v-pre>min-invest</code>.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</retype-table>
+<p>A <strong>withdrawal</strong> reduces the net amount counted toward the daily limit, so players can deposit again
+after withdrawing.</p>
+<blockquote>
+<p>Currency, <code translate="no" v-pre>points</code>, and limits can only be changed when the stake&#x27;s round is fully <code translate="no" v-pre>ENDED</code>. Stop the
+stake and wait for finalization first. See <a href="../reload-and-restart/">Reload &amp; restart</a>.</p>
+</blockquote>
+<hr>
+<h2 id="time--round-timing"><code translate="no" v-pre>time</code> — round timing</h2>
+<p>Durations use <code translate="no" v-pre>d</code>/<code translate="no" v-pre>h</code>/<code translate="no" v-pre>m</code>/<code translate="no" v-pre>s</code>, e.g. <code translate="no" v-pre>30m</code>, <code translate="no" v-pre>2h</code>, <code translate="no" v-pre>1d</code>, or <code translate="no" v-pre>1h30m</code>.</p>
+<div id="time--round-timing-code-1" class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-yaml"><code v-pre class="language-yaml">time:
+  duration: &quot;24h&quot;
+  restart-delay: &quot;1h&quot;
+  auto-restart: true</code></pre>
+</doc-codeblock></div>
+<retype-table copy-text="| Field | Meaning |
+| --- | --- |
+| `duration` | How long one round stays open. Must be greater than zero. |
+| `restart-delay` | Cooldown after a round ends before the next starts. Must be greater than zero. |
+| `auto-restart` | `true` = start the first round on startup and auto-start later rounds. `false` = a new stake stays stopped on startup and an ended stake stays stopped until staff run `/stakes admin start`. An active round is **always resumed** after a server restart, regardless of this setting. |">
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Field</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code translate="no" v-pre>duration</code></td>
+<td>How long one round stays open. Must be greater than zero.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>restart-delay</code></td>
+<td>Cooldown after a round ends before the next starts. Must be greater than zero.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>auto-restart</code></td>
+<td><code translate="no" v-pre>true</code> = start the first round on startup and auto-start later rounds. <code translate="no" v-pre>false</code> = a new stake stays stopped on startup and an ended stake stays stopped until staff run <code translate="no" v-pre>/stakes admin start</code>. An active round is <strong>always resumed</strong> after a server restart, regardless of this setting.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</retype-table>
+<p>Changing <code translate="no" v-pre>time.*</code> requires a full restart.</p>
+<hr>
+<h2 id="prizes--winners-and-consolation"><code translate="no" v-pre>prizes</code> — winners and consolation</h2>
+<p>Two blocks: <code translate="no" v-pre>top</code> (ranked places) and <code translate="no" v-pre>others</code> (consolation tiers). Full details and examples are in
+<a href="../rewards/">Rewards</a>.</p>
+<div id="prizes--winners-and-consolation-code-1" class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-yaml"><code v-pre class="language-yaml">prizes:
+  top:
+    1:
+      material: NETHER_STAR
+      name: &quot;&lt;gold&gt;Winner&quot;
+      need-free-slots: 1
+      rewards:
+        - &quot;give %player% diamond 64&quot;
+  others:
+    1:
+      type: COUNT
+      amount: 10
+      refund-percent: 50
+      need-free-slots: 1
+      rewards:
+        - &quot;give %player% emerald 10&quot;</code></pre>
+</doc-codeblock></div>
+<p>Rules to remember:</p>
+<ul>
+<li>
+<p><code translate="no" v-pre>prizes.top</code> keys are finishing positions, contiguous starting at <code translate="no" v-pre>1</code> (<code translate="no" v-pre>1</code>, <code translate="no" v-pre>2</code>, <code translate="no" v-pre>3</code>…).</p>
+</li>
+<li>
+<p><code translate="no" v-pre>prizes.others</code> keys are consolation tiers, contiguous starting at <code translate="no" v-pre>1</code>. A player gets <strong>at most one</strong>
+tier. Tier <code translate="no" v-pre>1</code> starts right after the ranked winners; tier <code translate="no" v-pre>2</code> starts after tier 1&#x27;s players, etc.</p>
+</li>
+<li>
+<p><code translate="no" v-pre>refund-percent</code> is <code translate="no" v-pre>0</code>–<code translate="no" v-pre>100</code>, returned per source and rounded down.</p>
+</li>
+<li>
+<p><code translate="no" v-pre>type: COUNT</code> = a fixed number of next players; <code translate="no" v-pre>type: PERCENT</code> = a percentage of all participants
+(<code translate="no" v-pre>amount</code> then 0–100).</p>
+</li>
+<li>
+<p>Every reward command runs <strong>as console</strong>. <code translate="no" v-pre>%player%</code> / <code translate="no" v-pre>%player_name%</code> become the winner&#x27;s name.</p>
+</li>
+</ul>
+<hr>
+<h2 id="safety-limits-plugin-wide">Safety limits (plugin-wide)</h2>
+<p>These protect database arithmetic and reward payloads. Validation rejects values that exceed them —
+shrink your config instead of bypassing them.</p>
+<retype-table copy-text="| Limit | Value |
+| --- | --- |
+| Any financial amount (deposit, withdrawal, total, refund) | at most `9,007,199,254,740,991` |
+| One reward's serialized payload | at most `60,000` UTF-8 bytes |
+| Encoded reward-command budget per reward block | `12,000` bytes (one line each, no reserved U+0001 char) |
+| Imported custom-item snapshot | at most `32 KiB` binary |">
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Limit</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Any financial amount (deposit, withdrawal, total, refund)</td>
+<td>at most <code translate="no" v-pre>9,007,199,254,740,991</code></td>
+</tr>
+<tr>
+<td>One reward&#x27;s serialized payload</td>
+<td>at most <code translate="no" v-pre>60,000</code> UTF-8 bytes</td>
+</tr>
+<tr>
+<td>Encoded reward-command budget per reward block</td>
+<td><code translate="no" v-pre>12,000</code> bytes (one line each, no reserved U+0001 char)</td>
+</tr>
+<tr>
+<td>Imported custom-item snapshot</td>
+<td>at most <code translate="no" v-pre>32 KiB</code> binary</td>
+</tr>
+</tbody>
+</table>
+</div>
+</retype-table>
+
+                
+                <!-- Required only on API pages -->
+                <doc-toolbar-member-filter-no-results></doc-toolbar-member-filter-no-results>
+            </div>
+            <footer id="retype-content-footer" class="clear-both">
+            
+                <nav id="retype-nextprev" class="print:hidden flex mt-14">
+                    <div class="w-1/2">
+                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../universalstakes/currencies/">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                            <span>
+                                <span class="block text-xs font-normal text-base-text-muted">Previous</span>
+                                <span class="block mt-1">Currencies</span>
+                            </span>
+                        </a>
+                    </div>
+            
+                    <div class="w-1/2">
+                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../universalstakes/first-stake/">
+                            <span>
+                                <span class="block text-xs font-normal text-right text-base-text-muted">Next</span>
+                                <span class="block mt-1">Your first stake</span>
+                            </span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                        </a>
+                    </div>
+                </nav>
+            </footer>
+        </main>
+
+        <div id="retype-page-footer" class="print:border-none border-t border-base-border pt-6 mb-8">
+            <footer class="flex flex-wrap items-center justify-between print:justify-center">
+                <div id="retype-footer-links" class="print:hidden">
+                    <ul class="flex flex-wrap items-center text-sm">
+                    </ul>
+                </div>
+                <div id="retype-copyright" class="print:justify-center py-2 text-footer-text font-footer-link text-sm leading-relaxed"><p>© Copyright 2026. All rights reserved.</p></div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Rendered if sidebar right is enabled -->
+    <!-- Sidebar right skeleton-->
+    <div v-cloak class="fixed top-0 bottom-0 right-0 translate-x-full bg-sidebar-right-bg border-sidebar-right-border lg:sticky lg:border-l lg:shrink-0 lg:pt-6 lg:translate-x-0 sm:w-1/2 lg:w-64 lg:z-0 md:w-104 sidebar-right skeleton">
+        <div class="pl-5">
+            <div class="w-32 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+            <div class="w-48 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+            <div class="w-40 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+        </div>
+    </div>
+
+    <!-- User should be able to hide sidebar right -->
+    <doc-sidebar-right v-cloak></doc-sidebar-right>
+</div>
+
+        </div>
+    </div>
+
+    <doc-search-mobile></doc-search-mobile>
+    <doc-back-to-top></doc-back-to-top>
+</div>
+
+
+    <div id="retype-overlay-target"></div>
+
+        <script data-cfasync="false">window.__DOCS__ = { "title": "Stake settings", level: 2, icon: "file", hasPrism: true, hasInstagram: false, hasMermaid: false, hasMath: false, tocDepth: 23, "md": "/universalstakes/stake-settings.md" }</script>
+</body>
+</html>

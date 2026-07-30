@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <meta name="turbo-root" content="/advion-docs">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.838750093208">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.838750301270">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.6.0">
@@ -13,7 +13,7 @@
     <!-- Primary Meta Tags -->
     <title>UniversalStakes Wiki</title>
     <meta name="title" content="UniversalStakes Wiki">
-    <meta name="description" content="Start here: New to the plugin? Read Install the plugin, then follow Create your first stake. You do not need coding experience.">
+    <meta name="description" content="UniversalStakes turns surplus items and money on your server into a timed leaderboard race. Players choose an event, deposit resources, earn points, and climb the board.">
 
     <!-- Canonical -->
     <link rel="canonical" href="https://deviaski.github.io/advion-docs/universalstakes/">
@@ -23,7 +23,7 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://deviaski.github.io/advion-docs/universalstakes/">
     <meta property="og:title" content="UniversalStakes Wiki">
-    <meta property="og:description" content="Start here: New to the plugin? Read Install the plugin, then follow Create your first stake. You do not need coding experience.">
+    <meta property="og:description" content="UniversalStakes turns surplus items and money on your server into a timed leaderboard race. Players choose an event, deposit resources, earn points, and climb the board.">
     <meta property="og:site_name" content="Advion Plugins">
     <meta property="og:locale" content="en_US">
 
@@ -31,18 +31,18 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://deviaski.github.io/advion-docs/universalstakes/">
     <meta name="twitter:title" content="UniversalStakes Wiki">
-    <meta name="twitter:description" content="Start here: New to the plugin? Read Install the plugin, then follow Create your first stake. You do not need coding experience.">
+    <meta name="twitter:description" content="UniversalStakes turns surplus items and money on your server into a timed leaderboard race. Players choose an event, deposit resources, earn points, and climb the board.">
 
     <!-- Alternate Markdown -->
     <link rel="alternate" type="text/markdown" href="https://deviaski.github.io/advion-docs/universalstakes/readme.md">
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../resources/css/retype.css?v=4.6.0.838750093208" rel="stylesheet">
+    <link href="../resources/css/retype.css?v=4.6.0.838750301270" rel="stylesheet">
 
-    <script data-cfasync="false" src="../resources/js/config.js?v=4.6.0.838750093208" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../resources/js/config.js?v=4.6.0.838750301270" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../resources/js/retype.js?v=4.6.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=4.6.0.838750093208" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=4.6.0.838750301270" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
@@ -135,62 +135,84 @@
 
                 <!-- Page content  -->
 <h1 id="universalstakes-wiki">UniversalStakes Wiki</h1>
-<blockquote>
-<p><strong>Start here:</strong> New to the plugin? Read <a href="installation/">Install the plugin</a>, then follow <a href="first-stake/">Create your first stake</a>. You do not need coding experience.</p>
-</blockquote>
-<p>UniversalStakes lets players enter timed competitions. They deposit an item, Vault money, or a custom item; the biggest contributors win configured rewards.</p>
-<h2 id="find-the-right-guide">Find the right guide</h2>
-<retype-table copy-text="| I want to… | Read this |
+<p>UniversalStakes turns surplus items and money on your server into a <strong>timed leaderboard race</strong>.
+Players choose an event, deposit resources, earn points, and climb the board. When the timer ends,
+the top players win the prizes you configured. Everyone else can get a consolation reward or a refund.</p>
+<p>You do <strong>not</strong> need any coding experience to run this plugin. If you can edit a <code translate="no" v-pre>.yml</code> text file, you
+can run UniversalStakes.</p>
+<hr>
+<h2 id="start-here">Start here</h2>
+<retype-table copy-text="| I want to… | Read this page |
 | --- | --- |
+| Understand what the plugin does before touching anything | [How it works](How-It-Works.md) |
 | Install the plugin for the first time | [Installation](Installation.md) |
-| Make a working competition quickly | [Create Your First Stake](First-Stake.md) |
-| Understand every setting in a stake file | [Stake Settings Reference](Stake-Reference.md) |
-| Set rewards and refunds | [Rewards](Rewards.md) |
-| Change the in-game inventory menus | [Menus](Menus.md) |
-| Give players or staff access | [Commands and Permissions](Commands-and-Permissions.md) |
-| Use Vault, PlaceholderAPI, or custom items | [Integrations](Integrations.md) |
-| Choose SQLite or MySQL and protect your data | [Database and Safety](Database-and-Safety.md) |
+| Make a working event in 5 minutes | [Your first stake](First-Stake.md) |
+| Understand every setting in a stake file | [Stake settings](Stake-Settings.md) |
+| Choose what players deposit (items, money, custom items) | [Currencies](Currencies.md) |
+| Set up prizes, refunds and consolation rewards | [Rewards](Rewards.md) |
+| Change the in-game menus players see | [Menus](Menus.md) |
+| Change chat messages and placeholders | [Messages &amp; placeholders](Messages-and-Placeholders.md) |
+| Give players and staff access | [Commands &amp; permissions](Commands-and-Permissions.md) |
+| Understand `config.yml` and `currencies.yml` | [Configuration](Configuration.md) |
+| Know when to reload and when to restart | [Reload &amp; restart](Reload-and-Restart.md) |
+| Choose SQLite or MySQL and keep data safe | [Database &amp; safety](Database-and-Safety.md) |
 | Fix a problem | [Troubleshooting](Troubleshooting.md) |">
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="comfortable">
 <thead>
 <tr>
 <th>I want to…</th>
-<th>Read this</th>
+<th>Read this page</th>
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>Understand what the plugin does before touching anything</td>
+<td><a href="how-it-works/">How it works</a></td>
+</tr>
 <tr>
 <td>Install the plugin for the first time</td>
 <td><a href="installation/">Installation</a></td>
 </tr>
 <tr>
-<td>Make a working competition quickly</td>
-<td><a href="first-stake/">Create Your First Stake</a></td>
+<td>Make a working event in 5 minutes</td>
+<td><a href="first-stake/">Your first stake</a></td>
 </tr>
 <tr>
 <td>Understand every setting in a stake file</td>
-<td><a href="stake-reference/">Stake Settings Reference</a></td>
+<td><a href="stake-settings/">Stake settings</a></td>
 </tr>
 <tr>
-<td>Set rewards and refunds</td>
+<td>Choose what players deposit (items, money, custom items)</td>
+<td><a href="currencies/">Currencies</a></td>
+</tr>
+<tr>
+<td>Set up prizes, refunds and consolation rewards</td>
 <td><a href="rewards/">Rewards</a></td>
 </tr>
 <tr>
-<td>Change the in-game inventory menus</td>
+<td>Change the in-game menus players see</td>
 <td><a href="menus/">Menus</a></td>
 </tr>
 <tr>
-<td>Give players or staff access</td>
-<td><a href="commands-and-permissions/">Commands and Permissions</a></td>
+<td>Change chat messages and placeholders</td>
+<td><a href="messages-and-placeholders/">Messages &amp; placeholders</a></td>
 </tr>
 <tr>
-<td>Use Vault, PlaceholderAPI, or custom items</td>
-<td><a href="integrations/">Integrations</a></td>
+<td>Give players and staff access</td>
+<td><a href="commands-and-permissions/">Commands &amp; permissions</a></td>
 </tr>
 <tr>
-<td>Choose SQLite or MySQL and protect your data</td>
-<td><a href="database-and-safety/">Database and Safety</a></td>
+<td>Understand <code translate="no" v-pre>config.yml</code> and <code translate="no" v-pre>currencies.yml</code></td>
+<td><a href="configuration/">Configuration</a></td>
+</tr>
+<tr>
+<td>Know when to reload and when to restart</td>
+<td><a href="reload-and-restart/">Reload &amp; restart</a></td>
+</tr>
+<tr>
+<td>Choose SQLite or MySQL and keep data safe</td>
+<td><a href="database-and-safety/">Database &amp; safety</a></td>
 </tr>
 <tr>
 <td>Fix a problem</td>
@@ -200,17 +222,104 @@
 </table>
 </div>
 </retype-table>
+<hr>
+<h2 id="the-big-picture-30-second-version">The big picture (30-second version)</h2>
+<ol>
+<li>
+<p>You create an <strong>event</strong> by dropping a small <code translate="no" v-pre>.yml</code> file into the plugin folder.</p>
+</li>
+<li>
+<p>The event runs for a time you choose (for example 1 hour). This one run is called a <strong>round</strong>.</p>
+</li>
+<li>
+<p>Players open the menu, pick a resource, and <strong>deposit</strong> it. Each deposited unit is worth a number
+of <strong>points</strong> you set. Points decide the leaderboard.</p>
+</li>
+<li>
+<p>When the timer ends, the round <strong>finalizes</strong>: the top players get their prizes, and players near
+the top can get a consolation reward or a percentage of their deposit back.</p>
+</li>
+<li>
+<p>Prizes wait safely in <code translate="no" v-pre>/stakes rewards</code> until the player claims them — even if they were offline.</p>
+</li>
+</ol>
+<p>For the full version with the round lifecycle, the file layout, and what happens behind the scenes,
+read <a href="how-it-works/">How it works</a>.</p>
+<hr>
+<h2 id="words-you-will-see-a-lot">Words you will see a lot</h2>
+<p>These terms appear everywhere in this wiki. Skim them once and the rest makes sense.</p>
+<retype-table copy-text="| Term | Meaning |
+| --- | --- |
+| **Stake** | One event/competition, for example *Diamond Rush*. |
+| **Stake ID** | The file name without `.yml`. `diamonds.yml` → stake ID `diamonds`. |
+| **Round** | One timed run of a stake. A stake can run many rounds over time. |
+| **Alias** | A short command for a stake, for example `/diamonds`. |
+| **Contribution source** | One resource a stake accepts, with its own currency, point value and limits. A stake can have several. |
+| **Points** | The leaderboard score. One deposited unit gives the source's `points` value. |
+| **Deposit** | Putting resources in to gain points. |
+| **Withdraw** | Taking resources back out during an active round (if allowed). |
+| **Finalize** | The moment a round ends and rewards are calculated and stored. |
+| **Pending reward** | A prize waiting in `/stakes rewards` to be claimed. |">
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Term</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Stake</strong></td>
+<td>One event/competition, for example <em>Diamond Rush</em>.</td>
+</tr>
+<tr>
+<td><strong>Stake ID</strong></td>
+<td>The file name without <code translate="no" v-pre>.yml</code>. <code translate="no" v-pre>diamonds.yml</code> → stake ID <code translate="no" v-pre>diamonds</code>.</td>
+</tr>
+<tr>
+<td><strong>Round</strong></td>
+<td>One timed run of a stake. A stake can run many rounds over time.</td>
+</tr>
+<tr>
+<td><strong>Alias</strong></td>
+<td>A short command for a stake, for example <code translate="no" v-pre>/diamonds</code>.</td>
+</tr>
+<tr>
+<td><strong>Contribution source</strong></td>
+<td>One resource a stake accepts, with its own currency, point value and limits. A stake can have several.</td>
+</tr>
+<tr>
+<td><strong>Points</strong></td>
+<td>The leaderboard score. One deposited unit gives the source&#x27;s <code translate="no" v-pre>points</code> value.</td>
+</tr>
+<tr>
+<td><strong>Deposit</strong></td>
+<td>Putting resources in to gain points.</td>
+</tr>
+<tr>
+<td><strong>Withdraw</strong></td>
+<td>Taking resources back out during an active round (if allowed).</td>
+</tr>
+<tr>
+<td><strong>Finalize</strong></td>
+<td>The moment a round ends and rewards are calculated and stored.</td>
+</tr>
+<tr>
+<td><strong>Pending reward</strong></td>
+<td>A prize waiting in <code translate="no" v-pre>/stakes rewards</code> to be claimed.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</retype-table>
+<hr>
+<h2 id="one-rule-that-saves-you-headaches">One rule that saves you headaches</h2>
 <blockquote>
-<p><strong>SCREENSHOT TO ADD:</strong> The main UniversalStakes menu showing two stake cards. Caption: “Players choose a competition here.”</p>
+<p>Always <strong>test a new event on a test server</strong> before opening it to real players, and <strong>back up the
+database</strong> before updating the plugin or changing big settings. These two habits prevent almost every
+painful problem in this wiki.</p>
 </blockquote>
-<h2 id="a-few-words-you-will-see-often">A few words you will see often</h2>
-<ul>
-<li><strong>Stake</strong> — one competition, such as “Diamond Race”.</li>
-<li><strong>Round</strong> — one timed run of that stake.</li>
-<li><strong>Stake ID</strong> — the file name without <code translate="no" v-pre>.yml</code>, for example <code translate="no" v-pre>diamonds</code> from <code translate="no" v-pre>diamonds.yml</code>.</li>
-<li><strong>Alias</strong> — the short command for a stake, for example <code translate="no" v-pre>/diamonds</code>.</li>
-</ul>
-<p>Keep one test stake until you are comfortable. Once it works, copy its file to create more events.</p>
 
                 
                 <!-- Required only on API pages -->
@@ -230,10 +339,10 @@
                     </div>
             
                     <div class="w-1/2">
-                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../universalstakes/commands-and-permissions/">
+                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../universalstakes/troubleshooting/">
                             <span>
                                 <span class="block text-xs font-normal text-right text-base-text-muted">Next</span>
-                                <span class="block mt-1">Commands and Permissions</span>
+                                <span class="block mt-1">Troubleshooting</span>
                             </span>
                             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                         </a>

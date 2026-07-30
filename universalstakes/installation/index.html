@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <meta name="turbo-root" content="/advion-docs">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.838750093208">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.838750301270">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.6.0">
@@ -13,7 +13,7 @@
     <!-- Primary Meta Tags -->
     <title>Installation</title>
     <meta name="title" content="Installation">
-    <meta name="description" content="You need: Paper 1.21.7 (the verified server version), Java 21, the UniversalStakes release JAR, and outbound HTTPS for the first start. Do not use a JAR whose name contains SNAPSHOT on a live server.">
+    <meta name="description" content="You need: Paper 1.20.4 through 26.2, and the UniversalStakes release JAR. Use Java 21 on Paper 1.20.4–1.21.11, or Java 25 on Paper 26.1–26.2. Never use a JAR whose name contains SNAPSHOT on a live server.">
 
     <!-- Canonical -->
     <link rel="canonical" href="https://deviaski.github.io/advion-docs/universalstakes/installation/">
@@ -23,7 +23,7 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://deviaski.github.io/advion-docs/universalstakes/installation/">
     <meta property="og:title" content="Installation">
-    <meta property="og:description" content="You need: Paper 1.21.7 (the verified server version), Java 21, the UniversalStakes release JAR, and outbound HTTPS for the first start. Do not use a JAR whose name contains SNAPSHOT on a live server.">
+    <meta property="og:description" content="You need: Paper 1.20.4 through 26.2, and the UniversalStakes release JAR. Use Java 21 on Paper 1.20.4–1.21.11, or Java 25 on Paper 26.1–26.2. Never use a JAR whose name contains SNAPSHOT on a live server.">
     <meta property="og:site_name" content="Advion Plugins">
     <meta property="og:locale" content="en_US">
 
@@ -31,18 +31,18 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://deviaski.github.io/advion-docs/universalstakes/installation/">
     <meta name="twitter:title" content="Installation">
-    <meta name="twitter:description" content="You need: Paper 1.21.7 (the verified server version), Java 21, the UniversalStakes release JAR, and outbound HTTPS for the first start. Do not use a JAR whose name contains SNAPSHOT on a live server.">
+    <meta name="twitter:description" content="You need: Paper 1.20.4 through 26.2, and the UniversalStakes release JAR. Use Java 21 on Paper 1.20.4–1.21.11, or Java 25 on Paper 26.1–26.2. Never use a JAR whose name contains SNAPSHOT on a live server.">
 
     <!-- Alternate Markdown -->
     <link rel="alternate" type="text/markdown" href="https://deviaski.github.io/advion-docs/universalstakes/installation.md">
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=4.6.0.838750093208" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=4.6.0.838750301270" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=4.6.0.838750093208" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=4.6.0.838750301270" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=4.6.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.6.0.838750093208" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.6.0.838750301270" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
@@ -136,59 +136,131 @@
                 <!-- Page content  -->
 <h1 id="installation">Installation</h1>
 <blockquote>
-<p><strong>You need:</strong> Paper 1.21.7 (the verified server version), Java 21, the UniversalStakes release JAR, and outbound HTTPS for the first start. Do not use a JAR whose name contains <code translate="no" v-pre>SNAPSHOT</code> on a live server. Test later Paper versions on staging before production use.</p>
+<p><strong>You need:</strong> Paper 1.20.4 through 26.2, and the UniversalStakes release JAR. Use Java 21 on Paper
+1.20.4–1.21.11, or Java 25 on Paper 26.1–26.2. Never use a JAR whose name contains <code translate="no" v-pre>SNAPSHOT</code> on a
+live server.</p>
 </blockquote>
-<h2 id="install-in-seven-steps">Install in seven steps</h2>
+<h2 id="install-in-7-steps">Install in 7 steps</h2>
 <ol>
-<li>Stop the Minecraft server.</li>
-<li>Put the UniversalStakes JAR in the server’s <code translate="no" v-pre>plugins</code> folder.</li>
-<li>Start the server once. UniversalStakes creates its folders and example files.</li>
-<li>Stop the server again.</li>
-<li>Open <code translate="no" v-pre>plugins/UniversalStakes/</code>.</li>
-<li>Edit or remove the example stake files in <code translate="no" v-pre>stakes/</code>.</li>
-<li>Start the server and run <code translate="no" v-pre>/stakes</code> in game.</li>
+<li>
+<p><strong>Stop</strong> the Minecraft server.</p>
+</li>
+<li>
+<p>Put the UniversalStakes JAR into the server&#x27;s <code translate="no" v-pre>plugins/</code> folder.</p>
+</li>
+<li>
+<p><strong>Start</strong> the server once. UniversalStakes creates its folders and example files.</p>
+</li>
+<li>
+<p><strong>Stop</strong> the server again.</p>
+</li>
+<li>
+<p>Open <code translate="no" v-pre>plugins/UniversalStakes/</code>.</p>
+</li>
+<li>
+<p>In <code translate="no" v-pre>config.yml</code>, choose your language with <code translate="no" v-pre>locale: english</code> (or another installed pack). Edit the
+example events in <code translate="no" v-pre>language/english/stakes/</code>.</p>
+</li>
+<li>
+<p><strong>Start</strong> the server and run <code translate="no" v-pre>/stakes</code> in game.</p>
+</li>
 </ol>
-<h2 id="first-start-network-requirement">First-start network requirement</h2>
-<p>The plugin JAR does not embed the database stack. Paper reads <code translate="no" v-pre>plugin.yml</code> and downloads HikariCP, Jdbi, SQLite JDBC, MySQL Connector/J, and their transitive dependencies from Maven Central. This happens even though SQLite is the default database.</p>
-<p>For an offline server, first start the exact same release on a staging Paper installation with network access, then transfer the complete Paper library cache together with the server. A missing or blocked Maven artifact prevents the plugin from loading; check the Paper console before troubleshooting UniversalStakes configuration.</p>
-<blockquote>
-<p><strong>SCREENSHOT TO ADD:</strong> <code translate="no" v-pre>plugins/UniversalStakes/</code> after the first start. Highlight <code translate="no" v-pre>config.yml</code>, <code translate="no" v-pre>stakes</code>, <code translate="no" v-pre>gui</code>, and <code translate="no" v-pre>language</code>.</p>
-</blockquote>
+<p>That&#x27;s it. The two shipped example events (<em>Coin Fever</em> and <em>Diamond Rush</em>) work right away for
+item- and Vault-based deposits.</p>
+<hr>
+<h2 id="first-start-needs-internet-once">First start needs internet (once)</h2>
+<p>The plugin JAR does <strong>not</strong> bundle the database libraries. On the first start, Paper reads
+<code translate="no" v-pre>plugin.yml</code> and downloads HikariCP, Jdbi, the SQLite driver, the MySQL driver, and their dependencies
+from Maven Central. This happens even though SQLite is the default.</p>
+<ul>
+<li>Allow <strong>outbound HTTPS</strong> for that first start.</li>
+<li>For an <strong>offline server</strong>, first run the exact same release on a staging server that has internet,
+then copy Paper&#x27;s full library cache over together with the server. If a needed library cannot be
+downloaded, the plugin will not load — check the Paper console before blaming the plugin config.</li>
+</ul>
+<hr>
 <h2 id="optional-plugins">Optional plugins</h2>
-<retype-table copy-text="| Plugin | Do I need it? |
+<retype-table copy-text="| Plugin | Do you need it? |
 | --- | --- |
-| Vault and an economy plugin | Only for stakes that use virtual money (`VAULT`). |
-| PlaceholderAPI | Only for placeholders in other plugins or custom text. Shipped stake cards use built-in `{status}` and `{time_left}` tokens. |">
+| **Vault** + an economy plugin | Only if you have stakes that deposit virtual money (`type: VAULT`). |
+| **PlaceholderAPI** | Required only for `PLACEHOLDER` currencies. Optional otherwise — it also lets other plugins read UniversalStakes placeholders. |">
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="comfortable">
 <thead>
 <tr>
 <th>Plugin</th>
-<th>Do I need it?</th>
+<th>Do you need it?</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Vault and an economy plugin</td>
-<td>Only for stakes that use virtual money (<code translate="no" v-pre>VAULT</code>).</td>
+<td><strong>Vault</strong> + an economy plugin</td>
+<td>Only if you have stakes that deposit virtual money (<code translate="no" v-pre>type: VAULT</code>).</td>
 </tr>
 <tr>
-<td>PlaceholderAPI</td>
-<td>Only for placeholders in other plugins or custom text. Shipped stake cards use built-in <code translate="no" v-pre>{status}</code> and <code translate="no" v-pre>{time_left}</code> tokens.</td>
+<td><strong>PlaceholderAPI</strong></td>
+<td>Required only for <code translate="no" v-pre>PLACEHOLDER</code> currencies. Optional otherwise — it also lets other plugins read UniversalStakes placeholders.</td>
 </tr>
 </tbody>
 </table>
 </div>
 </retype-table>
-<p>Item-based stakes work without both optional plugins.</p>
-<h2 id="what-the-folders-are-for">What the folders are for</h2>
+<p>Item-based events work with <strong>neither</strong> of these installed.</p>
+<hr>
+<h2 id="a-quick-tour-of-the-folder">A quick tour of the folder</h2>
+<p>After the first start you will see:</p>
+<retype-table copy-text="| Path | Purpose |
+| --- | --- |
+| `config.yml` | Global settings: database, command names, language, safety. |
+| `currencies.yml` | Registry for external PlaceholderAPI currencies (ships with PlayerPoints + ExcellentEconomy examples). |
+| `data/data.db` | The SQLite database (the default). |
+| `imported-items/` | Custom-item snapshots created by `/stakes admin importitem`. |
+| `language/&lt;locale&gt;/` | The active language pack: `messages.yml`, `menus/`, `stakes/`. |">
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Path</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code translate="no" v-pre>config.yml</code></td>
+<td>Global settings: database, command names, language, safety.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>currencies.yml</code></td>
+<td>Registry for external PlaceholderAPI currencies (ships with PlayerPoints + ExcellentEconomy examples).</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>data/data.db</code></td>
+<td>The SQLite database (the default).</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>imported-items/</code></td>
+<td>Custom-item snapshots created by <code translate="no" v-pre>/stakes admin importitem</code>.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>language/&lt;locale&gt;/</code></td>
+<td>The active language pack: <code translate="no" v-pre>messages.yml</code>, <code translate="no" v-pre>menus/</code>, <code translate="no" v-pre>stakes/</code>.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</retype-table>
+<p>For a full explanation of every file and how they fit together, see
+<a href="../how-it-works/">How it works</a>.</p>
+<hr>
+<h2 id="give-access-to-players-and-staff">Give access to players and staff</h2>
+<p>By default <strong>nobody</strong> has UniversalStakes permissions.</p>
 <ul>
-<li><code translate="no" v-pre>config.yml</code> — database, input timeout, and global options.</li>
-<li><code translate="no" v-pre>stakes/</code> — one <code translate="no" v-pre>.yml</code> file per competition.</li>
-<li><code translate="no" v-pre>gui/</code> — the inventory menus players see.</li>
-<li><code translate="no" v-pre>language/</code> — messages sent by the plugin.</li>
+<li>Give regular players the bundle <strong><code translate="no" v-pre>universalstakes.use</code></strong>.</li>
+<li>Give staff the bundle <strong><code translate="no" v-pre>universalstakes.admin</code></strong> (operators get it automatically).</li>
 </ul>
-<p><strong>Next step:</strong> <a href="../first-stake/">Create your first stake</a>.</p>
+<p>See <a href="../commands-and-permissions/">Commands &amp; permissions</a> for the full list and per-stake access.</p>
+<hr>
+<p><strong>Next:</strong> make a working event in 5 minutes — <a href="../first-stake/">Your first stake</a>.</p>
 
                 
                 <!-- Required only on API pages -->
@@ -198,20 +270,20 @@
             
                 <nav id="retype-nextprev" class="print:hidden flex mt-14">
                     <div class="w-1/2">
-                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../universalstakes/database-and-safety/">
+                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../universalstakes/first-stake/">
                             <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                             <span>
                                 <span class="block text-xs font-normal text-base-text-muted">Previous</span>
-                                <span class="block mt-1">Database and Safety</span>
+                                <span class="block mt-1">Your first stake</span>
                             </span>
                         </a>
                     </div>
             
                     <div class="w-1/2">
-                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../universalstakes/integrations/">
+                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../universalstakes/how-it-works/">
                             <span>
                                 <span class="block text-xs font-normal text-right text-base-text-muted">Next</span>
-                                <span class="block mt-1">Integrations</span>
+                                <span class="block mt-1">How it works</span>
                             </span>
                             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                         </a>

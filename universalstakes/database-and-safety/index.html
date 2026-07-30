@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <meta name="turbo-root" content="/advion-docs">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.838750093208">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.838750301270">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.6.0">
 
     <!-- Primary Meta Tags -->
-    <title>Database and Safety</title>
-    <meta name="title" content="Database and Safety">
-    <meta name="description" content="Before updating the plugin: Stop the server and back up the database. This is the one habit that prevents most data-loss problems.">
+    <title>Database &amp; safety</title>
+    <meta name="title" content="Database & safety">
+    <meta name="description" content="Before updating the plugin: stop the server and back up the database. This one habit prevents most data-loss problems.">
 
     <!-- Canonical -->
     <link rel="canonical" href="https://deviaski.github.io/advion-docs/universalstakes/database-and-safety/">
@@ -22,28 +22,28 @@
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://deviaski.github.io/advion-docs/universalstakes/database-and-safety/">
-    <meta property="og:title" content="Database and Safety">
-    <meta property="og:description" content="Before updating the plugin: Stop the server and back up the database. This is the one habit that prevents most data-loss problems.">
+    <meta property="og:title" content="Database & safety">
+    <meta property="og:description" content="Before updating the plugin: stop the server and back up the database. This one habit prevents most data-loss problems.">
     <meta property="og:site_name" content="Advion Plugins">
     <meta property="og:locale" content="en_US">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://deviaski.github.io/advion-docs/universalstakes/database-and-safety/">
-    <meta name="twitter:title" content="Database and Safety">
-    <meta name="twitter:description" content="Before updating the plugin: Stop the server and back up the database. This is the one habit that prevents most data-loss problems.">
+    <meta name="twitter:title" content="Database & safety">
+    <meta name="twitter:description" content="Before updating the plugin: stop the server and back up the database. This one habit prevents most data-loss problems.">
 
     <!-- Alternate Markdown -->
     <link rel="alternate" type="text/markdown" href="https://deviaski.github.io/advion-docs/universalstakes/database-and-safety.md">
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=4.6.0.838750093208" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=4.6.0.838750301270" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=4.6.0.838750093208" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=4.6.0.838750301270" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=4.6.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.6.0.838750093208" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.6.0.838750093208" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.6.0.838750301270" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.6.0.838750301270" defer></script>
 </head>
 <body>
     <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
@@ -135,17 +135,24 @@
                 <doc-page-actions></doc-page-actions>
 
                 <!-- Page content  -->
-<h1 id="database-and-safety">Database and Safety</h1>
+<h1 id="database--safety">Database &amp; safety</h1>
 <blockquote>
-<p><strong>Before updating the plugin:</strong> Stop the server and back up the database. This is the one habit that prevents most data-loss problems.</p>
+<p><strong>Before updating the plugin:</strong> stop the server and <strong>back up the database</strong>. This one habit
+prevents most data-loss problems.</p>
 </blockquote>
-<h2 id="sqlite-the-default-choice">SQLite: the default choice</h2>
-<p>SQLite needs no separate database server. Its file is <code translate="no" v-pre>plugins/UniversalStakes/data.db</code>. Use it for a normal single Minecraft server.</p>
-<p>Do not open or edit <code translate="no" v-pre>data.db</code> while the server is running.</p>
-<h2 id="mysql-for-external-storage">MySQL: for external storage</h2>
-<p>Use MySQL when your server already has a database server or you need data outside the game server. Edit <code translate="no" v-pre>config.yml</code>:</p>
-<p>MySQL does <strong>not</strong> enable a multi-server network: exactly one active UniversalStakes plugin instance may use a database. Do not point multiple Paper servers at the same schema; the current lifecycle and financial coordination is process-local.</p>
-<div id="mysql-for-external-storage-code-1" class="codeblock-wrapper"><doc-codeblock>
+<hr>
+<h2 id="sqlite--the-default">SQLite — the default</h2>
+<p>SQLite needs no separate database server. Its file is <code translate="no" v-pre>plugins/UniversalStakes/data/data.db</code>. Use it
+for a normal single Minecraft server.</p>
+<ul>
+<li>Do <strong>not</strong> open or edit <code translate="no" v-pre>data.db</code> while the server is running.</li>
+<li>The relevant <code translate="no" v-pre>config.yml</code> key is <code translate="no" v-pre>database.sqliteFile</code> (default <code translate="no" v-pre>data/data.db</code>); MySQL and pool
+settings are ignored.</li>
+</ul>
+<hr>
+<h2 id="mysql--external-storage">MySQL — external storage</h2>
+<p>Use MySQL when you already have a database server or need the data outside the game server.</p>
+<div id="mysql--external-storage-code-1" class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-yaml"><code v-pre class="language-yaml">database:
   type: mysql
   host: localhost
@@ -159,42 +166,140 @@
   trustCertificateKeyStorePassword: &quot;change-me&quot;
   allowPublicKeyRetrieval: false</code></pre>
 </doc-codeblock></div>
-<p>Configuration keys are case-sensitive and use the Java field names shown above. <code translate="no" v-pre>sqliteFile</code>, <code translate="no" v-pre>poolSize</code>, <code translate="no" v-pre>input.promptTimeoutSeconds</code>, and the <code translate="no" v-pre>banDisqualification</code> section are also camelCase. Only <code translate="no" v-pre>sqlite</code> and <code translate="no" v-pre>mysql</code> are accepted for <code translate="no" v-pre>database.type</code>; an unknown value stops plugin startup instead of silently opening a SQLite database.</p>
-<p><code translate="no" v-pre>VERIFY_IDENTITY</code> is the secure default for MySQL: it encrypts the connection, verifies the certificate chain, and checks that the certificate matches <code translate="no" v-pre>host</code>. Put the database CA in a dedicated PKCS#12/JKS truststore and use its absolute <code translate="no" v-pre>file:</code> URL. Do not set <code translate="no" v-pre>allowPublicKeyRetrieval: true</code> as a substitute for TLS. Modes <code translate="no" v-pre>REQUIRED</code> and <code translate="no" v-pre>VERIFY_CA</code> weaken hostname verification; <code translate="no" v-pre>PREFERRED</code>/<code translate="no" v-pre>DISABLED</code> permit plaintext and must not be used for a remote database.</p>
-<p>Create a dedicated least-privilege database user instead of using <code translate="no" v-pre>root</code>. UniversalStakes creates its own tables and indexes. Restrict the database account and network ACL to the Minecraft host, because pending reward records can contain commands that later execute as console.</p>
-<p>Both the database password and truststore password are stored as plain text in <code translate="no" v-pre>config.yml</code>; restrict filesystem access to the server account and keep this file out of backups or logs shared with third parties.</p>
-<p>For SQLite, the relevant key is <code translate="no" v-pre>database.sqliteFile</code> (default <code translate="no" v-pre>data.db</code>); MySQL and pool settings are ignored.</p>
-<p>Other root configuration keys include:</p>
+<blockquote>
+<p>MySQL does <strong>not</strong> enable a multi-server network. <strong>Exactly one</strong> active UniversalStakes instance
+may use a database. Do not point multiple Paper servers at the same schema — lifecycle and financial
+coordination are process-local.</p>
+</blockquote>
+<h3 id="secure-mysql-setup">Secure MySQL setup</h3>
 <ul>
-<li><code translate="no" v-pre>input.promptTimeoutSeconds</code>: seconds before a chat investment prompt expires (default <code translate="no" v-pre>120</code>).</li>
-<li><code translate="no" v-pre>banDisqualification.activeRounds</code>: remove banned players from active leaderboards (default <code translate="no" v-pre>true</code>).</li>
-<li><code translate="no" v-pre>banDisqualification.endedRounds</code>: remove banned players from ended rounds and delete unclaimed rewards (default <code translate="no" v-pre>false</code>).</li>
-<li><code translate="no" v-pre>banDisqualification.checkIntervalSeconds</code>: ban scan interval (default <code translate="no" v-pre>60</code>).</li>
+<li>
+<p><code translate="no" v-pre>VERIFY_IDENTITY</code> is the secure default: it encrypts the connection, verifies the certificate chain,
+and checks the certificate matches <code translate="no" v-pre>host</code>. Put the database CA in a dedicated PKCS#12/JKS truststore
+and use its absolute <code translate="no" v-pre>file:</code> URL.</p>
+</li>
+<li>
+<p>Do <strong>not</strong> set <code translate="no" v-pre>allowPublicKeyRetrieval: true</code> as a substitute for TLS. <code translate="no" v-pre>REQUIRED</code> and <code translate="no" v-pre>VERIFY_CA</code>
+weaken hostname verification; <code translate="no" v-pre>PREFERRED</code>/<code translate="no" v-pre>DISABLED</code> allow plaintext and must not be used for a
+remote database.</p>
+</li>
+<li>
+<p>Create a <strong>dedicated least-privilege</strong> database user instead of <code translate="no" v-pre>root</code>. The plugin creates its own
+tables and indexes. Restrict the account and network ACL to the Minecraft host — pending reward
+records can contain commands that later run as console.</p>
+</li>
+<li>
+<p>The database password and truststore password are plain text in <code translate="no" v-pre>config.yml</code>. Restrict file access
+to the server account and keep this file out of shared backups/logs.</p>
+</li>
 </ul>
+<p>Changing database settings requires a <strong>restart</strong> (the pool is built only at startup).</p>
+<hr>
 <h2 id="keep-the-server-safe">Keep the server safe</h2>
 <ul>
-<li>Test reward commands on a test server before enabling a stake.</li>
+<li>Test reward commands on a test server before enabling a stake for real players.</li>
 <li>Never give players or untrusted moderators write access to plugin files.</li>
 <li>Back up the database before changing database type or editing many stakes.</li>
 <li>Do not deliberately stop the server while rewards are being claimed.</li>
+<li>Keep every <code translate="no" v-pre>currencies.yml</code> ID and its give/take commands <strong>unchanged</strong> while a stake using it has
+unclaimed currency refunds. A pending refund stores the currency ID, not a historical copy of its
+command template — changing/removing it and restarting can send an old refund through the new
+command or make it impossible to claim. Wait until those rewards are resolved.</li>
 </ul>
-<p>If the server crashes during a claim, a <code translate="no" v-pre>CLAIMING</code> lease older than five minutes moves to <code translate="no" v-pre>BLOCKED</code> during startup or the 60-second sweep. It remains in the database but cannot be claimed again, preventing duplicate external commands or payments. Confirmed delivery errors return the reward to <code translate="no" v-pre>PENDING</code> for another player click.</p>
-<h2 id="automatic-outcomes-and-administrator-audit">Automatic outcomes and administrator audit</h2>
-<p>The plugin never requires a reconciliation command. Every completed round can be inspected with <code translate="no" v-pre>/stakes admin logs &lt;stake-id&gt;</code>; the menu shows immutable events, including player, amount, currency, operation ID, result, and any error.
-Only rounds with events recorded after this feature is installed appear in the menu; historical delivery outcomes are not reconstructed.</p>
-<ul>
-<li>A reward whose external result cannot be confirmed is <code translate="no" v-pre>BLOCKED</code> and recorded as <code translate="no" v-pre>UNCONFIRMED</code>; it is not replayed.</li>
-<li>An investment whose external withdrawal cannot be confirmed is automatically cancelled without stake credit and recorded as <code translate="no" v-pre>UNCONFIRMED</code>.</li>
-<li><code translate="no" v-pre>audit-log.retention-days: 0</code> keeps audit entries indefinitely. A positive value removes only expired audit entries; it does not delete financial or round records.</li>
-</ul>
-<h2 id="safety-limits">Safety limits</h2>
-<ul>
-<li>Any financial amount (investment, withdrawal, total, or refund input) must be no greater than <code translate="no" v-pre>9,007,199,254,740,991</code>.</li>
-<li>A pending reward&#x27;s serialized payload is limited to <code translate="no" v-pre>60,000</code> UTF-8 bytes.</li>
-<li>Configured reward commands have a <code translate="no" v-pre>12,000</code>-byte encoded budget per reward block and must be single lines without the reserved U+0001 payload separator.</li>
-<li>An imported custom-item snapshot is limited to <code translate="no" v-pre>32 KiB</code> of serialized binary data.</li>
-</ul>
-<p>These bounds prevent integer/precision overflow and unbounded database payloads. Reduce amounts, command lists, or item metadata when validation rejects a value; never edit oversized values directly into the database.</p>
+<hr>
+<h2 id="automatic-outcomes-no-reconciliation-command-needed">Automatic outcomes (no reconciliation command needed)</h2>
+<p>The plugin never requires a manual reconciliation command. Every completed round can be inspected with
+<code translate="no" v-pre>/stakes admin logs &lt;stake-id&gt;</code>; the menu shows <strong>immutable</strong> events — player, amount, currency,
+operation ID, result, and any error. Only rounds with events recorded after this feature was installed
+appear; historical delivery outcomes are not reconstructed.</p>
+<retype-table copy-text="| Outcome | When it happens | What to do |
+| --- | --- | --- |
+| `PENDING` | A reward is waiting to be claimed, or a confirmed temporary error put it back. | Player clicks again in `/stakes rewards`. |
+| `BLOCKED` | A reward command was ambiguous (might have partly worked), so it is not replayed automatically. | Review `/stakes admin logs &lt;stake&gt;` and resolve manually. |
+| `BLOCKED` (from crash) | A `CLAIMING` lease older than 5 minutes during a crash. Moved to `BLOCKED` on startup / every 60 s. | Same — review and resolve manually; it cannot be claimed again. |
+| `UNCONFIRMED` (deposit) | An external currency withdrawal during a deposit could not be confirmed. | The deposit is cancelled **without** stake credit. Not retried. Check the provider. |
+| `PAYOUT_FAILED` (withdrawal) | A right-click withdrawal reduced the ledger but the payout to the player failed. | Compensate the player manually. The contribution was already removed — do **not** tell them to repeat the withdrawal. |">
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Outcome</th>
+<th>When it happens</th>
+<th>What to do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code translate="no" v-pre>PENDING</code></td>
+<td>A reward is waiting to be claimed, or a confirmed temporary error put it back.</td>
+<td>Player clicks again in <code translate="no" v-pre>/stakes rewards</code>.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>BLOCKED</code></td>
+<td>A reward command was ambiguous (might have partly worked), so it is not replayed automatically.</td>
+<td>Review <code translate="no" v-pre>/stakes admin logs &lt;stake&gt;</code> and resolve manually.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>BLOCKED</code> (from crash)</td>
+<td>A <code translate="no" v-pre>CLAIMING</code> lease older than 5 minutes during a crash. Moved to <code translate="no" v-pre>BLOCKED</code> on startup / every 60 s.</td>
+<td>Same — review and resolve manually; it cannot be claimed again.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>UNCONFIRMED</code> (deposit)</td>
+<td>An external currency withdrawal during a deposit could not be confirmed.</td>
+<td>The deposit is cancelled <strong>without</strong> stake credit. Not retried. Check the provider.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>PAYOUT_FAILED</code> (withdrawal)</td>
+<td>A right-click withdrawal reduced the ledger but the payout to the player failed.</td>
+<td>Compensate the player manually. The contribution was already removed — do <strong>not</strong> tell them to repeat the withdrawal.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</retype-table>
+<p><code translate="no" v-pre>auditLog.retentionDays: 0</code> keeps audit events forever. A positive value removes only expired audit
+events; it never deletes financial or round records.</p>
+<hr>
+<h2 id="safety-limits-plugin-wide">Safety limits (plugin-wide)</h2>
+<p>These bounds prevent integer/precision overflow and unbounded database payloads. Validation rejects
+values that exceed them — reduce amounts, command lists, or item metadata instead of bypassing them,
+and never edit oversized values directly into the database.</p>
+<retype-table copy-text="| Limit | Value |
+| --- | --- |
+| Any financial amount (investment, withdrawal, total, refund input) | at most `9,007,199,254,740,991` |
+| A pending reward's serialized payload | at most `60,000` UTF-8 bytes |
+| Encoded reward-command budget per reward block | `12,000` bytes (one line each, no reserved U+0001 char) |
+| An imported custom-item snapshot | at most `32 KiB` binary |">
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Limit</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Any financial amount (investment, withdrawal, total, refund input)</td>
+<td>at most <code translate="no" v-pre>9,007,199,254,740,991</code></td>
+</tr>
+<tr>
+<td>A pending reward&#x27;s serialized payload</td>
+<td>at most <code translate="no" v-pre>60,000</code> UTF-8 bytes</td>
+</tr>
+<tr>
+<td>Encoded reward-command budget per reward block</td>
+<td><code translate="no" v-pre>12,000</code> bytes (one line each, no reserved U+0001 char)</td>
+</tr>
+<tr>
+<td>An imported custom-item snapshot</td>
+<td>at most <code translate="no" v-pre>32 KiB</code> binary</td>
+</tr>
+</tbody>
+</table>
+</div>
+</retype-table>
 
                 
                 <!-- Required only on API pages -->
@@ -204,20 +309,20 @@ Only rounds with events recorded after this feature is installed appear in the m
             
                 <nav id="retype-nextprev" class="print:hidden flex mt-14">
                     <div class="w-1/2">
-                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../universalstakes/first-stake/">
+                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../universalstakes/troubleshooting/">
                             <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                             <span>
                                 <span class="block text-xs font-normal text-base-text-muted">Previous</span>
-                                <span class="block mt-1">Create Your First Stake</span>
+                                <span class="block mt-1">Troubleshooting</span>
                             </span>
                         </a>
                     </div>
             
                     <div class="w-1/2">
-                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../universalstakes/installation/">
+                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../universalstakes/reload-and-restart/">
                             <span>
                                 <span class="block text-xs font-normal text-right text-base-text-muted">Next</span>
-                                <span class="block mt-1">Installation</span>
+                                <span class="block mt-1">Reload &amp; restart</span>
                             </span>
                             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                         </a>
@@ -261,6 +366,6 @@ Only rounds with events recorded after this feature is installed appear in the m
 
     <div id="retype-overlay-target"></div>
 
-        <script data-cfasync="false">window.__DOCS__ = { "title": "Database and Safety", level: 2, icon: "file", hasPrism: true, hasInstagram: false, hasMermaid: false, hasMath: false, tocDepth: 23, "md": "/universalstakes/database-and-safety.md" }</script>
+        <script data-cfasync="false">window.__DOCS__ = { "title": "Database & safety", level: 2, icon: "file", hasPrism: true, hasInstagram: false, hasMermaid: false, hasMath: false, tocDepth: 23, "md": "/universalstakes/database-and-safety.md" }</script>
 </body>
 </html>

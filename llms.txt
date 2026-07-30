@@ -3,16 +3,20 @@
 > Documentation and setup guides for Advion plugins.
 
 - [Advion Plugins](https://deviaski.github.io/advion-docs/index.md): Advion Plugins
-- [UniversalStakes Wiki](https://deviaski.github.io/advion-docs/universalstakes/readme.md): Start here: New to the plugin? Read Install the plugin, then follow Create your first stake. You do not need coding experience.
+- [UniversalStakes Wiki](https://deviaski.github.io/advion-docs/universalstakes/readme.md): UniversalStakes turns surplus items and money on your server into a timed leaderboard race. Players choose an event, deposit resources, earn points, and climb the board.
 
 ## UniversalStakes Wiki
 
-- [Commands and Permissions](https://deviaski.github.io/advion-docs/universalstakes/commands-and-permissions.md): By default, players have no UniversalStakes permissions. Give regular players universalstakes.use; give staff universalstakes.admin (operators receive it by default).
-- [Create Your First Stake](https://deviaski.github.io/advion-docs/universalstakes/first-stake.md): Goal: Create a one-hour diamond competition with one winner. This is the safest first configuration to test.
-- [Database and Safety](https://deviaski.github.io/advion-docs/universalstakes/database-and-safety.md): Before updating the plugin: Stop the server and back up the database. This is the one habit that prevents most data-loss problems.
-- [Installation](https://deviaski.github.io/advion-docs/universalstakes/installation.md): You need: Paper 1.21.7 (the verified server version), Java 21, the UniversalStakes release JAR, and outbound HTTPS for the first start. Do not use a JAR whose name contains SNAPSHOT on a live server.
-- [Integrations](https://deviaski.github.io/advion-docs/universalstakes/integrations.md): Use Vault only when: Players should deposit virtual money instead of items.
-- [Menus](https://deviaski.github.io/advion-docs/universalstakes/menus.md): Simple rule: Change text, icons, and lore first. Do not remove dynamic sections unless you intentionally want to remove their lists.
-- [Rewards](https://deviaski.github.io/advion-docs/universalstakes/rewards.md): Important: A reward command is run by the server console. Only trusted staff should be allowed to edit stake files.
-- [Stake Settings Reference](https://deviaski.github.io/advion-docs/universalstakes/stake-reference.md): Use this page when: You already have a stake file and want to understand one of its settings. For a copy-paste starter file, use Create Your First Stake.
-- [Troubleshooting](https://deviaski.github.io/advion-docs/universalstakes/troubleshooting.md): Check that the file is in plugins/UniversalStakes/stakes/, ends in .yml, and has valid YAML indentation. Run /stakes admin reload to validate it and read the console, then perform a full server restart before expecting edits to an existing stake to apply.
+- [Troubleshooting](https://deviaski.github.io/advion-docs/universalstakes/troubleshooting.md): The file must be in plugins/UniversalStakes/language/locale/stakes/, end in .yml, and have valid YAML indentation.
+- [Database & safety](https://deviaski.github.io/advion-docs/universalstakes/database-and-safety.md): Before updating the plugin: stop the server and back up the database. This one habit prevents most data-loss problems.
+- [Reload & restart](https://deviaski.github.io/advion-docs/universalstakes/reload-and-restart.md): /stakes admin reload validates every edited file before applying it. If validation fails, the currently running registry and currency definitions stay in use.
+- [Configuration](https://deviaski.github.io/advion-docs/universalstakes/configuration.md): This page covers the two global files: config.yml (server-wide settings) and currencies.yml (external PlaceholderAPI currencies). For the per-event files, see Stake settings.
+- [Commands & permissions](https://deviaski.github.io/advion-docs/universalstakes/commands-and-permissions.md): By default nobody has UniversalStakes permissions. Give regular players the bundle universalstakes.use, and give staff the bundle universalstakes.admin (operators get it automatically).
+- [Messages & placeholders](https://deviaski.github.io/advion-docs/universalstakes/messages-and-placeholders.md): UniversalStakes sends two kinds of chat messages: plugin-wide messages (errors, prompts, help) from messages.yml, and per-stake lifecycle messages (started, stopped, reminder) that live in each stake file.
+- [Menus](https://deviaski.github.io/advion-docs/universalstakes/menus.md): Simple rule: change text, icons and lore first. Do not remove a dynamic-items section unless you intentionally want to hide that list.
+- [Rewards](https://deviaski.github.io/advion-docs/universalstakes/rewards.md): Important: every reward command runs as the server console. Only trusted staff should edit stake files — a reward command can give items, money, or run any server command.
+- [Currencies](https://deviaski.github.io/advion-docs/universalstakes/currencies.md): A contribution source takes a currency block. There are four types. Pick the one that matches what players should deposit.
+- [Stake settings](https://deviaski.github.io/advion-docs/universalstakes/stake-settings.md): Use this page when you already have a stake file and want to understand one setting. For a copy-paste starter, use Your first stake.
+- [Your first stake](https://deviaski.github.io/advion-docs/universalstakes/first-stake.md): Goal: a 1-hour diamond race with one winner. The safest first event to test.
+- [Installation](https://deviaski.github.io/advion-docs/universalstakes/installation.md): You need: Paper 1.20.4 through 26.2, and the UniversalStakes release JAR. Use Java 21 on Paper 1.20.4–1.21.11, or Java 25 on Paper 26.1–26.2. Never use a JAR whose name contains SNAPSHOT on a live server.
+- [How it works](https://deviaski.github.io/advion-docs/universalstakes/how-it-works.md): This page explains the whole plugin in plain language: where the files live, what a round is, and what happens step by step when players deposit, when the timer ends, and when they claim rewards.

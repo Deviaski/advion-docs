@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <meta name="turbo-root" content="/advion-docs">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.838750093208">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.838750301270">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.6.0">
@@ -13,7 +13,7 @@
     <!-- Primary Meta Tags -->
     <title>Menus</title>
     <meta name="title" content="Menus">
-    <meta name="description" content="Simple rule: Change text, icons, and lore first. Do not remove dynamic sections unless you intentionally want to remove their lists.">
+    <meta name="description" content="Simple rule: change text, icons and lore first. Do not remove a dynamic-items section unless you intentionally want to hide that list.">
 
     <!-- Canonical -->
     <link rel="canonical" href="https://deviaski.github.io/advion-docs/universalstakes/menus/">
@@ -23,7 +23,7 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://deviaski.github.io/advion-docs/universalstakes/menus/">
     <meta property="og:title" content="Menus">
-    <meta property="og:description" content="Simple rule: Change text, icons, and lore first. Do not remove dynamic sections unless you intentionally want to remove their lists.">
+    <meta property="og:description" content="Simple rule: change text, icons and lore first. Do not remove a dynamic-items section unless you intentionally want to hide that list.">
     <meta property="og:site_name" content="Advion Plugins">
     <meta property="og:locale" content="en_US">
 
@@ -31,19 +31,19 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://deviaski.github.io/advion-docs/universalstakes/menus/">
     <meta name="twitter:title" content="Menus">
-    <meta name="twitter:description" content="Simple rule: Change text, icons, and lore first. Do not remove dynamic sections unless you intentionally want to remove their lists.">
+    <meta name="twitter:description" content="Simple rule: change text, icons and lore first. Do not remove a dynamic-items section unless you intentionally want to hide that list.">
 
     <!-- Alternate Markdown -->
     <link rel="alternate" type="text/markdown" href="https://deviaski.github.io/advion-docs/universalstakes/menus.md">
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=4.6.0.838750093208" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=4.6.0.838750301270" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=4.6.0.838750093208" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=4.6.0.838750301270" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=4.6.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.6.0.838750093208" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.6.0.838750093208" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.6.0.838750301270" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.6.0.838750301270" defer></script>
 </head>
 <body>
     <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
@@ -137,15 +137,21 @@
                 <!-- Page content  -->
 <h1 id="menus">Menus</h1>
 <blockquote>
-<p><strong>Simple rule:</strong> Change text, icons, and lore first. Do not remove dynamic sections unless you intentionally want to remove their lists.</p>
+<p><strong>Simple rule:</strong> change text, icons and lore first. Do not remove a <code translate="no" v-pre>dynamic-items</code> section unless
+you intentionally want to hide that list.</p>
 </blockquote>
-<p>Menu files are in <code translate="no" v-pre>plugins/UniversalStakes/gui/</code>:</p>
+<p>Menu files live in <code translate="no" v-pre>plugins/UniversalStakes/language/&lt;locale&gt;/menus/</code>. Edit them, then run
+<code translate="no" v-pre>/stakes admin reload</code> to apply.</p>
+<h2 id="the-seven-menu-files">The seven menu files</h2>
 <retype-table copy-text="| File | What it shows |
 | --- | --- |
-| `stakes-main.yml` | All stake cards. |
-| `stakes-menu.yml` | One selected stake, its prizes, and player position. |
-| `stakes-history.yml` | Player deposit history. |
-| `stakes-rewards.yml` | Waiting rewards. |">
+| `stakes-main.yml` | All event cards (the home menu). |
+| `stakes-menu.yml` | One selected event: its prizes and the player's current place. |
+| `deposit-menu.yml` | Contribution sources; left-click deposits, right-click withdraws (if allowed). |
+| `stakes-history.yml` | The player's deposit history. |
+| `stakes-rewards.yml` | Waiting rewards, with a Claim All button. |
+| `stakes-admin-logs.yml` | Completed rounds, for administrators. |
+| `stakes-admin-log-events.yml` | Immutable financial/reward events for one round (admin audit). |">
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="comfortable">
 <thead>
@@ -157,31 +163,44 @@
 <tbody>
 <tr>
 <td><code translate="no" v-pre>stakes-main.yml</code></td>
-<td>All stake cards.</td>
+<td>All event cards (the home menu).</td>
 </tr>
 <tr>
 <td><code translate="no" v-pre>stakes-menu.yml</code></td>
-<td>One selected stake, its prizes, and player position.</td>
+<td>One selected event: its prizes and the player&#x27;s current place.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>deposit-menu.yml</code></td>
+<td>Contribution sources; left-click deposits, right-click withdraws (if allowed).</td>
 </tr>
 <tr>
 <td><code translate="no" v-pre>stakes-history.yml</code></td>
-<td>Player deposit history.</td>
+<td>The player&#x27;s deposit history.</td>
 </tr>
 <tr>
 <td><code translate="no" v-pre>stakes-rewards.yml</code></td>
-<td>Waiting rewards.</td>
+<td>Waiting rewards, with a Claim All button.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>stakes-admin-logs.yml</code></td>
+<td>Completed rounds, for administrators.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>stakes-admin-log-events.yml</code></td>
+<td>Immutable financial/reward events for one round (admin audit).</td>
 </tr>
 </tbody>
 </table>
 </div>
 </retype-table>
+<hr>
 <h2 id="easy-visual-changes">Easy visual changes</h2>
-<p>Change <code translate="no" v-pre>title</code>, <code translate="no" v-pre>name</code>, <code translate="no" v-pre>lore</code>, <code translate="no" v-pre>material</code>, and <code translate="no" v-pre>texture</code> inside a button. Run <code translate="no" v-pre>/stakes admin reload</code> to reload the menus.</p>
-<blockquote>
-<p><strong>SCREENSHOT TO ADD:</strong> <code translate="no" v-pre>stakes-main.yml</code> beside the matching in-game menu. Mark the title, a button, and the dynamic stake area.</p>
-</blockquote>
+<p>Inside any button you can change <code translate="no" v-pre>title</code> (menu title), <code translate="no" v-pre>name</code>, <code translate="no" v-pre>lore</code>, <code translate="no" v-pre>material</code>, and <code translate="no" v-pre>texture</code> (for
+player-head icons). Then <code translate="no" v-pre>/stakes admin reload</code>. You do not need to touch the layout for that.</p>
+<hr>
 <h2 id="understanding-pattern">Understanding <code translate="no" v-pre>pattern</code></h2>
-<p>Every <code translate="no" v-pre>pattern</code> row contains nine space-separated symbols. A symbol points to a <code translate="no" v-pre>buttons</code> entry or a <code translate="no" v-pre>dynamic-items</code> entry.</p>
+<p>Every menu is drawn from a <code translate="no" v-pre>pattern</code>. Each row has <strong>nine</strong> space-separated symbols. A symbol points
+to either a <code translate="no" v-pre>buttons</code> entry or a <code translate="no" v-pre>dynamic-items</code> entry. A <code translate="no" v-pre>.</code> is an empty slot.</p>
 <div id="understanding-pattern-code-1" class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-yaml"><code v-pre class="language-yaml">pattern:
   - &quot;+ + + + + + + + +&quot;
@@ -194,10 +213,187 @@ dynamic-items:
   stakes:
     key: &quot;@&quot;</code></pre>
 </doc-codeblock></div>
-<p>Here <code translate="no" v-pre>+</code> makes the border and <code translate="no" v-pre>@</code> is filled with stake cards. You may repeat symbols as often as needed.</p>
-<h2 id="button-actions">Button actions</h2>
-<p>Put actions in <code translate="no" v-pre>actions.left</code>; they run from top to bottom. Common actions are <code translate="no" v-pre>menu: stakes-main</code>, <code translate="no" v-pre>sound: UI_BUTTON_CLICK 1 1</code>, <code translate="no" v-pre>close</code>, <code translate="no" v-pre>page: next</code>, <code translate="no" v-pre>page: previous</code>, <code translate="no" v-pre>invest: {stake_id}</code>, <code translate="no" v-pre>claim</code>, and <code translate="no" v-pre>claim: {reward_id}</code>.</p>
-<p>The built-in dynamic lists provide their own data. Keep <code translate="no" v-pre>stakes</code>, <code translate="no" v-pre>prizes</code>, <code translate="no" v-pre>history</code>, and <code translate="no" v-pre>rewards</code> sections if you want those lists to appear.</p>
+<p>Here <code translate="no" v-pre>+</code> is the border and <code translate="no" v-pre>@</code> is filled with event cards. You can repeat a symbol as many times as
+you like. The number of rows in <code translate="no" v-pre>pattern</code> sets the menu size.</p>
+<hr>
+<h2 id="buttons">Buttons</h2>
+<p>A button maps a pattern symbol to an item and optional actions:</p>
+<div id="buttons-code-1" class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-yaml"><code v-pre class="language-yaml">buttons:
+  'X':
+    material: IRON_DOOR
+    name: &quot;&lt;red&gt;Back&quot;
+    actions:
+      left:
+        - &quot;sound: UI_BUTTON_CLICK 1.0 1.0&quot;
+        - &quot;menu: stakes-main&quot;</code></pre>
+</doc-codeblock></div>
+<p><code translate="no" v-pre>actions.left</code> runs on a left-click, <code translate="no" v-pre>actions.right</code> on a right-click. Actions run <strong>top to bottom</strong>.</p>
+<hr>
+<h2 id="button-actions-the-full-list">Button actions (the full list)</h2>
+<retype-table copy-text="| Action | What it does |
+| --- | --- |
+| `menu: stakes-main` | Open another menu. Use `menu: stakes-menu {stake_id}` to pass a stake. |
+| `sound: UI_BUTTON_CLICK 1.0 1.0` | Play a sound with optional volume and pitch. |
+| `close` | Close the inventory. |
+| `page: next` / `page: previous` | Move through a dynamic list's pages. |
+| `invest: {stake_id}` | Open that stake's contribution selector. |
+| `contribution: {stake_id}\|{source_id}` | Prompt for an amount. Left-click deposits; right-click withdraws when `withdrawals-enabled: true`. |
+| `claim` | Claim all pending rewards. |
+| `claim: {reward_id}` | Claim one specific reward. |
+| `message: messages.someKey` | Send a message defined in `messages.yml`. |
+| `command: stakes` | Run a command **as the player**. |
+| `console: give %player% diamond 1` | Run a command **as the console**. |
+| `permission: some.node \| deny: messages.noPermission` | Stop the remaining actions if the player lacks the node. |
+| `delay: 20` | Wait this many ticks before running the rest of the action chain. |">
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Action</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code translate="no" v-pre>menu: stakes-main</code></td>
+<td>Open another menu. Use <code translate="no" v-pre>menu: stakes-menu {stake_id}</code> to pass a stake.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>sound: UI_BUTTON_CLICK 1.0 1.0</code></td>
+<td>Play a sound with optional volume and pitch.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>close</code></td>
+<td>Close the inventory.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>page: next</code> / <code translate="no" v-pre>page: previous</code></td>
+<td>Move through a dynamic list&#x27;s pages.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>invest: {stake_id}</code></td>
+<td>Open that stake&#x27;s contribution selector.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>contribution: {stake_id}\|{source_id}</code></td>
+<td>Prompt for an amount. Left-click deposits; right-click withdraws when <code translate="no" v-pre>withdrawals-enabled: true</code>.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>claim</code></td>
+<td>Claim all pending rewards.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>claim: {reward_id}</code></td>
+<td>Claim one specific reward.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>message: messages.someKey</code></td>
+<td>Send a message defined in <code translate="no" v-pre>messages.yml</code>.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>command: stakes</code></td>
+<td>Run a command <strong>as the player</strong>.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>console: give %player% diamond 1</code></td>
+<td>Run a command <strong>as the console</strong>.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>permission: some.node \| deny: messages.noPermission</code></td>
+<td>Stop the remaining actions if the player lacks the node.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>delay: 20</code></td>
+<td>Wait this many ticks before running the rest of the action chain.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</retype-table>
+<p><code translate="no" v-pre>{...}</code> tokens are filled in from the menu&#x27;s context before the action runs.</p>
+<blockquote>
+<p><code translate="no" v-pre>console:</code> and reward commands run with <strong>console authority</strong>. Only trusted staff should edit menu
+files. See <a href="../database-and-safety/">Database &amp; safety</a>.</p>
+</blockquote>
+<hr>
+<h2 id="dynamic-sections-auto-filled-lists">Dynamic sections (auto-filled lists)</h2>
+<p>A <code translate="no" v-pre>dynamic-items</code> entry fills its pattern symbol with an automatic list. Each one has a <code translate="no" v-pre>key</code> (the
+pattern symbol) and the list is paginated automatically.</p>
+<retype-table copy-text="| Section name | Filled with |
+| --- | --- |
+| `stakes` | The event cards. |
+| `prizes` | One slot per configured top prize for the open stake. |
+| `self` | The viewer's own place and invested amount. |
+| `contributions` | The contribution sources for the open stake. |
+| `history` | The viewer's deposit history entries. |
+| `rewards` | The viewer's pending rewards. |
+| `audit-rounds` | Completed rounds (admin menu). |
+| `audit-events` | Events for one completed round (admin menu). |">
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Section name</th>
+<th>Filled with</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code translate="no" v-pre>stakes</code></td>
+<td>The event cards.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>prizes</code></td>
+<td>One slot per configured top prize for the open stake.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>self</code></td>
+<td>The viewer&#x27;s own place and invested amount.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>contributions</code></td>
+<td>The contribution sources for the open stake.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>history</code></td>
+<td>The viewer&#x27;s deposit history entries.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>rewards</code></td>
+<td>The viewer&#x27;s pending rewards.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>audit-rounds</code></td>
+<td>Completed rounds (admin menu).</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>audit-events</code></td>
+<td>Events for one completed round (admin menu).</td>
+</tr>
+</tbody>
+</table>
+</div>
+</retype-table>
+<p>Keep the matching section if you want that content to appear. All paginated sections share the same
+current page; a single-item widget like <code translate="no" v-pre>self</code> stays visible while a bigger list is paged.</p>
+<hr>
+<h2 id="the-empty-fallback">The <code translate="no" v-pre>empty</code> fallback</h2>
+<p>When a dynamic list has nothing to show, the <code translate="no" v-pre>empty</code> block is placed at its <code translate="no" v-pre>slot</code>:</p>
+<div id="the-empty-fallback-code-1" class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-yaml"><code v-pre class="language-yaml">empty:
+  slot: 22
+  material: BARRIER
+  name: &quot;&lt;red&gt;No rewards yet&quot;
+  lore:
+    - &quot;&lt;gray&gt;Play in events and win prizes.&quot;</code></pre>
+</doc-codeblock></div>
+<hr>
+<h2 id="reload-safety">Reload safety</h2>
+<p>Before replacing the live menus, reload <strong>validates</strong> every menu file. If a menu has an invalid
+material, layout, dynamic provider, action, or menu reference, the reload is <strong>rejected</strong> and the
+previously working menu stays active. The console names the file and field. Validation checks
+structure, not the safety of commands — that remains your responsibility.</p>
 
                 
                 <!-- Required only on API pages -->
@@ -207,11 +403,11 @@ dynamic-items:
             
                 <nav id="retype-nextprev" class="print:hidden flex mt-14">
                     <div class="w-1/2">
-                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../universalstakes/integrations/">
+                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../universalstakes/messages-and-placeholders/">
                             <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                             <span>
                                 <span class="block text-xs font-normal text-base-text-muted">Previous</span>
-                                <span class="block mt-1">Integrations</span>
+                                <span class="block mt-1">Messages &amp; placeholders</span>
                             </span>
                         </a>
                     </div>
