@@ -1,6 +1,6 @@
 ---
 order: 11
-icon: refresh
+icon: sync
 ---
 
 # Reload & restart

@@ -1,6 +1,6 @@
 ---
 order: 10
-icon: settings
+icon: gear
 ---
 
 # Configuration

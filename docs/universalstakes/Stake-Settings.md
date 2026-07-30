@@ -1,6 +1,6 @@
 ---
 order: 4
-icon: list-detailed
+icon: checklist
 ---
 
 # Stake settings

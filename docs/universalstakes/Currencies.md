@@ -1,6 +1,6 @@
 ---
 order: 5
-icon: coins
+icon: credit-card
 ---
 
 # Currencies
